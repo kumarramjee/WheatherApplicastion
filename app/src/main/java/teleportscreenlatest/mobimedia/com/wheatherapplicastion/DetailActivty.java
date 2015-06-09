@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +14,9 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.logging.LogRecord;
+
+
 
 
 public class DetailActivty extends Activity {
@@ -24,6 +28,7 @@ public class DetailActivty extends Activity {
     private TextView mcurrentTemperatureField;
     private TextView mupdatedField;
     private TextView mweatherIcon;
+     private Handler mhandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,38 +37,52 @@ public class DetailActivty extends Activity {
 
         Intent i = getIntent();
         mcity = i.getStringExtra("CitytoDetail");
+
+        mhandler = new Handler();
+
         SetUpUI();
 
 
 
 
-        //updateWeatherData(mcity);
+        updateWeatherData(mcity);
 
     }
 
     private void SetUpUI() {
 
 
+        mcityField = (TextView)findViewById(R.id.city_field);
+        mupdatedField = (TextView)findViewById(R.id.updated_field);
+        mdetailsField = (TextView)findViewById(R.id.details_field);
+        mcurrentTemperatureField = (TextView)findViewById(R.id.current_temperature_field);
+        mweatherIcon = (TextView)findViewById(R.id.weather_icon);
+
+
+
+
     }
 
     private void updateWeatherData(final String city) {
-        new Thread() {
-            public void run() {
-                final JSONObject json = FetchJson.getJSON(mContext, city);
-                if (json == null) {
-
-                    Log.i("Detail Activty", "Json OBject :" + json);
-
-                    Toast.makeText(mContext,
-                            mContext.getString(R.string.place_not_found),
-                            Toast.LENGTH_LONG).show();
+        new Thread(){
+            public void run(){
+                final JSONObject json = FetchJson.getJSON(mContext, mcity);
+                if(json == null){
+                    mhandler.post(new Runnable() {
+                        public void run() {
+                            Toast.makeText(mContext,
+                                    mContext.getString(R.string.place_not_found),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
                 } else {
-
-                    renderWeather(json);
+                    mhandler.post(new Runnable() {
+                        public void run() {
+                            renderWeather(json);
+                        }
+                    });
                 }
-
             }
-
         }.start();
     }
 

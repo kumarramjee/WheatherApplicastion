@@ -28,6 +28,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         SetupToolbar();
         SetUpUI();
+        Log.i("Mainactivity","check");
 
         submit.setOnClickListener(this);
     }
