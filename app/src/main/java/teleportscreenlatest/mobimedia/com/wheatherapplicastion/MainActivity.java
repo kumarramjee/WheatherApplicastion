@@ -2,6 +2,7 @@ package teleportscreenlatest.mobimedia.com.wheatherapplicastion;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -13,6 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.identity.intents.Address;
+import com.google.android.gms.maps.model.LatLng;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private Toolbar mtoolbar;
@@ -22,6 +30,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private EditText medittextplace;
     private String mTextplace = "";
     private String mcityname;
+    LatLng latitude;
+    LatLng longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +49,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void SendCityNameByGeocode(String mcityname) {
-
+        Geocoder geocoder = new Geocoder(this, Locale.ENGLISH);
 
     }
 
