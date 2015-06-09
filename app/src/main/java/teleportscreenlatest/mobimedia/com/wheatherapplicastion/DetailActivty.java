@@ -32,7 +32,7 @@ public class DetailActivty extends Activity {
 
         Intent i = getIntent();
         mcity = i.getStringExtra("CitytoDetail");
-      SetUpUI();
+        SetUpUI();
 
 
 
