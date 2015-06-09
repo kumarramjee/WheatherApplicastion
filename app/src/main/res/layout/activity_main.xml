@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Ui designed to custom action bar. layout includes menu, issue and application name, share and settings icon -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3a87ed"
+    tools:context=".MainActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"></include>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/toolbar">
+
+        <TextView
+            android:id="@+id/textplace"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:text="Enter Names of Place" />
+
+        <EditText
+            android:id="@+id/edittextplace"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_below="@+id/textplace"
+            android:layout_marginTop="16dp"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edittextplace"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="Click " />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
