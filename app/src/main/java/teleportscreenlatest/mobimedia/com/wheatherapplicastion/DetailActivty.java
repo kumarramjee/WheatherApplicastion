@@ -39,6 +39,7 @@ public class DetailActivty extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_activty);
 
+
         Intent i=getIntent();
         city=i.getStringExtra("city1");
         //getCity();
