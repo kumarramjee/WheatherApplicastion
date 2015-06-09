@@ -14,12 +14,12 @@ import android.widget.TextView;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
-    Toolbar mtoolbar;
-    Button submit;
-    TextView txt_Title;
-    TextView txt_Next;
-    EditText city;
-    String cityname;
+    private Toolbar mtoolbar;
+    private Button submit;
+    private TextView txt_Title;
+    private TextView txt_Next;
+    private EditText city;
+    private String mcityname;
 
 
     @Override
@@ -28,22 +28,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         SetupToolbar();
         SetUpUI();
-        Log.i("Main","Activity:=="+cityname);
+
         submit.setOnClickListener(this);
     }
 
-    public void setintent(){
-
-       /* Intent i =new Intent(MainActivity.this,DetailActivty.class);
-        i.putExtra("city1",cityname);
-        startActivity(i);*/
-
-    }
 
     private void SetUpUI() {
         submit = (Button) findViewById(R.id.submit);
-
-        city=(EditText)findViewById(R.id.edittextplace);
+        city = (EditText) findViewById(R.id.edittextplace);
     }
 
     private void SetupToolbar() {
@@ -60,11 +52,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.submit:
-                cityname=city.getText().toString();
-                Intent i =new Intent(MainActivity.this,DetailActivty.class);
-                i.putExtra("city1",cityname);
-                startActivity(i);
-               // setintent();
+                mcityname = city.getText().toString();
+                Intent intent_submit = new Intent(MainActivity.this, DetailActivty.class);
+                intent_submit.putExtra("CitytoDetail", mcityname);
+                startActivity(intent_submit);
 
                 break;
             default:

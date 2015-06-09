@@ -34,8 +34,6 @@ public class FetchJson {
 
             JSONObject data = new JSONObject(json.toString());
 
-            // This value will be 404 if the request was not
-            // successful
             if(data.getInt("cod") != 200){
                 return null;
             }
