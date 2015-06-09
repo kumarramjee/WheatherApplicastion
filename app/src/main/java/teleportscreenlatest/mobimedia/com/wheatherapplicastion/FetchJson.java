@@ -9,6 +9,9 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.util.Log;
 
+/**
+ * Fetch data from
+ */
 public class FetchJson {
 
     private static final String OPEN_WEATHER_MAP_API =
