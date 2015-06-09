@@ -4,19 +4,24 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
-    Toolbar mtoolbar;
-    Button submit;
-    TextView txt_Title;
-    TextView txt_Next;
-
+    private Toolbar mtoolbar;
+    private Button submit;
+    private TextView txt_Title;
+    private TextView txt_Next;
+    private EditText medittextplace;
+    private String mTextplace = "";
+    private String mcityname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +30,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
         SetupToolbar();
         SetUpUI();
 
+        submit.setOnClickListener(this);
+        mcityname = medittextplace.getText().toString().trim();
+
+        SendCityNameByGeocode(mcityname);
+
+
+    }
+
+    private void SendCityNameByGeocode(String mcityname) {
+
 
     }
 
     private void SetUpUI() {
         submit = (Button) findViewById(R.id.submit);
-        submit.setOnClickListener(this);
+        medittextplace = (EditText) findViewById(R.id.edittextplace);
+
 
     }
 
@@ -46,6 +62,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.submit:
+/*
+                Validation mvalidation = new Validation();
+                 mTextplace = mvalidation.CityNameValidation(medittextplace.getText().toString().trim());
+
+                if (mTextplace.length() > 0) {
+
+                    Intent intent_home = new Intent(MainActivity.this, DetailActivty.class);
+                    startActivity(intent_home);
+                } else {
+                    Toast.makeText(MainActivity.this, "" + mTextplace, Toast.LENGTH_SHORT).show();
+
+                }
+*/
                 Intent intent_home = new Intent(MainActivity.this, DetailActivty.class);
                 startActivity(intent_home);
 
