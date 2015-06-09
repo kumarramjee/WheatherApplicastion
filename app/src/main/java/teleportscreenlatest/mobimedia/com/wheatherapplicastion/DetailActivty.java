@@ -3,9 +3,13 @@ package teleportscreenlatest.mobimedia.com.wheatherapplicastion;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,9 +21,7 @@ import java.util.Locale;
 import java.util.logging.LogRecord;
 
 
-
-
-public class DetailActivty extends Activity {
+public class DetailActivty extends Activity implements View.OnClickListener {
 
     private TextView mcityField;
     private String mcity = "";
@@ -28,46 +30,48 @@ public class DetailActivty extends Activity {
     private TextView mcurrentTemperatureField;
     private TextView mupdatedField;
     private TextView mweatherIcon;
-     private Handler mhandler;
+    private Handler mhandler;
+    private TextView mtxt_Title;
+    private ImageView mback_navigation;
+    private TextView mtxt_Next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_activty);
 
-        Intent i = getIntent();
-        mcity = i.getStringExtra("CitytoDetail");
-
+        Intent inetent_cityname = getIntent();
+        mcity = inetent_cityname.getStringExtra("CitytoDetail");
         mhandler = new Handler();
-
         SetUpUI();
-
-
-
-
         updateWeatherData(mcity);
 
     }
 
     private void SetUpUI() {
 
-
-        mcityField = (TextView)findViewById(R.id.city_field);
-        mupdatedField = (TextView)findViewById(R.id.updated_field);
-        mdetailsField = (TextView)findViewById(R.id.details_field);
-        mcurrentTemperatureField = (TextView)findViewById(R.id.current_temperature_field);
-        mweatherIcon = (TextView)findViewById(R.id.weather_icon);
-
-
-
+        mtxt_Title = (TextView) findViewById(R.id.txt_Title);
+        mtxt_Title.setText("Detail Infomartion");
+        mtxt_Next = (TextView) findViewById(R.id.txt_Next);
+        mtxt_Next.setVisibility(View.INVISIBLE);
+        mcityField = (TextView) findViewById(R.id.city_field);
+        mupdatedField = (TextView) findViewById(R.id.updated_field);
+        mdetailsField = (TextView) findViewById(R.id.details_field);
+        mcurrentTemperatureField = (TextView) findViewById(R.id.current_temperature_field);
+        mweatherIcon = (TextView) findViewById(R.id.weather_icon);
+        mback_navigation = (ImageView) findViewById(R.id.back_navigation);
+        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        mback_navigation.setBackground(upArrow);
+        mback_navigation.setOnClickListener(this);
 
     }
 
     private void updateWeatherData(final String city) {
-        new Thread(){
-            public void run(){
+        new Thread() {
+            public void run() {
                 final JSONObject json = FetchJson.getJSON(mContext, mcity);
-                if(json == null){
+                if (json == null) {
                     mhandler.post(new Runnable() {
                         public void run() {
                             Toast.makeText(mContext,
@@ -151,4 +155,16 @@ public class DetailActivty extends Activity {
         mweatherIcon.setText(icon);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.back_navigation:
+                Intent intent_back = new Intent(DetailActivty.this, MainActivity.class);
+                startActivity(intent_back);
+                break;
+            default:
+                break;
+        }
+
+    }
 }
