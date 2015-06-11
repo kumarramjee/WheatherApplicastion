@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-<string name="app_name">Simple Weather</string>
+<string name="app_name">Weather Application</string>
     <string name="action_settings">settings;</string>
 <string name="change_city">Change city</string>
 
@@ -21,5 +21,8 @@
 <string name="weather_drizzle">&#xf01c;</string>
 
 <string name="place_not_found">Sorry, no weather data found.</string>
+    <string name="title_activity_forcast">ForcastActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>

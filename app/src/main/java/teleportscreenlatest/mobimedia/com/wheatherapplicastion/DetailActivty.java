@@ -34,6 +34,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
     private TextView mtxt_Title;
     private ImageView mback_navigation;
     private TextView mtxt_Next;
+    private ImageView mcurrentweather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         mhandler = new Handler();
         SetUpUI();
         updateWeatherData(mcity);
-
+        mtxt_Next.setOnClickListener(this);
     }
 
     private void SetUpUI() {
@@ -53,7 +54,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         mtxt_Title = (TextView) findViewById(R.id.txt_Title);
         mtxt_Title.setText("Detail Infomartion");
         mtxt_Next = (TextView) findViewById(R.id.txt_Next);
-        mtxt_Next.setVisibility(View.INVISIBLE);
+        mtxt_Next.setText("Forcast");
         mcityField = (TextView) findViewById(R.id.city_field);
         mupdatedField = (TextView) findViewById(R.id.updated_field);
         mdetailsField = (TextView) findViewById(R.id.details_field);
@@ -137,6 +138,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                     break;
                 case 3:
                     icon = mContext.getString(R.string.weather_drizzle);
+
                     break;
                 case 7:
                     icon = mContext.getString(R.string.weather_foggy);
@@ -162,6 +164,11 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                 Intent intent_back = new Intent(DetailActivty.this, MainActivity.class);
                 startActivity(intent_back);
                 break;
+            case R.id.txt_Next:
+                Intent intent_forcast = new Intent(DetailActivty.this, ForcastActivity.class);
+                startActivity(intent_forcast);
+                break;
+
             default:
                 break;
         }

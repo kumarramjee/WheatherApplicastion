@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3a87ed"
-    tools:context=".MainActivity">
+    android:background="#90A4AE"
+      tools:context=".MainActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -16,9 +16,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/toolbar"
-        android:layout_marginTop="16dp">
+        >
 
-        <ImageView
+      <!--  <ImageView
             android:id="@+id/imageview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,12 +28,11 @@
             android:scaleType="centerCrop"
             android:src="@drawable/cloud" />
 
-
+-->
         <TextView
             android:id="@+id/textplace"
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:layout_below="@+id/imageview"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:text="Enter Place name"
