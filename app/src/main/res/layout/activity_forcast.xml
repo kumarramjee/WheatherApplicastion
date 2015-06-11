@@ -9,9 +9,16 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar"></include>
 
-<FrameLayout
-    android:id="@+id/framelayout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"></FrameLayout>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/activity_main_swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar">
 
+
+        <FrameLayout
+            android:id="@+id/framelayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></FrameLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>

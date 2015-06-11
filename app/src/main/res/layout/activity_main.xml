@@ -21,9 +21,8 @@
         <TextView
             android:id="@+id/textplace"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="50dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="16dp"
             android:text="Enter Place name"
             android:textColor="#ffffff"
             android:textSize="20sp" />
@@ -31,9 +30,8 @@
         <AutoCompleteTextView
             android:id="@+id/edittextplace"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="50dp"
             android:layout_below="@+id/textplace"
-            android:layout_marginLeft="16dp"
             android:singleLine="true"
             android:textColor="#ffffff"
             android:textSize="18sp" />
@@ -41,7 +39,7 @@
         <Button
             android:id="@+id/submit"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="50dp"
             android:layout_below="@+id/edittextplace"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="56dp"

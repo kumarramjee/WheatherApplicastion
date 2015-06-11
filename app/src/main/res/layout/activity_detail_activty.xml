@@ -1,9 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="#8890A4AE"
     tools:context="teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui.DetailActivty">
+
 
     <include
         android:id="@+id/toolbar"
@@ -26,7 +27,6 @@
         android:layout_centerHorizontal="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="13sp" />
-
 
 
     <TextView
@@ -58,3 +58,4 @@
 
 
 </RelativeLayout>
+

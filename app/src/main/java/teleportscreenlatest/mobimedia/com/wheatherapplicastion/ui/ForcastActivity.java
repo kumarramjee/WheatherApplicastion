@@ -7,11 +7,13 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.fragments.DayFragement;
 
 
 public class ForcastActivity extends Activity implements View.OnClickListener {
@@ -27,6 +29,7 @@ public class ForcastActivity extends Activity implements View.OnClickListener {
     private ImageView mback_navigation;
     private TextView mtxt_Next;
     private ImageView mcurrentweather;
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,29 @@ public class ForcastActivity extends Activity implements View.OnClickListener {
         SetUpUI();
 
 
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_swipe_refresh_layout);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshContent();
+
+            }
+        });
+
+
+        getFragmentManager().beginTransaction().add(R.id.framelayout, new DayFragement()).commit();
+
+
     }
+
+
+    private void refreshContent() {
+
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
+
 
     private void SetUpUI() {
 

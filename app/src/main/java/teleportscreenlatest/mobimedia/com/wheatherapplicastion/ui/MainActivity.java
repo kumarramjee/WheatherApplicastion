@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 
@@ -31,10 +32,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         SetupToolbar();
         SetUpUI();
 
-
-        Log.i("Mainactivity", "check");
-
         submit.setOnClickListener(this);
+
+
     }
 
 
@@ -58,10 +58,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.submit:
                 mcityname = city.getText().toString();
-                Intent intent_submit = new Intent(MainActivity.this, DetailActivty.class);
-                intent_submit.putExtra("CitytoDetail", mcityname);
-                startActivity(intent_submit);
+                if ((mcityname.length() == 0) || (mcityname == null)) {
 
+                    Toast.makeText(this,"Enter City Name",Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent_submit = new Intent(MainActivity.this, DetailActivty.class);
+                    intent_submit.putExtra("CitytoDetail", mcityname);
+                    startActivity(intent_submit);
+                }
                 break;
             default:
                 break;
