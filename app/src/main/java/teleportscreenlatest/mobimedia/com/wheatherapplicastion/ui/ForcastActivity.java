@@ -1,4 +1,4 @@
-package teleportscreenlatest.mobimedia.com.wheatherapplicastion;
+package teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,13 +6,12 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 
 
 public class ForcastActivity extends Activity implements View.OnClickListener {

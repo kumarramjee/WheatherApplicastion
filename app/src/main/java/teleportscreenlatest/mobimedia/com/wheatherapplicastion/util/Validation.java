@@ -1,4 +1,4 @@
-package teleportscreenlatest.mobimedia.com.wheatherapplicastion;
+package teleportscreenlatest.mobimedia.com.wheatherapplicastion.util;
 
 /**
  * Created by ram on 9/6/15.

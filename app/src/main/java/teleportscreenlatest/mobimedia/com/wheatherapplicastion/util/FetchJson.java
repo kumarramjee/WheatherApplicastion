@@ -1,4 +1,4 @@
-package teleportscreenlatest.mobimedia.com.wheatherapplicastion;
+package teleportscreenlatest.mobimedia.com.wheatherapplicastion.util;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -8,6 +8,8 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.util.Log;
+
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 
 /**
  * Fetch data from

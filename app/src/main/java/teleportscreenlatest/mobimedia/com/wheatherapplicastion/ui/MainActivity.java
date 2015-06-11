@@ -1,16 +1,17 @@
-package teleportscreenlatest.mobimedia.com.wheatherapplicastion;
+package teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -18,8 +19,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Button submit;
     private TextView txt_Title;
     private TextView txt_Next;
-    private EditText city;
+    private AutoCompleteTextView city;
     private String mcityname;
+    Context activity;
 
 
     @Override
@@ -28,7 +30,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         SetupToolbar();
         SetUpUI();
-        Log.i("Mainactivity","check");
+
+
+        Log.i("Mainactivity", "check");
 
         submit.setOnClickListener(this);
     }
@@ -36,7 +40,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void SetUpUI() {
         submit = (Button) findViewById(R.id.submit);
-        city = (EditText) findViewById(R.id.edittextplace);
+        city = (AutoCompleteTextView) findViewById(R.id.edittextplace);
     }
 
     private void SetupToolbar() {

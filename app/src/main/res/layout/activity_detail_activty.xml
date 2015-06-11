@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#90A4AE"
-    tools:context="teleportscreenlatest.mobimedia.com.wheatherapplicastion.DetailActivty">
+    android:background="#8890A4AE"
+    tools:context="teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui.DetailActivty">
 
     <include
         android:id="@+id/toolbar"

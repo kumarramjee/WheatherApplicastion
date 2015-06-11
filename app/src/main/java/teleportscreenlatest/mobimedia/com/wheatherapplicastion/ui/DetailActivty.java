@@ -1,4 +1,4 @@
-package teleportscreenlatest.mobimedia.com.wheatherapplicastion;
+package teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,7 +18,9 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.logging.LogRecord;
+
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchJson;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 
 
 public class DetailActivty extends Activity implements View.OnClickListener {
@@ -174,4 +176,6 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         }
 
     }
+
+
 }

@@ -5,62 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#90A4AE"
-      tools:context=".MainActivity">
+    tools:context=".MainActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"></include>
 
     <RelativeLayout
+        android:id="@+id/rootlayot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/toolbar"
-        >
+        android:layout_margin="16dp">
 
-      <!--  <ImageView
-            android:id="@+id/imageview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/cloud" />
-
--->
         <TextView
             android:id="@+id/textplace"
             android:layout_width="match_parent"
             android:layout_height="64dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
             android:text="Enter Place name"
             android:textColor="#ffffff"
             android:textSize="20sp" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/edittextplace"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:layout_below="@+id/textplace"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="5dp"
             android:singleLine="true"
             android:textColor="#ffffff"
-            android:textSize="25sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/submit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="64dp"
             android:layout_below="@+id/edittextplace"
+            android:layout_marginBottom="16dp"
             android:layout_marginLeft="56dp"
             android:layout_marginRight="56dp"
-            android:layout_marginTop="16dp"
-            android:background="#934875"
+            android:layout_marginTop="5dp"
+            android:background="#263238"
             android:text="Go "
-            android:textColor="#000000" />
+            android:textColor="#ffffff" />
 
     </RelativeLayout>
 

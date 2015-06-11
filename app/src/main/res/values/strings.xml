@@ -3,7 +3,9 @@
 
 <string name="app_name">Weather Application</string>
     <string name="action_settings">settings;</string>
-<string name="change_city">Change city</string>
+    <string name="action_refersh">Refresh;</string>
+
+    <string name="change_city">Change city</string>
 
     <string name="title_activity_detail_activty">Weather app</string>
 
@@ -24,5 +26,6 @@
     <string name="title_activity_forcast">ForcastActivity</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_secondary">secondaryActivity</string>
 
 </resources>
