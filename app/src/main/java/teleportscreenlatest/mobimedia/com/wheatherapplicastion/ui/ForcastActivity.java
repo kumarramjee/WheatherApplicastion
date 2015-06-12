@@ -74,6 +74,13 @@ public class ForcastActivity extends Activity implements View.OnClickListener {
     private void getJsonResponseDayForcast(JSONObject json) {
         Log.i("Forcast detail", "Information for current citydetail" + json);
 
+
+
+
+
+
+
+
     }
 
 

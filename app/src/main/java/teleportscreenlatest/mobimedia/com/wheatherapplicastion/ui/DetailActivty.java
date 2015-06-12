@@ -3,6 +3,7 @@ package teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +39,10 @@ public class DetailActivty extends Activity implements View.OnClickListener {
     private ImageView mback_navigation;
     private TextView mtxt_Next;
     private ImageView mcurrentweather;
+    Resources res;
+    RelativeLayout rLayout;
+    Drawable drawable;
+    String updatedOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,8 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         SetUpUI();
         updateWeatherData(mcity);
         mtxt_Next.setOnClickListener(this);
+        res = getResources();
+
     }
 
     private void SetUpUI() {
@@ -67,6 +75,8 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         mback_navigation.setBackground(upArrow);
         mback_navigation.setOnClickListener(this);
+        rLayout = (RelativeLayout) findViewById(R.id.rLayout);
+
 
     }
 
@@ -80,6 +90,9 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                             Toast.makeText(mContext,
                                     mContext.getString(R.string.place_not_found),
                                     Toast.LENGTH_LONG).show();
+
+                            drawable = res.getDrawable(R.drawable.nonelse); //new Image that was added to the res folder
+                            rLayout.setBackground(drawable);
                         }
                     });
                 } else {
@@ -107,11 +120,14 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                             "\n" + "Humidity: " + main.getString("humidity") + "%" +
                             "\n" + "Pressure: " + main.getString("pressure") + " hPa");
 
+
+            setImage(details.getString("description").toUpperCase(Locale.US));
+
             mcurrentTemperatureField.setText(
                     String.format("%.2f", main.getDouble("temp")) + " ℃");
 
             DateFormat df = DateFormat.getDateTimeInstance();
-            String updatedOn = df.format(new Date(json.getLong("dt") * 1000));
+             updatedOn = df.format(new Date(json.getLong("dt") * 1000));
             mupdatedField.setText("Last update: " + updatedOn);
 
             setWeatherIcon(details.getInt("id"),
@@ -156,7 +172,55 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                     break;
             }
         }
-        mweatherIcon.setText(icon);
+        //  mweatherIcon.setText(icon);
+    }
+
+
+    private void setImage(String description) {
+
+
+
+        if (description.equals("SKY IS CLEAR")) {
+
+
+            // if () {
+            drawable = res.getDrawable(R.drawable.nonelse); //new Image that was added to the res folder
+            rLayout.setBackground(drawable);
+            // }
+            // else
+            // {
+
+
+            //  }
+        } else if (description.equals("OVERCAST CLOUDS")) {
+            drawable = res.getDrawable(R.drawable.overcatclouds); //new Image that was added to the res folder
+            rLayout.setBackground(drawable);
+
+        } else if (description.equals("FEW CLOUDS")) {
+            drawable = res.getDrawable(R.drawable.fewclouds); //new Image that was added to the res folder
+            rLayout.setBackground(drawable);
+
+        } else if (description.equals("MODERATE RAIN")) {
+            drawable = res.getDrawable(R.drawable.moderaterain); //new Image that was added to the res folder
+            rLayout.setBackground(drawable);
+
+        } else if (description.equals("LIGHT RAIN")) {
+            drawable = res.getDrawable(R.drawable.lihjtrain); //new Image that was added to the res folder
+            rLayout.setBackground(drawable);
+
+        } else if (description.equals("BROKEN CLOUDS")) {
+            drawable = res.getDrawable(R.drawable.brokenclouds); //new Image that was added to the res folder
+            rLayout.setBackground(drawable);
+
+        } else if (description.equals("SCATTERED CLOUDS")) {
+            drawable = res.getDrawable(R.drawable.scateredclouds); //new Image that was added to the res folder
+            rLayout.setBackground(drawable);
+
+        } else {
+            drawable = res.getDrawable(R.drawable.nonelse); //new Image that was added to the res folder
+            rLayout.setBackground(drawable);
+
+        }
     }
 
     @Override
@@ -168,7 +232,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                 break;
             case R.id.txt_Next:
                 Intent intent_forcast = new Intent(DetailActivty.this, ForcastActivity.class);
-                intent_forcast.putExtra("ForcastCityDetail",mcity);
+                intent_forcast.putExtra("ForcastCityDetail", mcity);
 
                 startActivity(intent_forcast);
                 break;
