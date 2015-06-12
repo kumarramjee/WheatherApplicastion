@@ -39,10 +39,11 @@ public class DetailActivty extends Activity implements View.OnClickListener {
     private ImageView mback_navigation;
     private TextView mtxt_Next;
     private ImageView mcurrentweather;
-    Resources res;
-    RelativeLayout rLayout;
-    Drawable drawable;
-    String updatedOn;
+    private Resources res;
+    private RelativeLayout rLayout;
+    private Drawable drawable;
+    private String updatedOn;
+    private String timeday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +92,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                                     mContext.getString(R.string.place_not_found),
                                     Toast.LENGTH_LONG).show();
 
-                            drawable = res.getDrawable(R.drawable.nonelse); //new Image that was added to the res folder
+                            drawable = res.getDrawable(R.drawable.skyclear);
                             rLayout.setBackground(drawable);
                         }
                     });
@@ -127,9 +128,9 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                     String.format("%.2f", main.getDouble("temp")) + " ℃");
 
             DateFormat df = DateFormat.getDateTimeInstance();
-             updatedOn = df.format(new Date(json.getLong("dt") * 1000));
+            updatedOn = df.format(new Date(json.getLong("dt") * 1000));
             mupdatedField.setText("Last update: " + updatedOn);
-
+            // GetCurrentTime();
             setWeatherIcon(details.getInt("id"),
                     json.getJSONObject("sys").getLong("sunrise") * 1000,
                     json.getJSONObject("sys").getLong("sunset") * 1000);
@@ -179,49 +180,47 @@ public class DetailActivty extends Activity implements View.OnClickListener {
     private void setImage(String description) {
 
 
-
         if (description.equals("SKY IS CLEAR")) {
-
-
-            // if () {
-            drawable = res.getDrawable(R.drawable.nonelse); //new Image that was added to the res folder
+            drawable = res.getDrawable(R.drawable.skyclear);
             rLayout.setBackground(drawable);
-            // }
-            // else
-            // {
 
-
-            //  }
         } else if (description.equals("OVERCAST CLOUDS")) {
-            drawable = res.getDrawable(R.drawable.overcatclouds); //new Image that was added to the res folder
+            drawable = res.getDrawable(R.drawable.overcatclouds);
             rLayout.setBackground(drawable);
 
         } else if (description.equals("FEW CLOUDS")) {
-            drawable = res.getDrawable(R.drawable.fewclouds); //new Image that was added to the res folder
+            drawable = res.getDrawable(R.drawable.fewclouds);
             rLayout.setBackground(drawable);
 
         } else if (description.equals("MODERATE RAIN")) {
-            drawable = res.getDrawable(R.drawable.moderaterain); //new Image that was added to the res folder
+            drawable = res.getDrawable(R.drawable.moderaterain);
             rLayout.setBackground(drawable);
 
         } else if (description.equals("LIGHT RAIN")) {
-            drawable = res.getDrawable(R.drawable.lihjtrain); //new Image that was added to the res folder
+            drawable = res.getDrawable(R.drawable.lihjtrain);
             rLayout.setBackground(drawable);
 
         } else if (description.equals("BROKEN CLOUDS")) {
-            drawable = res.getDrawable(R.drawable.brokenclouds); //new Image that was added to the res folder
+            drawable = res.getDrawable(R.drawable.brokenclouds);
             rLayout.setBackground(drawable);
 
         } else if (description.equals("SCATTERED CLOUDS")) {
-            drawable = res.getDrawable(R.drawable.scateredclouds); //new Image that was added to the res folder
+            drawable = res.getDrawable(R.drawable.scateredclouds);
             rLayout.setBackground(drawable);
 
         } else {
-            drawable = res.getDrawable(R.drawable.nonelse); //new Image that was added to the res folder
+            drawable = res.getDrawable(R.drawable.skyclear);
             rLayout.setBackground(drawable);
 
         }
     }
+
+    private String GetCurrentTime() {
+        String time = updatedOn;
+        time = time.substring(12, updatedOn.length());
+        return time;
+    }
+
 
     @Override
     public void onClick(View v) {

@@ -15,6 +15,12 @@ import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
  */
 public class DayForcastAdapter extends BaseAdapter {
     Context context;
+    TextView day;
+    TextView date;
+    ImageView imageicon;
+    TextView mintemp;
+    TextView maxtemp;
+
 
     //DayForcastAdapter()
 
@@ -39,11 +45,11 @@ public class DayForcastAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.dayforcast, parent, false);
         }
-        TextView day = (TextView) convertView.findViewById(R.id.day);
-        TextView date = (TextView) convertView.findViewById(R.id.date);
-        ImageView imageicon = (ImageView) convertView.findViewById(R.id.icon);
-        TextView mintemp = (TextView) convertView.findViewById(R.id.mintemp);
-        TextView maxtemp = (TextView) convertView.findViewById(R.id.maxtemp);
+        day = (TextView) convertView.findViewById(R.id.day);
+        date = (TextView) convertView.findViewById(R.id.date);
+        imageicon = (ImageView) convertView.findViewById(R.id.icon);
+        mintemp = (TextView) convertView.findViewById(R.id.mintemp);
+        maxtemp = (TextView) convertView.findViewById(R.id.maxtemp);
 
 
         return convertView;
