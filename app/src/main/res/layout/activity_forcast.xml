@@ -16,7 +16,7 @@
         android:layout_height="200dp"
         android:layout_below="@+id/toolbar"
         android:layout_marginTop="5dp"
-        android:background="#000000"></RelativeLayout>
+        android:background="#d4d4d4"></RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/dayForcast"

@@ -39,11 +39,11 @@ public class DetailActivty extends Activity implements View.OnClickListener {
     private ImageView mback_navigation;
     private TextView mtxt_Next;
     private ImageView mcurrentweather;
-    private Resources res;
-    private RelativeLayout rLayout;
-    private Drawable drawable;
-    private String updatedOn;
-    private String timeday;
+    Resources res;
+    RelativeLayout rLayout;
+    Drawable drawable;
+    String updatedOn;
+    String timeday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -209,7 +209,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
             rLayout.setBackground(drawable);
 
         } else {
-            drawable = res.getDrawable(R.drawable.skyclear);
+            drawable = res.getDrawable(R.drawable.nonelse);
             rLayout.setBackground(drawable);
 
         }
@@ -227,10 +227,14 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.back_navigation:
                 Intent intent_back = new Intent(DetailActivty.this, MainActivity.class);
+                intent_back.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent_back);
                 break;
             case R.id.txt_Next:
                 Intent intent_forcast = new Intent(DetailActivty.this, ForcastActivity.class);
+                intent_forcast.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent_forcast.putExtra("ForcastCityDetail", mcity);
 
                 startActivity(intent_forcast);

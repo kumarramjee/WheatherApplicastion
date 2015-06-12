@@ -20,9 +20,10 @@ public class DayForcastAdapter extends BaseAdapter {
     ImageView imageicon;
     TextView mintemp;
     TextView maxtemp;
+    DayForcastAdapter()
+    {
 
-
-    //DayForcastAdapter()
+    }
 
     @Override
     public int getCount() {

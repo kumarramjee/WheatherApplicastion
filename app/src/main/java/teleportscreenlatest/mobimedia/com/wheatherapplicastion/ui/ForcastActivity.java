@@ -75,12 +75,6 @@ public class ForcastActivity extends Activity implements View.OnClickListener {
         Log.i("Forcast detail", "Information for current citydetail" + json);
 
 
-
-
-
-
-
-
     }
 
 
@@ -135,15 +129,12 @@ public class ForcastActivity extends Activity implements View.OnClickListener {
 
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
-    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back_navigation:
                 Intent intent_back = new Intent(ForcastActivity.this, DetailActivty.class);
+                intent_back.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent_back);
                 break;
 

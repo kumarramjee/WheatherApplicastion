@@ -12,7 +12,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.CityAdapter;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.beans.CityResult;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -23,6 +27,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private AutoCompleteTextView city;
     private String mcityname;
     Context activity;
+    ArrayList<CityResult> cityResultList;
+    CityAdapter adpt;
 
 
     @Override
@@ -60,9 +66,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 mcityname = city.getText().toString();
                 if ((mcityname.length() == 0) || (mcityname == null)) {
 
-                    Toast.makeText(this,"Enter City Name",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Enter City Name", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent_submit = new Intent(MainActivity.this, DetailActivty.class);
+                    intent_submit.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                            | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent_submit.putExtra("CitytoDetail", mcityname);
                     startActivity(intent_submit);
                 }
