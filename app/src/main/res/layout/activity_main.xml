@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#90A4AE"
+    android:background="#80d3d3d3"
     tools:context=".MainActivity">
 
     <include
@@ -24,7 +24,7 @@
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:text="Enter Place name"
-            android:textColor="#ffffff"
+            android:textColor="#030303"
             android:textSize="20sp" />
 
         <AutoCompleteTextView
@@ -32,8 +32,9 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/textplace"
+            android:layout_marginTop="-8dp"
             android:singleLine="true"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             android:textSize="18sp" />
 
         <Button

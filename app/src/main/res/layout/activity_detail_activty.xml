@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#8890A4AE"
+    android:background="#80000000"
     tools:context="teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui.DetailActivty">
 
 

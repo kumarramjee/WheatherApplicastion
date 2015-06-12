@@ -168,6 +168,8 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                 break;
             case R.id.txt_Next:
                 Intent intent_forcast = new Intent(DetailActivty.this, ForcastActivity.class);
+                intent_forcast.putExtra("ForcastCityDetail",mcity);
+
                 startActivity(intent_forcast);
                 break;
 

@@ -8,17 +8,22 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONObject;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.fragments.DayFragement;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchForcastForDayJson;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchForcastJson;
 
 
 public class ForcastActivity extends Activity implements View.OnClickListener {
     private TextView mcityField;
-    private String mcity = "";
+    final private String mcity = "";
     private Context mContext = this;
     private TextView mdetailsField;
     private TextView mcurrentTemperatureField;
@@ -29,7 +34,7 @@ public class ForcastActivity extends Activity implements View.OnClickListener {
     private ImageView mback_navigation;
     private TextView mtxt_Next;
     private ImageView mcurrentweather;
-    SwipeRefreshLayout mSwipeRefreshLayout;
+    String cityname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,29 +42,68 @@ public class ForcastActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_forcast);
 
         SetUpUI();
+        Intent integtforcast = getIntent();
+        cityname = integtforcast.getStringExtra("ForcastCityDetail");
+        TimeForcastData(cityname);
+        DayForcastData(cityname);
 
+    }
 
+    private void DayForcastData(final String cityname) {
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_swipe_refresh_layout);
-
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refreshContent();
-
+        new Thread() {
+            public void run() {
+                final JSONObject jsonday = FetchForcastForDayJson.getJSON(mContext, cityname);
+                if (jsonday == null) {
+                    mhandler.post(new Runnable() {
+                        public void run() {
+                            Toast.makeText(mContext,
+                                    mContext.getString(R.string.place_not_found),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } else {
+                    getJsonResponseDayForcast(jsonday);
+                }
             }
-        });
-
-
-        getFragmentManager().beginTransaction().add(R.id.framelayout, new DayFragement()).commit();
+        }.start();
 
 
     }
 
+    private void getJsonResponseDayForcast(JSONObject json) {
+        Log.i("Forcast detail", "Information for current citydetail" + json);
 
-    private void refreshContent() {
+    }
 
-        mSwipeRefreshLayout.setRefreshing(false);
+
+    private void TimeForcastData(final String cityname) {
+
+        new Thread() {
+            public void run() {
+                final JSONObject json = FetchForcastJson.getJSON(mContext, cityname);
+                if (json == null) {
+                    mhandler.post(new Runnable() {
+                        public void run() {
+                            Toast.makeText(mContext,
+                                    mContext.getString(R.string.place_not_found),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } else {
+                    getJsonResponseForcast(json);
+                }
+            }
+        }.start();
+
+
+    }
+
+    private void getJsonResponseForcast(JSONObject json) {
+
+        Log.i("Forcast detail", "Information for current citydetail" + json);
+
+
     }
 
 

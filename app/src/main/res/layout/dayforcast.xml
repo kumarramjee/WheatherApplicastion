@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000"
+   >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentLeft="true"
+    >
+    <TextView
+        android:id="@+id/day"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:gravity="center_horizontal"
+        android:text="day"
+
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:layout_marginLeft="5dp"
+        android:text="14/02/1991"
+        android:textColor="#ffffff" />
+
+    <ImageView
+        android:layout_width="45dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/cloud"
+
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/mintemp"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:layout_marginLeft="5dp"
+        android:text="14/02/1991"
+
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/maxtemp"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:layout_marginLeft="5dp"
+        android:text="14/02/1991"
+
+        android:textColor="#ffffff" />
+
+</LinearLayout>
+</RelativeLayout>

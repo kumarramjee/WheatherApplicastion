@@ -2,23 +2,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#90A4AE"
+    android:background="#80000000"
     tools:context="teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui.ForcastActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"></include>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/activity_main_swipe_refresh_layout"
+
+    <RelativeLayout
+        android:id="@+id/timeforcast"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="5dp"
+        android:background="#000000"></RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dayForcast"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar">
-
-
-        <FrameLayout
-            android:id="@+id/framelayout"
+        android:layout_below="@+id/timeforcast"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff">
+        <ListView
+            android:id="@+id/daywisedetail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></FrameLayout>
-    </android.support.v4.widget.SwipeRefreshLayout>
+            android:layout_height="match_parent"
+            android:background="#d3d3d3"></ListView>
+
+
+    </RelativeLayout>
+
+
 </RelativeLayout>
