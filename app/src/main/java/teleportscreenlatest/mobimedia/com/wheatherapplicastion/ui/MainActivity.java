@@ -19,6 +19,8 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.CityAdapter;
@@ -73,20 +75,37 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             e.printStackTrace();
                         }
                     }
+
+
                 }).start();
+
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
+              /*  Timer timer = new Timer();
+                final long DELAY = 500; // in ms
 
+                timer.cancel();
+                timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        // TODO: do what you need here (refresh list)
+                        // you will probably need to use runOnUiThread(Runnable action) for some specific actions
+                    }
+
+                }, DELAY);*/
                 adpt = new CityAdapter(getApplicationContext(), cityResultList);
                 city.setAdapter(adpt);
                 adpt.notifyDataSetChanged();
 
             }
         });
+
+
         city.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
