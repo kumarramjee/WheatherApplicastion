@@ -93,8 +93,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        // TODO: do what you need here (refresh list)
-                        // you will probably need to use runOnUiThread(Runnable action) for some specific actions
+                         // you will probably need to use runOnUiThread(Runnable action) for some specific actions
                     }
 
                 }, DELAY);*/
