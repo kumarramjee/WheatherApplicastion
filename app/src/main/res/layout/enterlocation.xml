@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/textplace"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:text="Enter Place name"
+            android:textColor="#030303"
+            android:textSize="20sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/edittextplace"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/textplace"
+            android:layout_marginTop="-8dp"
+            android:singleLine="true"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/edittextplace"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="56dp"
+            android:layout_marginRight="56dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_round_go"
+            android:text="Go "
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+
+

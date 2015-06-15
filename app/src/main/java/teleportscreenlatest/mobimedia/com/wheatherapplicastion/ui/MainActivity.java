@@ -152,6 +152,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             Toast.makeText(mContext,
                                     "Current Location Not Found.Turn on Location or Check internet Connection.",
                                     Toast.LENGTH_LONG).show();
+                            drawable = res.getDrawable(R.drawable.skyclear);
+                            rLayout.setBackground(drawable);
 
 
                         }
@@ -272,7 +274,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.txt_Next:
                 rootlayot.setVisibility(View.VISIBLE);
-                 // ShowDialogForPlace();
+                //ShowDialogForPlace();
 
             default:
                 break;
@@ -281,16 +283,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     private void ShowDialogForPlace() {
+        View view = getLayoutInflater().inflate(R.layout.enterlocation, null);
+        submit = (Button) view.findViewById(R.id.submit);
+        submit.setOnClickListener(this);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+
         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-        alertDialog.setTitle("Enter Place Name");
-        alertDialog.setMessage("Alert message to be shown");
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();
+        dialog.setView(view);
+
+        dialog.show();
+
 
     }
 
