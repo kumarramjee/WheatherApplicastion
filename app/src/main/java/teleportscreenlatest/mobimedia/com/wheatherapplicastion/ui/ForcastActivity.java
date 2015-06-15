@@ -104,7 +104,7 @@ public class ForcastActivity extends FragmentActivity {
             drawable = res.getDrawable(R.drawable.moderaterain);
             detailmainlayout.setBackground(drawable);
 
-        } else if (description.equals("LIGHT RAIN")) {
+        } else if (description.equals("light rain")) {
             drawable = res.getDrawable(R.drawable.lihjtrain);
             detailmainlayout.setBackground(drawable);
 
