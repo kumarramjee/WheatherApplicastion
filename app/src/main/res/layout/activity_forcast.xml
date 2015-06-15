@@ -1,38 +1,178 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailmainlayout"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#80000000"
-    tools:context="teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui.ForcastActivity">
+    android:orientation="vertical">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"></include>
 
-
     <RelativeLayout
-        android:id="@+id/timeforcast"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginTop="5dp"
-        android:background="#d4d4d4"></RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/dayForcast"
-        android:layout_width="match_parent"
+         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/timeforcast"
-        android:layout_alignParentBottom="true"
-        android:background="#ffffff">
-        <ListView
-            android:id="@+id/daywisedetail"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#d3d3d3"></ListView>
+        android:layout_weight="1"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context=".MainActivity">
 
+        <TextView
+            android:id="@+id/cityText"
+            style="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/temp"
+            style="@style/tempStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cityText"
+            android:layout_centerHorizontal="true"></TextView>
+
+        <TextView
+            android:id="@+id/unittemp"
+            style="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/temp"
+            android:layout_below="@id/cityText"
+            android:layout_toRightOf="@id/temp"></TextView>
+
+        <TextView
+            android:id="@+id/skydesc"
+            style="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/temp"
+            android:layout_below="@id/temp"
+            android:layout_toRightOf="@id/temp"></TextView>
+
+        <!--  Image weather condition -->
+        <ImageView
+            android:id="@+id/condIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/temp"
+            android:layout_toRightOf="@id/temp" />
 
     </RelativeLayout>
 
+    <android.support.v4.view.ViewPager
 
-</RelativeLayout>
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="6">
+
+        <android.support.v4.view.PagerTitleStrip
+            android:id="@+id/pager_title_strip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="#E6E6E6"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:textColor="#fff" />
+
+    </android.support.v4.view.ViewPager>
+</LinearLayout>
+
+    <!--
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        tools:context="teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui.ForcastActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"></include>
+
+        <RelativeLayout
+            android:id="@+id/mforcastlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:id="@+id/cityText"
+                    style="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cityText"
+                    android:layout_centerHorizontal="true">
+                </TextView>
+                <TextView
+                    android:id="@+id/unittemp"
+                    android:layout_width="wrap_content"
+                    style="?android:attr/textAppearanceMedium"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cityText"
+                    android:layout_toRightOf="@id/temp"
+                    android:layout_alignBaseline="@id/temp">
+                </TextView>
+                <TextView
+                    android:id="@+id/skydesc"
+                    android:layout_width="wrap_content"
+                    style="?android:attr/textAppearanceMedium"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/temp"
+                    android:layout_alignStart="@id/temp"
+                    android:layout_toRightOf="@id/temp">
+                </TextView>
+
+                &lt;!&ndash;  Image weather condition &ndash;&gt;
+                <ImageView android:id="@+id/condIcon"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_alignTop="@id/temp"
+                    android:layout_toRightOf="@id/temp"/>
+
+            </RelativeLayout>
+
+            <android.support.v4.view.ViewPager
+
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="6" >
+
+                <android.support.v4.view.PagerTitleStrip
+                    android:id="@+id/pager_title_strip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:background="#E6E6E6"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="4dp"
+                    android:textColor="#fff" />
+
+            </android.support.v4.view.ViewPager>
+        </RelativeLayout>
+
+    </RelativeLayout>
+    -->

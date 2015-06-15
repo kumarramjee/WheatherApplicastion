@@ -1,6 +1,7 @@
 package teleportscreenlatest.mobimedia.com.wheatherapplicastion.util;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONObject;
 
@@ -23,6 +24,8 @@ public class FetchForcastForDayJson {
     public static JSONObject getJSON(Context context, String city) {
         try {
             URL url = new URL(String.format(FORCAST_DAY_DETAIL_API, city));
+
+            Log.i("FetchForcastForDayJson","Forcast activity=="+url);
 
             HttpURLConnection connection =
                     (HttpURLConnection) url.openConnection();

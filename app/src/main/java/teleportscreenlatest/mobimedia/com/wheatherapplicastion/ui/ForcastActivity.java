@@ -1,145 +1,211 @@
 package teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.os.Handler;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
-import android.view.View;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.json.JSONObject;
+import org.json.JSONException;
 
+import java.util.Locale;
+
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.HttpClient.WeatherHttpClient;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchForcastForDayJson;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchForcastJson;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.DailyForecastPageAdapter;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Weather;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherForecast;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.parser.JSONWeatherParser;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Location;
 
+import static java.lang.Integer.parseInt;
 
-public class ForcastActivity extends Activity implements View.OnClickListener {
-    private TextView mcityField;
-    final private String mcity = "";
-    private Context mContext = this;
-    private TextView mdetailsField;
-    private TextView mcurrentTemperatureField;
-    private TextView mupdatedField;
-    private TextView mweatherIcon;
-    private Handler mhandler;
-    private TextView mtxt_Title;
-    private ImageView mback_navigation;
-    private TextView mtxt_Next;
-    private ImageView mcurrentweather;
-    String cityname;
+public class ForcastActivity extends FragmentActivity {
+    private TextView cityText;
+    private TextView condDescr;
+    private TextView temp;
+    private TextView press;
+    private TextView windSpeed;
+    private TextView windDeg;
+    private TextView unitTemp;
+    TextView txt_Title;
+    LinearLayout detailmainlayout;
+    private TextView hum;
+    private ImageView imgView;
+    String currentconditionname;
+    Drawable drawable;
+    Resources res;
+    private static String forecastDaysNum = "10";
+    private ViewPager pager;
+    ImageView mback_navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forcast);
-
+        String city = getIntent().getStringExtra("CitytoDetail");
+        String lang = "en";
         SetUpUI();
-        Intent integtforcast = getIntent();
-        cityname = integtforcast.getStringExtra("ForcastCityDetail");
-        TimeForcastData(cityname);
-        DayForcastData(cityname);
+        res = getResources();
+
+        JSONWeatherTask task = new JSONWeatherTask();
+        task.execute(new String[]{city, lang});
+
+        JSONForecastWeatherTask task1 = new JSONForecastWeatherTask();
+        task1.execute(new String[]{city, lang, forecastDaysNum});
 
     }
-
-    private void DayForcastData(final String cityname) {
-
-        new Thread() {
-            public void run() {
-                final JSONObject jsonday = FetchForcastForDayJson.getJSON(mContext, cityname);
-                if (jsonday == null) {
-                    mhandler.post(new Runnable() {
-                        public void run() {
-                            Toast.makeText(mContext,
-                                    mContext.getString(R.string.place_not_found),
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    });
-                } else {
-                    getJsonResponseDayForcast(jsonday);
-                }
-            }
-        }.start();
-
-
-    }
-
-    private void getJsonResponseDayForcast(JSONObject json) {
-        Log.i("Forcast detail", "Information for current citydetail" + json);
-
-
-    }
-
-
-    private void TimeForcastData(final String cityname) {
-
-        new Thread() {
-            public void run() {
-                final JSONObject json = FetchForcastJson.getJSON(mContext, cityname);
-                if (json == null) {
-                    mhandler.post(new Runnable() {
-                        public void run() {
-                            Toast.makeText(mContext,
-                                    mContext.getString(R.string.place_not_found),
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    });
-                } else {
-                    getJsonResponseForcast(json);
-                }
-            }
-        }.start();
-
-
-    }
-
-    private void getJsonResponseForcast(JSONObject json) {
-
-        Log.i("Forcast detail", "Information for current citydetail" + json);
-
-
-    }
-
 
     private void SetUpUI() {
 
-        mtxt_Title = (TextView) findViewById(R.id.txt_Title);
-        mtxt_Title.setText("Forcast Infomartion");
-        mtxt_Next = (TextView) findViewById(R.id.txt_Next);
-        mtxt_Next.setVisibility(View.INVISIBLE);
-        mcityField = (TextView) findViewById(R.id.city_field);
-        mupdatedField = (TextView) findViewById(R.id.updated_field);
-        mdetailsField = (TextView) findViewById(R.id.details_field);
-        mcurrentTemperatureField = (TextView) findViewById(R.id.current_temperature_field);
-        mweatherIcon = (TextView) findViewById(R.id.weather_icon);
+        cityText = (TextView) findViewById(R.id.cityText);
+        temp = (TextView) findViewById(R.id.temp);
+        unitTemp = (TextView) findViewById(R.id.unittemp);
+        unitTemp.setText("℃");
+        condDescr = (TextView) findViewById(R.id.skydesc);
         mback_navigation = (ImageView) findViewById(R.id.back_navigation);
+
         final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         mback_navigation.setBackground(upArrow);
-        mback_navigation.setOnClickListener(this);
+
+
+        pager = (ViewPager) findViewById(R.id.pager);
+        imgView = (ImageView) findViewById(R.id.condIcon);
+        txt_Title = (TextView) findViewById(R.id.txt_Title);
+        txt_Title.setText("Detail Information");
+        detailmainlayout = (LinearLayout) findViewById(R.id.detailmainlayout);
+    }
+
+    private void setImage(String description) {
+
+        if (description.equals("Sky is Clear")) {
+            drawable = res.getDrawable(R.drawable.skyclear);
+            detailmainlayout.setBackground(drawable);
+
+        } else if (description.equals("OVERCAST CLOUDS")) {
+            drawable = res.getDrawable(R.drawable.overcatclouds);
+            detailmainlayout.setBackground(drawable);
+
+        } else if (description.equals("FEW CLOUDS")) {
+            drawable = res.getDrawable(R.drawable.fewclouds);
+            detailmainlayout.setBackground(drawable);
+
+        } else if (description.equals("MODERATE RAIN")) {
+            drawable = res.getDrawable(R.drawable.moderaterain);
+            detailmainlayout.setBackground(drawable);
+
+        } else if (description.equals("LIGHT RAIN")) {
+            drawable = res.getDrawable(R.drawable.lihjtrain);
+            detailmainlayout.setBackground(drawable);
+
+        } else if (description.equals("BROKEN CLOUDS")) {
+            drawable = res.getDrawable(R.drawable.brokenclouds);
+            detailmainlayout.setBackground(drawable);
+
+        } else if (description.equals("SCATTERED CLOUDS")) {
+            drawable = res.getDrawable(R.drawable.scateredclouds);
+            detailmainlayout.setBackground(drawable);
+
+        } else {
+            drawable = res.getDrawable(R.drawable.nonelse);
+            detailmainlayout.setBackground(drawable);
+
+        }
 
     }
 
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.back_navigation:
-                Intent intent_back = new Intent(ForcastActivity.this, DetailActivty.class);
-                intent_back.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                        | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent_back);
-                break;
+    private class JSONWeatherTask extends AsyncTask<String, Void, Weather> {
 
-            default:
-                break;
+        @Override
+        protected Weather doInBackground(String... params) {
+            Weather weather = new Weather();
+            String data = ((new WeatherHttpClient()).getWeatherData(params[0], params[1]));
+
+            try {
+                weather = JSONWeatherParser.getWeather(data);
+                System.out.println("Weather [" + weather + "]");
+                // Let's retrieve the icon
+                weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return weather;
+
         }
+
+
+        @Override
+        protected void onPostExecute(Weather weather) {
+            super.onPostExecute(weather);
+
+            if (weather.iconData != null && weather.iconData.length > 0) {
+                Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
+                imgView.setImageBitmap(img);
+            }
+
+
+            cityText.setText(weather.location.getCity() + "," + weather.location.getCountry());
+            temp.setText("" + Math.round((weather.temperature.getTemp() - 275.15)));
+            condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
+            currentconditionname = (weather.currentCondition.getDescr());
+            setImage(currentconditionname);
+            /*
+
+			temp.setText("" + Math.round((weather.temperature.getTemp() - 275.15)) + "�C");
+			hum.setText("" + weather.currentCondition.getHumidity() + "%");
+			press.setText("" + weather.currentCondition.getPressure() + " hPa");
+			windSpeed.setText("" + weather.wind.getSpeed() + " mps");
+			windDeg.setText("" + weather.wind.getDeg() + "�");
+			*/
+        }
+
+
+    }
+
+
+    private class JSONForecastWeatherTask extends AsyncTask<String, Void, WeatherForecast> {
+
+        @Override
+        protected WeatherForecast doInBackground(String... params) {
+
+            String data = ((new WeatherHttpClient()).getForecastWeatherData(params[0], params[1], params[2]));
+            WeatherForecast forecast = new WeatherForecast();
+            try {
+                forecast = JSONWeatherParser.getForecastWeather(data);
+                System.out.println("Weather [" + forecast + "]");
+
+                // Let's retrieve the icon
+                //weather.iconData = ( (new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return forecast;
+
+        }
+
+
+        @Override
+        protected void onPostExecute(WeatherForecast forecastWeather) {
+            super.onPostExecute(forecastWeather);
+
+            DailyForecastPageAdapter adapter = new DailyForecastPageAdapter(parseInt(forecastDaysNum), getSupportFragmentManager(), forecastWeather);
+
+            pager.setAdapter(adapter);
+        }
+
+
     }
 }

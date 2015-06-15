@@ -15,7 +15,8 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/toolbar"
+        android:layout_margin="16dp">
 
         <TextView
             android:id="@+id/city_field1"
@@ -71,13 +72,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="16dp">
+        android:layout_margin="16dp"
+        android:background="#d4d4d4">
 
         <TextView
             android:id="@+id/textplace"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
+            android:gravity="center"
             android:text="Enter Place name"
             android:textColor="#030303"
             android:textSize="20sp" />

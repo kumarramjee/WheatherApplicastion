@@ -12,6 +12,7 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -51,7 +52,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private TextView txt_Title;
     private TextView txt_Next;
     private AutoCompleteTextView city;
-    private String mcityname;
+    String mcityname = "";
     Context activity;
     ArrayList<CityResult> cityResultList;
     CityAdapter adpt;
@@ -95,11 +96,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         res = getResources();
         GpsLocation getgps = new GpsLocation();
         getgps.turnGPSOn();
-
         GetDetailWeatherDetail(CityName);
-
         submit.setOnClickListener(this);
         txt_Next.setOnClickListener(this);
+        rLayout.setOnClickListener(this);
         city.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -142,10 +142,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void GetDetailWeatherDetail(String cityName) {
+        Log.i("Passing data to ", "Submit==City name is ==" + mcityname);
+
         new Thread() {
             public void run() {
                 final JSONObject json = FetchJson.getJSON(mContext, CityName);
-                Log.i("MAin Activity", "jsom==" + json);
+                Log.i("Passing data to ", "json data is ==" + json);
+
                 if (json == null) {
                     mhandler.post(new Runnable() {
                         public void run() {
@@ -154,8 +157,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                     Toast.LENGTH_LONG).show();
                             drawable = res.getDrawable(R.drawable.skyclear);
                             rLayout.setBackground(drawable);
-
-
                         }
                     });
                 } else {
@@ -183,7 +184,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             "\n" + "Pressure: " + main.getString("pressure") + " hPa");
             setImage(details.getString("description").toUpperCase(Locale.US));
             mcurrentTemperatureField.setText(
-                    String.format("%.2f", main.getDouble("temp")) + " ?");
+                    String.format("%.2f", main.getDouble("temp")) + " ℃");
             DateFormat df = DateFormat.getDateTimeInstance();
             updatedOn = df.format(new Date(json.getLong("dt") * 1000));
             mupdatedField.setText("Last update: " + updatedOn);
@@ -241,6 +242,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mdetailsField = (TextView) findViewById(R.id.details_field1);
         mcurrentTemperatureField = (TextView) findViewById(R.id.current_temperature_field1);
         mweatherIcon = (TextView) findViewById(R.id.weather_icon1);
+
     }
 
     private void SetupToolbar() {
@@ -264,7 +266,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
                     Toast.makeText(this, "Enter City Name", Toast.LENGTH_SHORT).show();
                 } else {
-                    //  GetDetailWeatherDetail(mcityname);
+                    //   GetDetailWeatherDetail(mcityname);
                     Intent intent_submit = new Intent(MainActivity.this, DetailActivty.class);
                     intent_submit.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                             | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -275,7 +277,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.txt_Next:
                 rootlayot.setVisibility(View.VISIBLE);
                 //ShowDialogForPlace();
-
+                break;
+            case R.id.rLayout:
+                rootlayot.setVisibility(View.INVISIBLE);
+                break;
             default:
                 break;
         }

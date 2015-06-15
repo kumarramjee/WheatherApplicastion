@@ -1,14 +1,17 @@
-package teleportscreenlatest.mobimedia.com.wheatherapplicastion.fragments;
+package teleportscreenlatest.mobimedia.com.wheatherapplicastion.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by ram on 11/6/15.
+ * Created by ram on 15/6/15.
  */
 public class DayForecast {
+
+
+
     private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    //public Weather weather = new Weather();
+    public Weather weather = new Weather();
     public ForecastTemp forecastTemp = new ForecastTemp();
     public long timestamp;
 

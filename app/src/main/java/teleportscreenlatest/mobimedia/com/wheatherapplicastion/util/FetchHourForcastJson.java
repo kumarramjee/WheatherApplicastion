@@ -15,7 +15,7 @@ import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 /**
  * Created by ram on 12/6/15.
  */
-public class FetchForcastJson {
+public class FetchHourForcastJson {
 
 
     private static final String FORCAST_DETAIL_API =
@@ -24,6 +24,8 @@ public class FetchForcastJson {
     public static JSONObject getJSON(Context context, String city) {
         try {
             URL url = new URL(String.format(FORCAST_DETAIL_API, city));
+            Log.i("FetchHourForcastJson", "Forcast Activity==" + url);
+
 
             HttpURLConnection connection =
                     (HttpURLConnection) url.openConnection();
