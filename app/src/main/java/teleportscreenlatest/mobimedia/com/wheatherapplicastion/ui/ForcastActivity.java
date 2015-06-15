@@ -56,9 +56,9 @@ public class ForcastActivity extends FragmentActivity {
         SetUpUI();
         res = getResources();
 
-        JSONWeatherTask task = new JSONWeatherTask();
+        /*JSONWeatherTask task = new JSONWeatherTask();
         task.execute(new String[]{city, lang});
-
+*/
         JSONForecastWeatherTask task1 = new JSONForecastWeatherTask();
         task1.execute(new String[]{city, lang, forecastDaysNum});
 
