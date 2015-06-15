@@ -128,11 +128,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             e.printStackTrace();
                         }
 
-
                     }
 
 
                 }).start();
+
+                adpt = new CityAdapter(getApplicationContext(), cityResultList);
+                city.setAdapter(adpt);
+                adpt.notifyDataSetChanged();
 
 
             }
@@ -152,10 +155,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     }
 
                 }, DELAY);*/
-                adpt = new CityAdapter(getApplicationContext(), cityResultList);
-                city.setAdapter(adpt);
-                adpt.notifyDataSetChanged();
-            }
+                }
         });
 
 
