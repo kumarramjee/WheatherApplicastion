@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/mainlayout"
     android:layout_height="match_parent"
     android:background="#80d3d3d3"
     tools:context=".MainActivity">
@@ -10,11 +11,65 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar"></include>
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        >
+
+        <TextView
+            android:id="@+id/city_field1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="City field"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/updated_field1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/city_field1"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="13sp" />
+
+
+        <TextView
+            android:id="@+id/weather_icon1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/updated_field1"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/current_temperature_field1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/weather_icon1"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/details_field1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/weather_icon1"
+            android:layout_centerHorizontal="true"
+
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+
+    </RelativeLayout>
+
 
 
     <RelativeLayout
@@ -52,7 +107,7 @@
             android:layout_marginLeft="56dp"
             android:layout_marginRight="56dp"
             android:layout_marginTop="5dp"
-            android:background="#263238"
+            android:background="@drawable/bg_round_go"
             android:text="Go "
             android:textColor="#ffffff" />
     </RelativeLayout>
