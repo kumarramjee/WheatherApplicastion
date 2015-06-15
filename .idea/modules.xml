@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/WheatherApplicastion.iml" filepath="$PROJECT_DIR$/WheatherApplicastion.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/material_dialogs_lib/material_dialogs_lib.iml" filepath="$PROJECT_DIR$/material_dialogs_lib/material_dialogs_lib.iml" />
     </modules>
   </component>
 </project>
