@@ -30,7 +30,6 @@ import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.GooglePla
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.GpsLocation;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherDetailImage;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchJson;
-
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.Locationfinder;
 
 
@@ -40,9 +39,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private TextView txt_Title;
     private TextView txt_Next;
     private AutoCompleteTextView city;
-    String mcityname = "";
+    private String mcityname = "";
     Context activity;
-    String msendcityname;
     int x;
     RelativeLayout rootlayot;
     Context mContext = this;
@@ -56,7 +54,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private TextView mdetailsField;
     private TextView mcurrentTemperatureField;
     private TextView mupdatedField;
-    private TextView mweatherIcon;
     Handler mhandler;
     TextView mtxt_Title;
     ImageView mback_navigation;
@@ -85,6 +82,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         GpsLocation getgps = new GpsLocation();
         getgps.turnGPSOn();
         GetDetailWeatherDetail(CityName);
+
         submit.setOnClickListener(this);
         txt_Next.setOnClickListener(this);
         rLayout.setOnTouchListener(new View.OnTouchListener() {
@@ -93,7 +91,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 if (rootlayot.VISIBLE == View.VISIBLE) {
                     rootlayot.setVisibility(View.GONE);
                 }
-             //   else if()
+                //   else if()
 
                 return true;
             }
@@ -108,34 +106,35 @@ public class MainActivity extends Activity implements View.OnClickListener {
         });
     }
 
-
     private void GetDetailWeatherDetail(String cityName) {
-        Log.i("Passing data to ", "Submit==City name is ==" + mcityname);
+        if (cityName.length() == 0) {
+            Toast.makeText(MainActivity.this, "Not able to find current location.Chechk ur connection", Toast.LENGTH_SHORT).show();
+        } else {
 
-        new Thread() {
-            public void run() {
-                final JSONObject json = FetchJson.getJSON(mContext, CityName);
-                Log.i("Passing data to ", "json data is ==" + json);
 
-                if (json == null) {
-                    mhandler.post(new Runnable() {
-                        public void run() {
-                            Toast.makeText(mContext,
-                                    "Current Location Not Found.Turn on Location or Check internet Connection.",
-                                    Toast.LENGTH_LONG).show();
-                            drawable = res.getDrawable(R.drawable.skyclear);
-                            rLayout.setBackground(drawable);
-                        }
-                    });
-                } else {
-                    mhandler.post(new Runnable() {
-                        public void run() {
-                            renderWeather(json);
-                          }
-                    });
+            new Thread() {
+                public void run() {
+                    final JSONObject json = FetchJson.getJSON(mContext, CityName);
+                    if (json == null) {
+                        mhandler.post(new Runnable() {
+                            public void run() {
+                                Toast.makeText(mContext,
+                                        "Try after some timee.",
+                                        Toast.LENGTH_LONG).show();
+                                drawable = res.getDrawable(R.drawable.skyclear);
+                                rLayout.setBackground(drawable);
+                            }
+                        });
+                    } else {
+                        mhandler.post(new Runnable() {
+                            public void run() {
+                                renderWeather(json);
+                            }
+                        });
+                    }
                 }
-            }
-        }.start();
+            }.start();
+        }
     }
 
     private void renderWeather(JSONObject json) {

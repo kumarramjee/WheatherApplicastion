@@ -183,7 +183,7 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
             }
 
 
-            cityText.setText(weather.location.getCity() + "," + weather.location.getCountry());
+            cityText.setText((weather.location.getCity() + "," + weather.location.getCountry()).toUpperCase());
             temp.setText("" + Math.round((weather.temperature.getTemp() - 265.15)));
             //     condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
             //      currentconditionname = (weather.currentCondition.getDescr());
