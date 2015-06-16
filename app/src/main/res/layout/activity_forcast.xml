@@ -28,12 +28,11 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:gravity="center_vertical"
-            android:textSize="20sp"
+            android:textSize="30sp"
             ></TextView>
 
         <TextView
             android:id="@+id/temp"
-            style="@style/tempStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/cityText"
@@ -78,9 +77,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:background="#E6E6E6"
+            android:background="#000000"
             android:paddingBottom="4dp"
             android:paddingTop="4dp"
+
             android:textColor="#fff" />
 
     </android.support.v4.view.ViewPager>

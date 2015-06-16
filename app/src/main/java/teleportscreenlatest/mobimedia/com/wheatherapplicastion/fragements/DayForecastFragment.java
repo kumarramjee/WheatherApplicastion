@@ -34,8 +34,14 @@ public class DayForecastFragment extends android.support.v4.app.Fragment {
 
         TextView tempView = (TextView) v.findViewById(R.id.tempForecast);
         TextView descView = (TextView) v.findViewById(R.id.skydescForecast);
-        tempView.setText((int) (dayForecast.forecastTemp.min - 275.15) + "-" + (int) (dayForecast.forecastTemp.max - 275.15));
-        descView.setText(dayForecast.weather.currentCondition.getDescr());
+        TextView min_temp=(TextView)v.findViewById(R.id.mintempforcast);
+        TextView humidity=(TextView)v.findViewById(R.id.humidity);
+        TextView pressure=(TextView)v.findViewById(R.id.pressure);
+        tempView.setText("Min temp:"+(int) (dayForecast.forecastTemp.min - 265.15));// + "-" + (int) (dayForecast.forecastTemp.max - 275.15));
+        descView.setText(dayForecast.weather.currentCondition.getDescr().toUpperCase());
+        min_temp.setText("Max temp:"+(int) (dayForecast.forecastTemp.max - 265.15));
+        humidity.setText("Humidity:"+dayForecast.weather.currentCondition.getHumidity()+"%");
+        pressure.setText("Pressure:"+dayForecast.weather.currentCondition.getPressure() + " hPa");
         iconWeather = (ImageView) v.findViewById(R.id.forCondIcon);
         // Now we retrieve the weather icon
         JSONIconWeatherTask task = new JSONIconWeatherTask();

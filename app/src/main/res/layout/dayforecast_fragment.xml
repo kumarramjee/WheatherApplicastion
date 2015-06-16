@@ -2,32 +2,73 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
     <!--  Image weather condition -->
-    <ImageView android:id="@+id/forCondIcon"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/forCondIcon"
         android:layout_width="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/skydescForecast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SKY Day Forcast"
         android:layout_alignStart="@id/temp"
-        android:layout_below="@id/forCondIcon" >
-    </TextView>
+        android:layout_below="@id/forCondIcon"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center|center_horizontal"
+        android:text="SKY Day Forcast"
+        android:textSize="20sp"></TextView>
 
 
     <TextView
         android:id="@+id/tempForecast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@id/forCondIcon"
         android:layout_below="@id/skydescForecast"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
         android:text="TempForcast"
-        android:layout_alignStart="@id/forCondIcon">
-    </TextView>
+        android:textSize="20sp"></TextView>
+
+    <TextView
+        android:id="@+id/mintempforcast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/forCondIcon"
+        android:layout_below="@id/tempForecast"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="TempForcast"
+        android:textSize="20sp"></TextView>
+
+    <TextView
+        android:id="@+id/humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/forCondIcon"
+        android:layout_below="@id/mintempforcast"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="Humidity"
+        android:textSize="20sp"></TextView>
+
+    <TextView
+        android:id="@+id/pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/forCondIcon"
+        android:layout_below="@id/humidity"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="HPRESSURE"
+        android:textSize="20sp"></TextView>
+
 
 </LinearLayout>

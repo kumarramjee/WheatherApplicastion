@@ -45,22 +45,25 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
     String currentconditionname;
     Drawable drawable;
     Resources res;
-    private static String forecastDaysNum = "10";
+    private static String forecastDaysNum = "16";
     private ViewPager pager;
     ImageView mback_navigation;
+    String city;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forcast);
-        String city = getIntent().getStringExtra("CitytoDetail");
+        city = getIntent().getStringExtra("ForcastCityDetail");
         String lang = "en";
         SetUpUI();
         res = getResources();
 
-        /*JSONWeatherTask task = new JSONWeatherTask();
+        JSONWeatherTask task = new JSONWeatherTask();
         task.execute(new String[]{city, lang});
-*/
+
+        // cityText.setText(city);
+
         JSONForecastWeatherTask task1 = new JSONForecastWeatherTask();
         task1.execute(new String[]{city, lang, forecastDaysNum});
 
@@ -72,11 +75,16 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
         temp = (TextView) findViewById(R.id.temp);
         unitTemp = (TextView) findViewById(R.id.unittemp);
         unitTemp.setText("℃");
+        unitTemp.setVisibility(View.INVISIBLE);
+        temp.setVisibility(View.INVISIBLE);
         condDescr = (TextView) findViewById(R.id.skydesc);
         mback_navigation = (ImageView) findViewById(R.id.back_navigation);
+        mback_navigation.setVisibility(View.INVISIBLE);
         pager = (ViewPager) findViewById(R.id.pager);
         imgView = (ImageView) findViewById(R.id.condIcon);
         txt_Title = (TextView) findViewById(R.id.txt_Title);
+        TextView txt_Next = (TextView) findViewById(R.id.txt_Next);
+        txt_Next.setVisibility(View.INVISIBLE);
         txt_Title.setText("Detail Information");
         detailmainlayout = (LinearLayout) findViewById(R.id.detailmainlayout);
         mback_navigation = (ImageView) findViewById(R.id.back_navigation);
@@ -144,6 +152,7 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
 
 
     private class JSONWeatherTask extends AsyncTask<String, Void, Weather> {
+        Weather weather = new Weather();
 
         @Override
         protected Weather doInBackground(String... params) {
@@ -175,10 +184,10 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
 
 
             cityText.setText(weather.location.getCity() + "," + weather.location.getCountry());
-            temp.setText("" + Math.round((weather.temperature.getTemp() - 275.15)));
-            condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
-            currentconditionname = (weather.currentCondition.getDescr());
-            setImage(currentconditionname);
+            temp.setText("" + Math.round((weather.temperature.getTemp() - 265.15)));
+            //     condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
+            //      currentconditionname = (weather.currentCondition.getDescr());
+            //   setImage(currentconditionname);
             /*
 
 			temp.setText("" + Math.round((weather.temperature.getTemp() - 275.15)) + "�C");
@@ -197,6 +206,7 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
 
         @Override
         protected WeatherForecast doInBackground(String... params) {
+            Weather weather = new Weather();
 
             String data = ((new WeatherHttpClient()).getForecastWeatherData(params[0], params[1], params[2]));
             WeatherForecast forecast = new WeatherForecast();
@@ -205,7 +215,7 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
                 System.out.println("Weather [" + forecast + "]");
 
                 // Let's retrieve the icon
-                //weather.iconData = ( (new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
+                weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
 
             } catch (JSONException e) {
                 e.printStackTrace();
