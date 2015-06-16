@@ -93,6 +93,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 if (rootlayot.VISIBLE == View.VISIBLE) {
                     rootlayot.setVisibility(View.GONE);
                 }
+             //   else if()
 
                 return true;
             }
