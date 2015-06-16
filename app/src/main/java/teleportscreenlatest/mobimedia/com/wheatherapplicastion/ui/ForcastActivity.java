@@ -93,6 +93,8 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
         mback_navigation.setBackground(upArrow);
         mback_navigation.setOnClickListener(this);
 
+
+
     }
 
     private void setImage(String description) {

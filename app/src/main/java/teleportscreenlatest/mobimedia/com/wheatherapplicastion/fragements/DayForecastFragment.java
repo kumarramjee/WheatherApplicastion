@@ -43,6 +43,7 @@ public class DayForecastFragment extends android.support.v4.app.Fragment {
         humidity.setText("Humidity:"+dayForecast.weather.currentCondition.getHumidity()+"%");
         pressure.setText("Pressure:"+dayForecast.weather.currentCondition.getPressure() + " hPa");
         iconWeather = (ImageView) v.findViewById(R.id.forCondIcon);
+
         // Now we retrieve the weather icon
         JSONIconWeatherTask task = new JSONIconWeatherTask();
         task.execute(new String[]{dayForecast.weather.currentCondition.getIcon()});
