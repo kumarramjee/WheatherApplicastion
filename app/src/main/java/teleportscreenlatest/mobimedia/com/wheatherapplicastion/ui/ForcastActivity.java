@@ -35,14 +35,11 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
     private TextView condDescr;
     private TextView temp;
     private TextView press;
-    private TextView windSpeed;
-    private TextView windDeg;
     private TextView unitTemp;
     TextView txt_Title;
     LinearLayout detailmainlayout;
     private TextView hum;
     private ImageView imgView;
-    String currentconditionname;
     Drawable drawable;
     Resources res;
     private static String forecastDaysNum = "16";

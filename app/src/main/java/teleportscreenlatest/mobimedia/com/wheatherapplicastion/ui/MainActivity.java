@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.location.Location;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -20,11 +18,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
+
 import org.json.JSONObject;
+
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.GooglePlacesAutocompleteAdapter;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.GpsLocation;
@@ -34,30 +34,20 @@ import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.Locationfi
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
-    private Toolbar mtoolbar;
+    Toolbar mtoolbar;
     private Button submit;
     private TextView txt_Title;
     private TextView txt_Next;
     private AutoCompleteTextView city;
     private String mcityname = "";
-    Context activity;
     int x;
     RelativeLayout rootlayot;
     Context mContext = this;
-    private boolean gps_enabled = false;
-    private boolean network_enabled = false;
-    Location location;
-    Double MyLat, MyLong;
     String CityName = "";
-    String StateName = "";
-    String CountryName = "";
     private TextView mdetailsField;
     private TextView mcurrentTemperatureField;
     private TextView mupdatedField;
     Handler mhandler;
-    TextView mtxt_Title;
-    ImageView mback_navigation;
-    TextView mtxt_Next;
     TextView mcityField;
     String updatedOn;
     Resources res;
@@ -160,6 +150,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void setImage(String description) {
+
         if (description.equals("SKY IS CLEAR")) {
             drawable = res.getDrawable(R.drawable.skyclear);
             rLayout.setBackground(drawable);
