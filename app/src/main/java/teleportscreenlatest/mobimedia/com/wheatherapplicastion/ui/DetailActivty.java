@@ -70,7 +70,6 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         mupdatedField = (TextView) findViewById(R.id.updated_field);
         mdetailsField = (TextView) findViewById(R.id.details_field);
         mcurrentTemperatureField = (TextView) findViewById(R.id.current_temperature_field);
-        mweatherIcon = (TextView) findViewById(R.id.weather_icon);
         mback_navigation = (ImageView) findViewById(R.id.back_navigation);
         final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
@@ -188,13 +187,6 @@ public class DetailActivty extends Activity implements View.OnClickListener {
 
         }
     }
-
-    private String GetCurrentTime() {
-        String time = updatedOn;
-        time = time.substring(12, updatedOn.length());
-        return time;
-    }
-
 
     @Override
     public void onClick(View v) {

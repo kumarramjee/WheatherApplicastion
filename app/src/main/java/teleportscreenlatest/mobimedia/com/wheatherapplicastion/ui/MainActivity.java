@@ -217,7 +217,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mupdatedField = (TextView) findViewById(R.id.updated_field1);
         mdetailsField = (TextView) findViewById(R.id.details_field1);
         mcurrentTemperatureField = (TextView) findViewById(R.id.current_temperature_field1);
-        mweatherIcon = (TextView) findViewById(R.id.weather_icon1);
 
     }
 

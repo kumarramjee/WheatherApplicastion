@@ -9,62 +9,52 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"></include>
-
     <RelativeLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
         android:layout_margin="16dp">
-
         <TextView
             android:id="@+id/city_field1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff"
+            android:textSize="40sp"
+            android:textStyle="bold" />
         <TextView
             android:id="@+id/updated_field1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/city_field1"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:textColor="#d3d3d3"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="13sp" />
-
-
-        <TextView
-            android:id="@+id/weather_icon1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/updated_field1"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="70sp" />
-
+            android:textSize="15sp" />
         <TextView
             android:id="@+id/current_temperature_field1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="40sp" />
-
+            android:textColor="#ffffff"
+            android:textSize="40sp"
+            android:textStyle="bold" />
         <TextView
             android:id="@+id/details_field1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/weather_icon1"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
             android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
-
-
-
         <RelativeLayout
             android:id="@+id/rootlayot"
             android:layout_width="match_parent"
@@ -72,29 +62,27 @@
             android:layout_alignParentBottom="true"
             android:layout_margin="16dp"
             android:background="#d4d4d4">
-
             <TextView
                 android:id="@+id/textplace"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:text="Enter Place name"
-                android:textColor="#030303"
-                android:textSize="20sp" />
-
+                android:textColor="#4C4646"
+                android:textSize="20sp"
+                android:textStyle="normal" />
             <AutoCompleteTextView
                 android:id="@+id/edittextplace"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@+id/textplace"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="-5dp"
                 android:layout_marginRight="20dp"
-                android:singleLine="true"
+                android:layout_marginTop="-5dp"
                 android:imeOptions="actionDone"
+                android:singleLine="true"
                 android:textColor="#000000"
                 android:textSize="18sp" />
-
             <Button
                 android:id="@+id/submit"
                 android:layout_width="match_parent"
