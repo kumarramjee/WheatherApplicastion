@@ -1,10 +1,7 @@
 package teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -12,10 +9,8 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
@@ -25,22 +20,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
-
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParserException;
-
-import java.io.IOException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.CityAdapter;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.beans.CityResult;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.GooglePlacesAutocompleteAdapter;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.GpsLocation;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherDetailImage;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.parser.ParserCity;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchJson;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.Locationfinder;
@@ -54,8 +42,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private AutoCompleteTextView city;
     String mcityname = "";
     Context activity;
-    ArrayList<CityResult> cityResultList;
-    CityAdapter adpt;
     String msendcityname;
     int x;
     RelativeLayout rootlayot;
@@ -87,6 +73,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         SetupToolbar();
         SetUpUI();
         mlocationfinder = new Locationfinder();
@@ -99,40 +87,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
         GetDetailWeatherDetail(CityName);
         submit.setOnClickListener(this);
         txt_Next.setOnClickListener(this);
-        rLayout.setOnClickListener(this);
-        city.addTextChangedListener(new TextWatcher() {
+        rLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+            public boolean onTouch(View v, MotionEvent event) {
+                if (rootlayot.VISIBLE == View.VISIBLE) {
+                    rootlayot.setVisibility(View.GONE);
+                }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                msendcityname = city.getText().toString().trim();
-                new Thread(new Runnable() {
-                    public void run() {
-                        ParserCity parscity = new ParserCity();
-                        parscity.setText(msendcityname);
-                        try {
-                            cityResultList = parscity.getCityList();
-                            Log.i("cityActivity", "==" + cityResultList);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (XmlPullParserException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-
-                }).start();
-                adpt = new CityAdapter(getApplicationContext(), cityResultList);
-                city.setAdapter(adpt);
-                adpt.notifyDataSetChanged();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
+                return true;
             }
         });
+
+        city.setAdapter(new GooglePlacesAutocompleteAdapter(this, R.layout.list_item));
         city.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -140,6 +106,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
         });
     }
+
 
     private void GetDetailWeatherDetail(String cityName) {
         Log.i("Passing data to ", "Submit==City name is ==" + mcityname);
@@ -163,8 +130,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     mhandler.post(new Runnable() {
                         public void run() {
                             renderWeather(json);
-                            // mdetailweather.renderWeather(json, mcityField, mdetailsField, mcurrentTemperatureField, mupdatedField);
-                        }
+                          }
                     });
                 }
             }
@@ -193,7 +159,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void setImage(String description) {
         if (description.equals("SKY IS CLEAR")) {
             drawable = res.getDrawable(R.drawable.skyclear);
@@ -221,6 +186,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         } else if (description.equals("SCATTERED CLOUDS")) {
             drawable = res.getDrawable(R.drawable.scateredclouds);
+            rLayout.setBackground(drawable);
+        } else if (description.equals("HAZE")) {
+            drawable = res.getDrawable(R.drawable.haze);
+            rLayout.setBackground(drawable);
+
+        } else if (description.equals("THUNDERSTROM WITH HEAVY RAIN")) {
+            drawable = res.getDrawable(R.drawable.thunderwithrain);
+            rLayout.setBackground(drawable);
+
+        } else if (description.equals("MIST")) {
+            drawable = res.getDrawable(R.drawable.mist);
             rLayout.setBackground(drawable);
 
         } else {
@@ -250,7 +226,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         txt_Title.setText("Weather Detail");
         txt_Next = (TextView) findViewById(R.id.txt_Next);
         txt_Next.setText("+");
-        txt_Next.setTextSize(25);
+        txt_Next.setTextSize(30);
         mtoolbar = (Toolbar) findViewById(R.id.customActionbar);
 
         ImageView back_navigation = (ImageView) findViewById(R.id.back_navigation);
@@ -266,8 +242,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
                     Toast.makeText(this, "Enter City Name", Toast.LENGTH_SHORT).show();
                 } else {
-                    //   GetDetailWeatherDetail(mcityname);
-                    Intent intent_submit = new Intent(MainActivity.this, ForcastActivity.class);
+                    //GetDetailWeatherDetail(mcityname);
+                    Intent intent_submit = new Intent(MainActivity.this, DetailActivty.class);
                     intent_submit.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                             | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent_submit.putExtra("CitytoDetail", mcityname);
@@ -276,29 +252,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.txt_Next:
                 rootlayot.setVisibility(View.VISIBLE);
-                //ShowDialogForPlace();
-                break;
-            case R.id.rLayout:
-                rootlayot.setVisibility(View.INVISIBLE);
                 break;
             default:
                 break;
         }
-    }
-
-    @TargetApi(Build.VERSION_CODES.CUPCAKE)
-    private void ShowDialogForPlace() {
-        View view = getLayoutInflater().inflate(R.layout.enterlocation, null);
-        submit = (Button) view.findViewById(R.id.submit);
-        submit.setOnClickListener(this);
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-
-        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-        dialog.setView(view);
-
-        dialog.show();
-
-
     }
 
 

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#80d3d3d3"
     tools:context=".MainActivity">
-
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"></include>
@@ -64,47 +63,50 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
-    </RelativeLayout>
 
 
-    <RelativeLayout
-        android:id="@+id/rootlayot"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        android:background="#d4d4d4">
-
-        <TextView
-            android:id="@+id/textplace"
+        <RelativeLayout
+            android:id="@+id/rootlayot"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="Enter Place name"
-            android:textColor="#030303"
-            android:textSize="20sp" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"
+            android:background="#d4d4d4">
 
-        <AutoCompleteTextView
-            android:id="@+id/edittextplace"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/textplace"
-            android:layout_marginTop="-8dp"
-            android:singleLine="true"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/textplace"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="Enter Place name"
+                android:textColor="#030303"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/edittextplace"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="56dp"
-            android:layout_marginRight="56dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/bg_round_go"
-            android:text="Go "
-            android:textColor="#ffffff" />
+            <AutoCompleteTextView
+                android:id="@+id/edittextplace"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/textplace"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="-5dp"
+                android:layout_marginRight="20dp"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/edittextplace"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_round_go"
+                android:text="Go "
+                android:textColor="#ffffff" />
+        </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

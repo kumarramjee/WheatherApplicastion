@@ -130,55 +130,13 @@ public class DetailActivty extends Activity implements View.OnClickListener {
             DateFormat df = DateFormat.getDateTimeInstance();
             updatedOn = df.format(new Date(json.getLong("dt") * 1000));
             mupdatedField.setText("Last update: " + updatedOn);
-            // GetCurrentTime();
-            setWeatherIcon(details.getInt("id"),
-                    json.getJSONObject("sys").getLong("sunrise") * 1000,
-                    json.getJSONObject("sys").getLong("sunset") * 1000);
 
         } catch (Exception e) {
-            Log.e("SimpleWeather", "One or more fields not found in the JSON data");
+           Log.e("SimpleWeather", "One or more fields not found in the JSON data");
         }
     }
-
-    private void setWeatherIcon(int actualId, long sunrise, long sunset) {
-        int id = actualId / 100;
-        String icon = "";
-        if (actualId == 800) {
-            long currentTime = new Date().getTime();
-            if (currentTime >= sunrise && currentTime < sunset) {
-                icon = mContext.getString(R.string.weather_sunny);
-            } else {
-                icon = mContext.getString(R.string.weather_clear_night);
-            }
-        } else {
-            switch (id) {
-                case 2:
-                    icon = mContext.getString(R.string.weather_thunder);
-                    break;
-                case 3:
-                    icon = mContext.getString(R.string.weather_drizzle);
-
-                    break;
-                case 7:
-                    icon = mContext.getString(R.string.weather_foggy);
-                    break;
-                case 8:
-                    icon = mContext.getString(R.string.weather_cloudy);
-                    break;
-                case 6:
-                    icon = mContext.getString(R.string.weather_snowy);
-                    break;
-                case 5:
-                    icon = mContext.getString(R.string.weather_rainy);
-                    break;
-            }
-        }
-        //  mweatherIcon.setText(icon);
-    }
-
 
     private void setImage(String description) {
-
 
         if (description.equals("SKY IS CLEAR")) {
             drawable = res.getDrawable(R.drawable.skyclear);
@@ -207,8 +165,24 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         } else if (description.equals("SCATTERED CLOUDS")) {
             drawable = res.getDrawable(R.drawable.scateredclouds);
             rLayout.setBackground(drawable);
+        }else if(description.equals("HAZE"))
+        {
+            drawable = res.getDrawable(R.drawable.haze);
+            rLayout.setBackground(drawable);
 
-        } else {
+        }
+        else if(description.equals("THUNDERSTROM WITH HEAVY RAIN"))
+        {
+            drawable = res.getDrawable(R.drawable.thunderwithrain);
+            rLayout.setBackground(drawable);
+
+        }
+        else if (description.equals("MIST")) {
+            drawable = res.getDrawable(R.drawable.mist);
+            rLayout.setBackground(drawable);
+
+        }
+        else {
             drawable = res.getDrawable(R.drawable.nonelse);
             rLayout.setBackground(drawable);
 

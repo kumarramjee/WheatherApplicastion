@@ -1,5 +1,6 @@
 package teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -28,7 +30,7 @@ import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Location;
 
 import static java.lang.Integer.parseInt;
 
-public class ForcastActivity extends FragmentActivity {
+public class ForcastActivity extends FragmentActivity implements View.OnClickListener {
     private TextView cityText;
     private TextView condDescr;
     private TextView temp;
@@ -72,18 +74,17 @@ public class ForcastActivity extends FragmentActivity {
         unitTemp.setText("℃");
         condDescr = (TextView) findViewById(R.id.skydesc);
         mback_navigation = (ImageView) findViewById(R.id.back_navigation);
-
-        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-
-        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-        mback_navigation.setBackground(upArrow);
-
-
         pager = (ViewPager) findViewById(R.id.pager);
         imgView = (ImageView) findViewById(R.id.condIcon);
         txt_Title = (TextView) findViewById(R.id.txt_Title);
         txt_Title.setText("Detail Information");
         detailmainlayout = (LinearLayout) findViewById(R.id.detailmainlayout);
+        mback_navigation = (ImageView) findViewById(R.id.back_navigation);
+        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        mback_navigation.setBackground(upArrow);
+        mback_navigation.setOnClickListener(this);
+
     }
 
     private void setImage(String description) {
@@ -122,6 +123,23 @@ public class ForcastActivity extends FragmentActivity {
 
         }
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        {
+            switch (v.getId()) {
+                case R.id.back_navigation:
+                    Intent intent_back = new Intent(ForcastActivity.this, DetailActivty.class);
+                    startActivity(intent_back);
+                    break;
+
+
+                default:
+                    break;
+            }
+
+        }
     }
 
 

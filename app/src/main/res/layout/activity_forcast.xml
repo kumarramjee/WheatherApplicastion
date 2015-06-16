@@ -57,7 +57,6 @@
             android:layout_below="@id/temp"
             android:layout_toRightOf="@id/temp"></TextView>
 
-        <!--  Image weather condition -->
         <ImageView
             android:id="@+id/condIcon"
             android:layout_width="wrap_content"

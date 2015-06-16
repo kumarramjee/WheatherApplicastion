@@ -37,7 +37,7 @@ public class DailyForecastPageAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         // We calculate the next days adding position to the current date
         Date d = new Date();
-        Calendar gc =  new GregorianCalendar();
+        Calendar gc = new GregorianCalendar();
         gc.setTime(d);
         gc.add(GregorianCalendar.DAY_OF_MONTH, position);
 
@@ -45,7 +45,6 @@ public class DailyForecastPageAdapter extends FragmentPagerAdapter {
 
 
     }
-
 
 
     @Override
@@ -56,9 +55,6 @@ public class DailyForecastPageAdapter extends FragmentPagerAdapter {
         return f;
     }
 
-    /*
-     * Number of the days we have the forecast
-     */
     @Override
     public int getCount() {
 
