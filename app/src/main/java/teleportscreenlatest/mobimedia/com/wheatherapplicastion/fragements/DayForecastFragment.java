@@ -15,6 +15,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
 
+import java.util.Locale;
+
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.HttpClient.WeatherHttpClient;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.DayForecast;
@@ -47,7 +49,7 @@ public class DayForecastFragment extends android.support.v4.app.Fragment {
         humidity = (TextView) v.findViewById(R.id.humidity);
         pressure = (TextView) v.findViewById(R.id.pressure);
         tempView.setText("Temp:" + (int) (dayForecast.forecastTemp.min - 265.15) + "/" + (int) (dayForecast.forecastTemp.max - 275.15) + "℃");
-        descView.setText(dayForecast.weather.currentCondition.getDescr().toUpperCase());
+        descView.setText(dayForecast.weather.currentCondition.getDescr().toUpperCase(Locale.ENGLISH));
         humidity.setText("Humidity:" + dayForecast.weather.currentCondition.getHumidity() + "%");
         pressure.setText("Pressure:" + dayForecast.weather.currentCondition.getPressure() + " hPa");
         iconWeather = (ImageView) v.findViewById(R.id.forCondIcon);

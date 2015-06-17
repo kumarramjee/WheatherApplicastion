@@ -36,7 +36,7 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
     private TextView temp;
     private TextView press;
     private TextView unitTemp;
-    TextView txt_Title;
+    private TextView txt_Title;
     LinearLayout detailmainlayout;
     private TextView hum;
     private ImageView imgView;
@@ -46,6 +46,7 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
     private ViewPager pager;
     ImageView mback_navigation;
     String city;
+    TextView txt_Next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,12 +81,12 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
         pager = (ViewPager) findViewById(R.id.pager);
         imgView = (ImageView) findViewById(R.id.condIcon);
         txt_Title = (TextView) findViewById(R.id.txt_Title);
-        TextView txt_Next = (TextView) findViewById(R.id.txt_Next);
+         txt_Next = (TextView) findViewById(R.id.txt_Next);
         txt_Next.setVisibility(View.INVISIBLE);
         txt_Title.setText("Detail Information");
         detailmainlayout = (LinearLayout) findViewById(R.id.detailmainlayout);
         mback_navigation = (ImageView) findViewById(R.id.back_navigation);
-        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        final Drawable upArrow= getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         mback_navigation.setBackground(upArrow);
         mback_navigation.setOnClickListener(this);
@@ -179,7 +180,7 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
             }
 
 
-            cityText.setText((weather.location.getCity() + "," + weather.location.getCountry()).toUpperCase());
+            cityText.setText((weather.location.getCity() + "," + weather.location.getCountry()));
             temp.setText("" + Math.round((weather.temperature.getTemp() - 265.15)));
             //     condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
             //      currentconditionname = (weather.currentCondition.getDescr());

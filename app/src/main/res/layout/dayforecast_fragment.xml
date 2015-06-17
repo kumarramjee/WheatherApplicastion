@@ -20,8 +20,9 @@
         android:layout_marginTop="10dp"
         android:gravity="center|center_horizontal"
         android:text="SKY Day Forcast"
+
         android:textSize="25sp"
-        android:textStyle="bold"></TextView>
+        android:textStyle="normal"></TextView>
 
     <RelativeLayout
         android:id="@+id/tempfiled"
@@ -36,9 +37,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
             android:gravity="center"
+            android:inputType="textCapSentences"
             android:text="TempForcast"
             android:textSize="20sp"
-            android:textStyle="bold"></TextView>
+            android:textStyle="normal"></TextView>
     </RelativeLayout>
 
     <RelativeLayout

@@ -29,7 +29,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center_vertical"
             android:textSize="30sp"
-            android:textStyle="bold"
+            android:textStyle="normal"
             ></TextView>
 
         <TextView

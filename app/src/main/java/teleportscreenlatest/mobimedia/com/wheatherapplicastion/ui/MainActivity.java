@@ -55,6 +55,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     Drawable drawable;
     WeatherDetailImage mdetailweatherimage;
     Locationfinder mlocationfinder;
+    boolean ischeckFocus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,25 +66,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
         SetupToolbar();
         SetUpUI();
         mlocationfinder = new Locationfinder();
-        mdetailweatherimage = new WeatherDetailImage(mContext);
+        mdetailweatherimage = new WeatherDetailImage(this);
         CityName = mlocationfinder.getCurrentLOcationName(mContext);
         mhandler = new Handler();
         res = getResources();
-        GpsLocation getgps = new GpsLocation();
-        getgps.turnGPSOn();
+        GpsLocation getgpslocation = new GpsLocation();
+        getgpslocation.turnGPSOn();
         GetDetailWeatherDetail(CityName);
-
         submit.setOnClickListener(this);
         txt_Next.setOnClickListener(this);
         rLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+
                 if (rootlayot.VISIBLE == View.VISIBLE) {
                     rootlayot.setVisibility(View.GONE);
                 }
                 city.setText("");
-                //   else if()
-
                 return true;
             }
         });
@@ -228,6 +227,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.submit:
+
                 mcityname = city.getText().toString();
                 if ((mcityname.length() == 0) || (mcityname == null)) {
 
@@ -243,6 +243,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.txt_Next:
                 rootlayot.setVisibility(View.VISIBLE);
+                ischeckFocus = city.requestFocus();
+
                 break;
             default:
                 break;

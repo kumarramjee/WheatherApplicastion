@@ -31,12 +31,12 @@ public class WeatherDetailImage {
     Resources res = Resources.getSystem();
     TextView currenttemp;
     Drawable drawable;
-    public WeatherDetailImage(Context mContext)
-    {
 
+    public WeatherDetailImage(Context mContext) {
+        super();
     }
 
-    public void setImage(String description,RelativeLayout rLayout) {
+    public void setImage(String description, RelativeLayout rLayout) {
         if (description.equals("SKY IS CLEAR")) {
             drawable = res.getDrawable(R.drawable.skyclear);
             rLayout.setBackground(drawable);
