@@ -89,7 +89,6 @@ public class DayForecastFragment extends android.support.v4.app.Fragment {
 
                 // Let's retrieve the icon
                 data = ((new WeatherHttpClient()).getImage(params[0]));
-                Log.i("Retrived icon is:", "From  Weather Map icon is==" + data);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -102,7 +101,6 @@ public class DayForecastFragment extends android.support.v4.app.Fragment {
         @Override
         protected void onPostExecute(byte[] data) {
             super.onPostExecute(data);
-            Log.i("Json Icon weather", " icon weather image==" + data);
 
             if (data != null) {
                img = BitmapFactory.decodeByteArray(data, 0, data.length);
