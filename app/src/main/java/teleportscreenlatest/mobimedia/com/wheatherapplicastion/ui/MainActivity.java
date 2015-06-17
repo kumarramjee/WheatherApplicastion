@@ -81,6 +81,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 if (rootlayot.VISIBLE == View.VISIBLE) {
                     rootlayot.setVisibility(View.GONE);
                 }
+                city.setText("");
                 //   else if()
 
                 return true;

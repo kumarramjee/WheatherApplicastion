@@ -1,74 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
     <!--  Image weather condition -->
     <ImageView
         android:id="@+id/forCondIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
 
     <TextView
         android:id="@+id/skydescForecast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:layout_alignStart="@id/temp"
         android:layout_below="@id/forCondIcon"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:gravity="center|center_horizontal"
         android:text="SKY Day Forcast"
-        android:textSize="20sp"></TextView>
+        android:textSize="25sp"
+        android:textStyle="bold"></TextView>
 
+    <RelativeLayout
+        android:id="@+id/tempfiled"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/skydescForecast">
 
-    <TextView
-        android:id="@+id/tempForecast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@id/forCondIcon"
-        android:layout_below="@id/skydescForecast"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
-        android:text="TempForcast"
-        android:textSize="20sp"></TextView>
+        <TextView
+            android:id="@+id/tempForecast"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="TempForcast"
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/mintempforcast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@id/forCondIcon"
-        android:layout_below="@id/tempForecast"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:text="TempForcast"
-        android:textSize="20sp"></TextView>
+    <RelativeLayout
+        android:id="@+id/humpressfield"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tempfiled"
+        android:layout_marginTop="5dp">
 
-    <TextView
-        android:id="@+id/humidity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@id/forCondIcon"
-        android:layout_below="@id/mintempforcast"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:text="Humidity"
-        android:textSize="20sp"></TextView>
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center_horizontal"
+            android:text="Humidity"
+            android:gravity="center"
+            android:textSize="20sp"></TextView>
 
-    <TextView
-        android:id="@+id/pressure"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@id/forCondIcon"
-        android:layout_below="@id/humidity"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:text="HPRESSURE"
-        android:textSize="20sp"></TextView>
+        <TextView
+            android:id="@+id/pressure"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_horizontal"
+            android:text="HPRESSURE"
+            android:gravity="center"
+            android:textSize="20sp"></TextView>
 
-
-</LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

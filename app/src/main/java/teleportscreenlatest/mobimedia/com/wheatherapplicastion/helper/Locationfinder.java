@@ -6,17 +6,19 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.util.Log;
 
 import java.util.List;
 import java.util.Locale;
 
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui.MainActivity;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.MyLocationListener;
 
 /**
  * Created by ram on 15/6/15.
  */
 public class Locationfinder {
-Context mContext;
+    Context mContext;
     private boolean gps_enabled = false;
     private boolean network_enabled = false;
     Location location;
@@ -69,21 +71,19 @@ Context mContext;
 
             MyLat = location.getLatitude();
             MyLong = location.getLongitude();
-        } /*else {
+        } else {
             Location loc= getLastKnownLocation(this);
             if (loc != null) {
                 MyLat = loc.getLatitude();
                 MyLong = loc.getLongitude();
             }
         }
-*/
         locManager.removeUpdates(locListener); // removes the periodic updates from location listener to avoid battery drainage. If you want to get location at the periodic intervals call this method using pending intent.
 
         try
 
 
         {
-// Getting address from found locations.
             Geocoder geocoder;
             List<Address> addresses;
             geocoder = new Geocoder(mContext, Locale.getDefault());
@@ -91,13 +91,19 @@ Context mContext;
             StateName = addresses.get(0).getAdminArea();
             CityName = addresses.get(0).getLocality();
             CountryName = addresses.get(0).getCountryName();
-            // you can get more details other than this . like country code, state code, etc.
-            System.out.println(" StateName " + StateName);
-            System.out.println(" CityName " + CityName);
-            System.out.println(" CountryName " + CountryName);
+            Log.i("Location State", " StateName==" + StateName);
+            Log.i("Location CityName", " CityName==" + CityName);
+            Log.i("Location CountryName", " CountryName==" + CountryName);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return CityName;
+    }
+
+    private Location getLastKnownLocation(Locationfinder locationfinder) {
+
+
+        return null;
     }
 }

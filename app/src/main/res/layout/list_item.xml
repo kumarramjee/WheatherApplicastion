@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="30dp"
-    android:background="#d4d4d4"
-    android:textSize="16sp"
-    android:layout_margin="16dp"
-    android:paddingLeft="10dp"
-    android:gravity="center_vertical"
-    android:text="HI"
 
-    />
+
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_margin="16dp"
+    android:background="#d4d4d4"
+    android:gravity="center_vertical"
+    android:paddingLeft="10dp"
+    android:text="HI"
+    android:textColor="#000000"
+    android:textSize="16sp" />
+

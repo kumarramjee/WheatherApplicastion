@@ -91,7 +91,6 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
         mback_navigation.setOnClickListener(this);
 
 
-
     }
 
     private void setImage(String description) {
@@ -151,8 +150,6 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
 
 
     private class JSONWeatherTask extends AsyncTask<String, Void, Weather> {
-        Weather weather = new Weather();
-
         @Override
         protected Weather doInBackground(String... params) {
             Weather weather = new Weather();
