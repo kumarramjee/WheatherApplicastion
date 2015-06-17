@@ -1,5 +1,7 @@
 package teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,8 @@ public class WeatherForecast {
 
     public void addForecast(DayForecast forecast) {
         daysForecast.add(forecast);
-        System.out.println("Add forecast ["+forecast+"]");
+        Log.i("Weather Forcast IMages","List=="+"Add forecast["+forecast+"]");
+
     }
 
     public DayForecast getForecast(int dayNum) {

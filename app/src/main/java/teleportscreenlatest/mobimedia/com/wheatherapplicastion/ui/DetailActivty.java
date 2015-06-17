@@ -44,6 +44,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
     Drawable drawable;
     String updatedOn;
     String timeday;
+    String senddaytype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +121,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                             "\n" + "Humidity: " + main.getString("humidity") + "%" +
                             "\n" + "Pressure: " + main.getString("pressure") + " hPa");
 
+            senddaytype=details.getString("description").toUpperCase(Locale.US).toString().trim();
 
             setImage(details.getString("description").toUpperCase(Locale.US));
 
@@ -202,6 +204,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                 intent_forcast.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                         | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent_forcast.putExtra("ForcastCityDetail", mcity);
+                intent_forcast.putExtra("Daytype",senddaytype);
 
                 startActivity(intent_forcast);
                 break;

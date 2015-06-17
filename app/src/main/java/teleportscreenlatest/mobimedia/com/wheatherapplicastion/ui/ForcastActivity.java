@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,17 +23,17 @@ import java.util.Locale;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.HttpClient.WeatherHttpClient;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.DailyForecastPageAdapter;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherDetailImage;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Weather;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherForecast;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.parser.JSONWeatherParser;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Location;
 
 import static java.lang.Integer.parseInt;
 
 public class ForcastActivity extends FragmentActivity implements View.OnClickListener {
-    private TextView cityText;
-    private TextView condDescr;
-    private TextView temp;
+    TextView cityText;
+    TextView condDescr;
+    TextView daytype;
     private TextView press;
     private TextView unitTemp;
     private TextView txt_Title;
@@ -47,6 +47,8 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
     ImageView mback_navigation;
     String city;
     TextView txt_Next;
+    String typeofday;
+    RelativeLayout relativimage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +58,21 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
         String lang = "en";
         SetUpUI();
         res = getResources();
+        typeofday = getIntent().getStringExtra("Daytype");
+        Log.i("Forcast Activtiy", "TYpe of day ==" + typeofday);
+        daytype.setText(typeofday.toLowerCase());
+/*
+     //   weathedetail = new WeatherDetailImage(this);
+        WeatherDetailImage.setImage(typeofday,relativimage);
+*/
+
+
+        setImage(typeofday);
+
 
         JSONWeatherTask task = new JSONWeatherTask();
         task.execute(new String[]{city, lang});
 
-        // cityText.setText(city);
 
         JSONForecastWeatherTask task1 = new JSONForecastWeatherTask();
         task1.execute(new String[]{city, lang, forecastDaysNum});
@@ -68,65 +80,66 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
     }
 
     private void SetUpUI() {
-
+        relativimage = (RelativeLayout) findViewById(R.id.textimage);
         cityText = (TextView) findViewById(R.id.cityText);
-        temp = (TextView) findViewById(R.id.temp);
-        unitTemp = (TextView) findViewById(R.id.unittemp);
-        unitTemp.setText("℃");
-        unitTemp.setVisibility(View.INVISIBLE);
-        temp.setVisibility(View.INVISIBLE);
-        condDescr = (TextView) findViewById(R.id.skydesc);
+        daytype = (TextView) findViewById(R.id.daytype);
         mback_navigation = (ImageView) findViewById(R.id.back_navigation);
         mback_navigation.setVisibility(View.INVISIBLE);
         pager = (ViewPager) findViewById(R.id.pager);
-        imgView = (ImageView) findViewById(R.id.condIcon);
         txt_Title = (TextView) findViewById(R.id.txt_Title);
-         txt_Next = (TextView) findViewById(R.id.txt_Next);
+        txt_Next = (TextView) findViewById(R.id.txt_Next);
         txt_Next.setVisibility(View.INVISIBLE);
-        txt_Title.setText("Detail Information");
+        txt_Title.setText("Forecast Information");
         detailmainlayout = (LinearLayout) findViewById(R.id.detailmainlayout);
-        mback_navigation = (ImageView) findViewById(R.id.back_navigation);
-        final Drawable upArrow= getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-        mback_navigation.setBackground(upArrow);
-        mback_navigation.setOnClickListener(this);
 
 
     }
 
     private void setImage(String description) {
 
-        if (description.equals("Sky is Clear")) {
+
+        if (description.equals("SKY IS CLEAR")) {
             drawable = res.getDrawable(R.drawable.skyclear);
-            detailmainlayout.setBackground(drawable);
+            relativimage.setBackground(drawable);
 
         } else if (description.equals("OVERCAST CLOUDS")) {
             drawable = res.getDrawable(R.drawable.overcatclouds);
-            detailmainlayout.setBackground(drawable);
+            relativimage.setBackground(drawable);
 
         } else if (description.equals("FEW CLOUDS")) {
             drawable = res.getDrawable(R.drawable.fewclouds);
-            detailmainlayout.setBackground(drawable);
+            relativimage.setBackground(drawable);
 
         } else if (description.equals("MODERATE RAIN")) {
             drawable = res.getDrawable(R.drawable.moderaterain);
-            detailmainlayout.setBackground(drawable);
+            relativimage.setBackground(drawable);
 
-        } else if (description.equals("light rain")) {
+        } else if (description.equals("LIGHT RAIN")) {
             drawable = res.getDrawable(R.drawable.lihjtrain);
-            detailmainlayout.setBackground(drawable);
+            relativimage.setBackground(drawable);
 
         } else if (description.equals("BROKEN CLOUDS")) {
             drawable = res.getDrawable(R.drawable.brokenclouds);
-            detailmainlayout.setBackground(drawable);
+            relativimage.setBackground(drawable);
 
         } else if (description.equals("SCATTERED CLOUDS")) {
             drawable = res.getDrawable(R.drawable.scateredclouds);
-            detailmainlayout.setBackground(drawable);
+            relativimage.setBackground(drawable);
+        } else if (description.equals("HAZE")) {
+            drawable = res.getDrawable(R.drawable.haze);
+            relativimage.setBackground(drawable);
+
+        } else if (description.equals("THUNDERSTROM WITH HEAVY RAIN")) {
+            drawable = res.getDrawable(R.drawable.thunderwithrain);
+            relativimage.setBackground(drawable);
+
+        } else if (description.equals("MIST")) {
+            drawable = res.getDrawable(R.drawable.mist);
+            relativimage.setBackground(drawable);
 
         } else {
             drawable = res.getDrawable(R.drawable.nonelse);
-            detailmainlayout.setBackground(drawable);
+            relativimage.setBackground(drawable);
 
         }
 
@@ -176,12 +189,11 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
 
             if (weather.iconData != null && weather.iconData.length > 0) {
                 Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
-                imgView.setImageBitmap(img);
+                //      imgView.setImageBitmap(img);
             }
 
 
             cityText.setText((weather.location.getCity() + "," + weather.location.getCountry()));
-            temp.setText("" + Math.round((weather.temperature.getTemp() - 265.15)));
             //     condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
             //      currentconditionname = (weather.currentCondition.getDescr());
             //   setImage(currentconditionname);

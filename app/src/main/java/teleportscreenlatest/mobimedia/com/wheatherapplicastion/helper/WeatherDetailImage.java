@@ -27,16 +27,13 @@ public class WeatherDetailImage {
     TextView updatefield;
     TextView detailfield;
     String updatedOn;
-    RelativeLayout rLayout;
-    Resources res = Resources.getSystem();
+    static RelativeLayout rLayout;
+    static Resources res;// = get
     TextView currenttemp;
-    Drawable drawable;
+    static Drawable drawable;
 
-    public WeatherDetailImage(Context mContext) {
-        super();
-    }
 
-    public void setImage(String description, RelativeLayout rLayout) {
+    public static void setImage(String description, RelativeLayout rLayout) {
         if (description.equals("SKY IS CLEAR")) {
             drawable = res.getDrawable(R.drawable.skyclear);
             rLayout.setBackground(drawable);

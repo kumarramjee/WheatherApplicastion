@@ -10,53 +10,30 @@
         layout="@layout/toolbar"></include>
 
     <RelativeLayout
+        android:id="@+id/textimage"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_weight="1"
+        android:layout_height="200dp"
         android:background="@drawable/skyclear"
-        tools:context=".MainActivity">
+        android:gravity="center">
 
         <TextView
             android:id="@+id/cityText"
-            style="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
             android:textSize="30sp"
             android:textStyle="normal"></TextView>
 
         <TextView
-            android:id="@+id/temp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/daytype"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_below="@id/cityText"
-            android:layout_centerHorizontal="true"></TextView>
-
-        <TextView
-            android:id="@+id/unittemp"
-            style="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/temp"
-            android:layout_below="@id/cityText"
-            android:layout_toRightOf="@id/temp"></TextView>
-
-        <TextView
-            android:id="@+id/skydesc"
-            style="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@id/temp"
-            android:layout_below="@id/temp"
-            android:layout_toRightOf="@id/temp"></TextView>
-
-        <ImageView
-            android:id="@+id/condIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/temp"
-            android:layout_toRightOf="@id/temp" />
+            android:gravity="center_horizontal"
+            android:text="hi how are you"
+            android:textStyle="normal"
+            android:textSize="20sp"></TextView>
 
     </RelativeLayout>
 

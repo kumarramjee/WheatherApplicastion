@@ -40,23 +40,22 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private TextView txt_Next;
     private AutoCompleteTextView city;
     private String mcityname = "";
-    int x;
+    private int x;
     RelativeLayout rootlayot;
     Context mContext = this;
-    String CityName = "";
+    private String CityName = "";
     private TextView mdetailsField;
     private TextView mcurrentTemperatureField;
     private TextView mupdatedField;
     Handler mhandler;
-    TextView mcityField;
-    String updatedOn;
+    private TextView mcityField;
+    private String updatedOn;
     Resources res;
-    RelativeLayout rLayout;
+    private RelativeLayout rLayout;
     Drawable drawable;
-    WeatherDetailImage mdetailweatherimage;
+  //  WeatherDetailImage weatherdetail;
     Locationfinder mlocationfinder;
-    boolean ischeckFocus;
-
+String descriptopon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +65,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         SetupToolbar();
         SetUpUI();
         mlocationfinder = new Locationfinder();
-        mdetailweatherimage = new WeatherDetailImage(this);
+     //   weatherdetail = new WeatherDetailImage(this);
         CityName = mlocationfinder.getCurrentLOcationName(mContext);
         mhandler = new Handler();
         res = getResources();
@@ -138,7 +137,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     details.getString("description").toUpperCase(Locale.US) +
                             "\n" + "Humidity: " + main.getString("humidity") + "%" +
                             "\n" + "Pressure: " + main.getString("pressure") + " hPa");
-            setImage(details.getString("description").toUpperCase(Locale.US));
+
+
+
+           setImage(details.getString("description").toUpperCase(Locale.US));
             mcurrentTemperatureField.setText(
                     String.format("%.2f", main.getDouble("temp")) + " ℃");
             DateFormat df = DateFormat.getDateTimeInstance();
@@ -243,7 +245,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.txt_Next:
                 rootlayot.setVisibility(View.VISIBLE);
-                ischeckFocus = city.requestFocus();
 
                 break;
             default:

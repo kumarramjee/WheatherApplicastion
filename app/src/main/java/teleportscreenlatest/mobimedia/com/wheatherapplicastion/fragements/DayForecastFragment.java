@@ -1,12 +1,14 @@
 package teleportscreenlatest.mobimedia.com.wheatherapplicastion.fragements;
 
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +21,9 @@ import java.util.Locale;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.HttpClient.WeatherHttpClient;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherDetailImage;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.DayForecast;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Weather;
 
 public class DayForecastFragment extends android.support.v4.app.Fragment {
     TextView tempView;
@@ -32,7 +36,9 @@ public class DayForecastFragment extends android.support.v4.app.Fragment {
     private ImageView iconWeather;
     Resources res;
     Drawable drawable;
-
+    Context context;
+    WeatherDetailImage weatherdetail;
+    Bitmap img;
     public DayForecastFragment() {
 
     }
@@ -48,73 +54,25 @@ public class DayForecastFragment extends android.support.v4.app.Fragment {
         descView = (TextView) v.findViewById(R.id.skydescForecast);
         humidity = (TextView) v.findViewById(R.id.humidity);
         pressure = (TextView) v.findViewById(R.id.pressure);
+        iconWeather = (ImageView) v.findViewById(R.id.forCondIcon);
         tempView.setText("Temp:" + (int) (dayForecast.forecastTemp.min - 265.15) + "/" + (int) (dayForecast.forecastTemp.max - 275.15) + "℃");
-        descView.setText(dayForecast.weather.currentCondition.getDescr().toUpperCase(Locale.ENGLISH));
+        descView.setText(dayForecast.weather.currentCondition.getDescr());
         humidity.setText("Humidity:" + dayForecast.weather.currentCondition.getHumidity() + "%");
         pressure.setText("Pressure:" + dayForecast.weather.currentCondition.getPressure() + " hPa");
-        iconWeather = (ImageView) v.findViewById(R.id.forCondIcon);
 
-        descriptopon = descView.getText().toString();
-       // setImage(descriptopon);
-
-
+       /* descriptopon = descView.getText().toString().trim();
+        weatherdetail = new WeatherDetailImage(getActivity());
+        weatherdetail.setImage(descriptopon, swipelayout);
+*/
         // Now we retrieve the weather icon
+
         JSONIconWeatherTask task = new JSONIconWeatherTask();
         task.execute(new String[]{dayForecast.weather.currentCondition.getIcon()});
-
+        Log.i("DayForcast Fragement ", "get image is==" + dayForecast.weather.currentCondition.getIcon());
         return v;
 
-    }/*
-
-    private void setImage(String description) {
-
-        if (description.equals("SKY IS CLEAR")) {
-            drawable = res.getDrawable(R.drawable.skyclear);
-            iconWeather.setBackground(drawable);
-
-        } else if (description.equals("OVERCAST CLOUDS")) {
-            drawable = res.getDrawable(R.drawable.overcatclouds);
-            iconWeather.setBackground(drawable);
-
-        } else if (description.equals("FEW CLOUDS")) {
-            drawable = res.getDrawable(R.drawable.fewclouds);
-            iconWeather.setBackground(drawable);
-
-        } else if (description.equals("MODERATE RAIN")) {
-            drawable = res.getDrawable(R.drawable.moderaterain);
-            iconWeather.setBackground(drawable);
-
-        } else if (description.equals("LIGHT RAIN")) {
-            drawable = res.getDrawable(R.drawable.lihjtrain);
-            iconWeather.setBackground(drawable);
-
-        } else if (description.equals("BROKEN CLOUDS")) {
-            drawable = res.getDrawable(R.drawable.brokenclouds);
-            iconWeather.setBackground(drawable);
-
-        } else if (description.equals("SCATTERED CLOUDS")) {
-            drawable = res.getDrawable(R.drawable.scateredclouds);
-            swipelayout.setBackground(drawable);
-        } else if (description.equals("HAZE")) {
-            drawable = res.getDrawable(R.drawable.haze);
-            iconWeather.setBackground(drawable);
-
-        } else if (description.equals("THUNDERSTROM WITH HEAVY RAIN")) {
-            drawable = res.getDrawable(R.drawable.thunderwithrain);
-            iconWeather.setBackground(drawable);
-
-        } else if (description.equals("MIST")) {
-            drawable = res.getDrawable(R.drawable.mist);
-            iconWeather.setBackground(drawable);
-
-        } else {
-            drawable = res.getDrawable(R.drawable.nonelse);
-            iconWeather.setBackground(drawable);
-
-        }
-
     }
-*/
+
     public void setForecast(DayForecast dayForecast) {
         this.dayForecast = dayForecast;
     }
@@ -131,6 +89,7 @@ public class DayForecastFragment extends android.support.v4.app.Fragment {
 
                 // Let's retrieve the icon
                 data = ((new WeatherHttpClient()).getImage(params[0]));
+                Log.i("Retrived icon is:", "From  Weather Map icon is==" + data);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -143,11 +102,13 @@ public class DayForecastFragment extends android.support.v4.app.Fragment {
         @Override
         protected void onPostExecute(byte[] data) {
             super.onPostExecute(data);
+            Log.i("Json Icon weather", " icon weather image==" + data);
 
             if (data != null) {
-                Bitmap img = BitmapFactory.decodeByteArray(data, 0, data.length);
+               img = BitmapFactory.decodeByteArray(data, 0, data.length);
                 iconWeather.setImageBitmap(img);
             }
+
         }
 
     }

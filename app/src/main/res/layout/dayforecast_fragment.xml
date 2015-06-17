@@ -3,22 +3,20 @@
     android:id="@+id/swipelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/clearsky"
-    android:orientation="vertical">
+    android:background="@drawable/clearsky">
     <!--  Image weather condition -->
     <ImageView
         android:id="@+id/forCondIcon"
         android:layout_width="match_parent"
-        android:layout_height="80dp" />
+        android:layout_height="100dp" />
 
     <TextView
         android:id="@+id/skydescForecast"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_alignStart="@id/temp"
         android:layout_below="@id/forCondIcon"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:gravity="center|center_horizontal"
         android:text="SKY Day Forcast"
 
@@ -29,7 +27,9 @@
         android:id="@+id/tempfiled"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@+id/skydescForecast">
+        android:layout_below="@+id/skydescForecast"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
 
         <TextView
             android:id="@+id/tempForecast"
@@ -57,8 +57,8 @@
             android:layout_height="60dp"
             android:layout_alignParentLeft="true"
             android:layout_gravity="center_horizontal"
-            android:text="Humidity"
             android:gravity="center"
+            android:text="Humidity"
             android:textSize="20sp"></TextView>
 
         <TextView
@@ -67,8 +67,8 @@
             android:layout_height="60dp"
             android:layout_alignParentRight="true"
             android:layout_gravity="center_horizontal"
-            android:text="HPRESSURE"
             android:gravity="center"
+            android:text="HPRESSURE"
             android:textSize="20sp"></TextView>
 
     </RelativeLayout>
