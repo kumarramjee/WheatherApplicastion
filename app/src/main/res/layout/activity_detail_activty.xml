@@ -26,7 +26,7 @@
             android:layout_marginTop="16dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#ffffff"
-            android:textSize="45sp"
+            android:textSize="40sp"
             android:textStyle="normal" />
         <TextView
             android:id="@+id/updated_field"

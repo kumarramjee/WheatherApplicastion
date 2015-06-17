@@ -1,10 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/detailmainlayout"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#80000000"
     android:orientation="vertical">
 
     <include
@@ -12,25 +10,21 @@
         layout="@layout/toolbar"></include>
 
     <RelativeLayout
-         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_weight="1"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
+        android:background="@drawable/skyclear"
         tools:context=".MainActivity">
 
         <TextView
             android:id="@+id/cityText"
             style="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:textSize="30sp"
-            android:textStyle="normal"
-            ></TextView>
+            android:textStyle="normal"></TextView>
 
         <TextView
             android:id="@+id/temp"
