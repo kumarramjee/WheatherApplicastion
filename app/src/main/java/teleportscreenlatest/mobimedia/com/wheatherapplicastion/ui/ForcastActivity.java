@@ -31,24 +31,27 @@ import teleportscreenlatest.mobimedia.com.wheatherapplicastion.parser.JSONWeathe
 import static java.lang.Integer.parseInt;
 
 public class ForcastActivity extends FragmentActivity implements View.OnClickListener {
-    TextView cityText;
-    TextView condDescr;
-    TextView daytype;
+    private TextView cityText;
+    private TextView condDescr;
     private TextView press;
     private TextView unitTemp;
     private TextView txt_Title;
-    LinearLayout detailmainlayout;
+    private LinearLayout detailmainlayout;
     private TextView hum;
     private ImageView imgView;
-    Drawable drawable;
-    Resources res;
+    private Drawable drawable;
+    private Resources res;
     private static String forecastDaysNum = "16";
     private ViewPager pager;
-    ImageView mback_navigation;
-    String city;
-    TextView txt_Next;
-    String typeofday;
-    RelativeLayout relativimage;
+    private ImageView mback_navigation;
+    private String city;
+    private TextView txt_Next;
+    private String typeofday;
+    private RelativeLayout relativimage;
+    private WeatherDetailImage weathedetail;
+    private TextView current_temperature_field;
+    private TextView details_field;
+    private TextView daytype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +61,11 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
         String lang = "en";
         SetUpUI();
         res = getResources();
+        drawable = res.getDrawable(R.drawable.skyclear);
         typeofday = getIntent().getStringExtra("Daytype");
-        Log.i("Forcast Activtiy", "TYpe of day ==" + typeofday);
         daytype.setText(typeofday.toLowerCase());
-/*
-     //   weathedetail = new WeatherDetailImage(this);
-        WeatherDetailImage.setImage(typeofday,relativimage);
-*/
+        //  weathedetail = new WeatherDetailImage(this);
+        //WeatherDetailImage.setImage(typeofday, relativimage,res,drawable);
 
 
         setImage(typeofday);
@@ -80,6 +81,9 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
     }
 
     private void SetUpUI() {
+        daytype = (TextView) findViewById(R.id.daytype);
+        current_temperature_field = (TextView) findViewById(R.id.current_temperature_field);
+        details_field = (TextView) findViewById(R.id.details_field);
         relativimage = (RelativeLayout) findViewById(R.id.textimage);
         cityText = (TextView) findViewById(R.id.cityText);
         daytype = (TextView) findViewById(R.id.daytype);
@@ -194,6 +198,10 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
 
 
             cityText.setText((weather.location.getCity() + "," + weather.location.getCountry()));
+            //   details_field.setText(weather.currentCondition.getHumidity() + "%" + weather.currentCondition.getPressure() + " hPa");
+            //  current_temperature_field.setText(Math.round((weather.temperature.getTemp() - 265.15)) + " ℃");
+            //   daytype.setText("hi");
+
             //     condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
             //      currentconditionname = (weather.currentCondition.getDescr());
             //   setImage(currentconditionname);

@@ -71,7 +71,7 @@ public class CityLIstAutoComplete {private static final String LOG_TAG = "Exampl
             // Extract the Place descriptions from the results
             resultList = new ArrayList<String>(predsJsonArray.length());
             for (int i = 0; i < predsJsonArray.length(); i++) {
-                System.out.println(predsJsonArray.getJSONObject(i).getString("description"));
+                Log.i("City List AAutoComplete","Parse Json Array"+predsJsonArray.getJSONObject(i).getString("description"));
                 System.out.println("============================================================");
                 resultList.add(predsJsonArray.getJSONObject(i).getString("description"));
             }

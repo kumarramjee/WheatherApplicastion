@@ -28,7 +28,6 @@ import java.util.Locale;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.GooglePlacesAutocompleteAdapter;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.GpsLocation;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherDetailImage;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchJson;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.Locationfinder;
 
@@ -41,21 +40,20 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private AutoCompleteTextView city;
     private String mcityname = "";
     private int x;
-    RelativeLayout rootlayot;
-    Context mContext = this;
+    private RelativeLayout rootlayot;
+    private Context mContext = this;
     private String CityName = "";
     private TextView mdetailsField;
     private TextView mcurrentTemperatureField;
     private TextView mupdatedField;
-    Handler mhandler;
+    private Handler mhandler;
     private TextView mcityField;
     private String updatedOn;
-    Resources res;
+    private Resources res;
     private RelativeLayout rLayout;
-    Drawable drawable;
-  //  WeatherDetailImage weatherdetail;
-    Locationfinder mlocationfinder;
-String descriptopon;
+    private Drawable drawable;
+    private Locationfinder mlocationfinder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +63,6 @@ String descriptopon;
         SetupToolbar();
         SetUpUI();
         mlocationfinder = new Locationfinder();
-     //   weatherdetail = new WeatherDetailImage(this);
         CityName = mlocationfinder.getCurrentLOcationName(mContext);
         mhandler = new Handler();
         res = getResources();
@@ -139,8 +136,7 @@ String descriptopon;
                             "\n" + "Pressure: " + main.getString("pressure") + " hPa");
 
 
-
-           setImage(details.getString("description").toUpperCase(Locale.US));
+            setImage(details.getString("description").toUpperCase(Locale.US));
             mcurrentTemperatureField.setText(
                     String.format("%.2f", main.getDouble("temp")) + " ℃");
             DateFormat df = DateFormat.getDateTimeInstance();

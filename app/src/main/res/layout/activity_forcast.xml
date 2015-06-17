@@ -3,6 +3,7 @@
     android:id="@+id/detailmainlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#464646"
     android:orientation="vertical">
 
     <include
@@ -13,7 +14,7 @@
         android:id="@+id/textimage"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/skyclear"
+        android:background="#464646"
         android:gravity="center">
 
         <TextView
@@ -22,8 +23,8 @@
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
-            android:textSize="30sp"
             android:textColor="#ffffff"
+            android:textSize="30sp"
             android:textStyle="normal"></TextView>
 
         <TextView
@@ -33,9 +34,57 @@
             android:layout_below="@id/cityText"
             android:gravity="center_horizontal"
             android:text="hi how are you"
-            android:textStyle="normal"
             android:textColor="#ffffff"
-            android:textSize="20sp"></TextView>
+            android:textSize="20sp"
+            android:textStyle="normal"></TextView>
+        <!--
+
+                <TextView
+                    android:id="@+id/cityText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="16dp"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+
+                    android:textSize="40sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/daytype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cityText"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#d3d3d3"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/current_temperature_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff"
+                    android:textSize="40sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/details_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerHorizontal="true"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#ffffff" />
+        -->
+
 
     </RelativeLayout>
 

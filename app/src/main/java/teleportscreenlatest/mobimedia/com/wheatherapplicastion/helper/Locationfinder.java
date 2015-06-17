@@ -104,6 +104,7 @@ public class Locationfinder {
     private Location getLastKnownLocation(Locationfinder locationfinder) {
 
 
+
         return null;
     }
 }

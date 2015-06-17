@@ -39,12 +39,12 @@ public class DetailActivty extends Activity implements View.OnClickListener {
     private ImageView mback_navigation;
     private TextView mtxt_Next;
     private ImageView mcurrentweather;
-    Resources res;
-    RelativeLayout rLayout;
-    Drawable drawable;
-    String updatedOn;
-    String timeday;
-    String senddaytype;
+    private Resources res;
+    private RelativeLayout rLayout;
+    private Drawable drawable;
+    private String updatedOn;
+    private String timeday;
+    private String senddaytype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
