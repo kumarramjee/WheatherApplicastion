@@ -23,6 +23,7 @@
             android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:textSize="30sp"
+            android:textColor="#ffffff"
             android:textStyle="normal"></TextView>
 
         <TextView
@@ -33,6 +34,7 @@
             android:gravity="center_horizontal"
             android:text="hi how are you"
             android:textStyle="normal"
+            android:textColor="#ffffff"
             android:textSize="20sp"></TextView>
 
     </RelativeLayout>

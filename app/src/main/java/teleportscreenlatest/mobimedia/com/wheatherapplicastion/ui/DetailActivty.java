@@ -121,7 +121,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                             "\n" + "Humidity: " + main.getString("humidity") + "%" +
                             "\n" + "Pressure: " + main.getString("pressure") + " hPa");
 
-            senddaytype=details.getString("description").toUpperCase(Locale.US).toString().trim();
+            senddaytype = details.getString("description").toUpperCase(Locale.US).toString().trim();
 
             setImage(details.getString("description").toUpperCase(Locale.US));
 
@@ -133,7 +133,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
             mupdatedField.setText("Last update: " + updatedOn);
 
         } catch (Exception e) {
-           Log.e("SimpleWeather", "One or more fields not found in the JSON data");
+            Log.e("SimpleWeather", "One or more fields not found in the JSON data");
         }
     }
 
@@ -166,24 +166,19 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         } else if (description.equals("SCATTERED CLOUDS")) {
             drawable = res.getDrawable(R.drawable.scateredclouds);
             rLayout.setBackground(drawable);
-        }else if(description.equals("HAZE"))
-        {
+        } else if (description.equals("HAZE")) {
             drawable = res.getDrawable(R.drawable.haze);
             rLayout.setBackground(drawable);
 
-        }
-        else if(description.equals("THUNDERSTROM WITH HEAVY RAIN"))
-        {
+        } else if (description.equals("THUNDERSTROM WITH HEAVY RAIN")) {
             drawable = res.getDrawable(R.drawable.thunderwithrain);
             rLayout.setBackground(drawable);
 
-        }
-        else if (description.equals("MIST")) {
+        } else if (description.equals("MIST")) {
             drawable = res.getDrawable(R.drawable.mist);
             rLayout.setBackground(drawable);
 
-        }
-        else {
+        } else {
             drawable = res.getDrawable(R.drawable.nonelse);
             rLayout.setBackground(drawable);
 
@@ -200,15 +195,24 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                 startActivity(intent_back);
                 break;
             case R.id.txt_Next:
-                Intent intent_forcast = new Intent(DetailActivty.this, ForcastActivity.class);
-                intent_forcast.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                        | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent_forcast.putExtra("ForcastCityDetail", mcity);
-                intent_forcast.putExtra("Daytype",senddaytype);
 
-                startActivity(intent_forcast);
-                break;
+                if ((mcity.length() < 0) || (senddaytype.length() < 0)) {
 
+                } else {
+
+
+                    Intent intent_forcast = new Intent(DetailActivty.this, ForcastActivity.class);
+                    intent_forcast.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                            | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent_forcast.putExtra("ForcastCityDetail", mcity);
+                    intent_forcast.putExtra("Daytype", senddaytype);
+
+
+                    startActivity(intent_forcast);
+                    break;
+
+
+                }
             default:
                 break;
         }

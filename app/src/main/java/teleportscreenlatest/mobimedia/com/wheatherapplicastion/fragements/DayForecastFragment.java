@@ -56,7 +56,7 @@ public class DayForecastFragment extends android.support.v4.app.Fragment {
         pressure = (TextView) v.findViewById(R.id.pressure);
         iconWeather = (ImageView) v.findViewById(R.id.forCondIcon);
         tempView.setText("Temp:" + (int) (dayForecast.forecastTemp.min - 265.15) + "/" + (int) (dayForecast.forecastTemp.max - 275.15) + "℃");
-        descView.setText(dayForecast.weather.currentCondition.getDescr());
+        descView.setText("Day:"+dayForecast.weather.currentCondition.getDescr());
         humidity.setText("Humidity:" + dayForecast.weather.currentCondition.getHumidity() + "%");
         pressure.setText("Pressure:" + dayForecast.weather.currentCondition.getPressure() + " hPa");
 
