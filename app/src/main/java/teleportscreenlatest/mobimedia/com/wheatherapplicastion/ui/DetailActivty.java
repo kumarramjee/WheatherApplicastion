@@ -66,7 +66,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         mtxt_Title = (TextView) findViewById(R.id.txt_Title);
         mtxt_Title.setText("Detail Infomartion");
         mtxt_Next = (TextView) findViewById(R.id.txt_Next);
-        mtxt_Next.setText("Forcast");
+        mtxt_Next.setText(">");
         mcityField = (TextView) findViewById(R.id.city_field);
         mupdatedField = (TextView) findViewById(R.id.updated_field);
         mdetailsField = (TextView) findViewById(R.id.details_field);

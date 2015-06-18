@@ -3,7 +3,7 @@
     android:id="@+id/detailmainlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#464646"
+    android:background="#80464646"
     android:orientation="vertical">
 
     <include
@@ -14,7 +14,7 @@
         android:id="@+id/textimage"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="#464646"
+        android:background="#80464646"
         android:gravity="center">
 
         <TextView

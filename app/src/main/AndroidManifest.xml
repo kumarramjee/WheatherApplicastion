@@ -31,7 +31,7 @@
             android:label="@string/title_activity_forcast" />
         <activity
             android:name=".ui.CityDetail"
-            android:theme="@style/AppTheme"
+
             android:label="@string/title_activity_city_detail" >
         </activity>
     </application>
