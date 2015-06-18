@@ -64,20 +64,13 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
         drawable = res.getDrawable(R.drawable.skyclear);
         typeofday = getIntent().getStringExtra("Daytype");
         daytype.setText(typeofday.toLowerCase());
-        //  weathedetail = new WeatherDetailImage(this);
-        //WeatherDetailImage.setImage(typeofday, relativimage,res,drawable);
-
-
         setImage(typeofday);
 
 
         JSONWeatherTask task = new JSONWeatherTask();
         task.execute(new String[]{city, lang});
-
-
         JSONForecastWeatherTask task1 = new JSONForecastWeatherTask();
         task1.execute(new String[]{city, lang, forecastDaysNum});
-
     }
 
     private void SetUpUI() {
@@ -177,7 +170,7 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
                 weather = JSONWeatherParser.getWeather(data);
                 System.out.println("Weather [" + weather + "]");
                 // Let's retrieve the icon
-                weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
+              //  weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -191,10 +184,10 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
         protected void onPostExecute(Weather weather) {
             super.onPostExecute(weather);
 
-            if (weather.iconData != null && weather.iconData.length > 0) {
+          /*  if (weather.iconData != null && weather.iconData.length > 0) {
                 Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
                 //      imgView.setImageBitmap(img);
-            }
+            }*/
 
 
             cityText.setText((weather.location.getCity() + "," + weather.location.getCountry()));
@@ -232,7 +225,7 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
                 System.out.println("Weather [" + forecast + "]");
 
                 // Let's retrieve the icon
-                weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
+             //   weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -240,6 +233,9 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
             return forecast;
 
         }
+
+
+
 
 
         @Override
@@ -253,4 +249,12 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
 
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        System.gc();
+    }
+
 }

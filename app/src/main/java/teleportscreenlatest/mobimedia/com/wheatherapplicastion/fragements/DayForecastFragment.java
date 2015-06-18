@@ -64,7 +64,6 @@ public class DayForecastFragment extends android.support.v4.app.Fragment {
 
         JSONIconWeatherTask task = new JSONIconWeatherTask();
         task.execute(new String[]{dayForecast.weather.currentCondition.getIcon()});
-        Log.i("DayForcast Fragement ", "get image is==" + dayForecast.weather.currentCondition.getIcon());
         return v;
 
     }

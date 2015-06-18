@@ -17,7 +17,7 @@ public class WeatherForecast {
 
     public void addForecast(DayForecast forecast) {
         daysForecast.add(forecast);
-        Log.i("Weather Forcast IMages","List=="+"Add forecast["+forecast+"]");
+        Log.i("Weather Forcast IMages", "List==" + "Add forecast[" + forecast + "]");
 
     }
 

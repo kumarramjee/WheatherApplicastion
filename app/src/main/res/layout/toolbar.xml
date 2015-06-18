@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/customActionbar"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#607D8B">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/layoutHomeScreen"
@@ -19,7 +18,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="16dp"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -28,16 +27,30 @@
 
         <TextView
             android:id="@+id/txt_Title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="25dp"
-            android:layout_toRightOf="@+id/back_navigation"
+            android:layout_marginLeft="16dp"
+            android:layout_toLeftOf="@+id/txt_header"
             android:gravity="center_horizontal"
-            android:text="title"
+            android:hint="Enter place name"
+            android:singleLine="true"
+            android:textColorHint="#ffffff"
             android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/txt_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="20dp"
+            android:textColor="#ffffff"
+            android:textSize="26sp"
+            android:textStyle="normal"
             android:visibility="visible" />
 
         <TextView
@@ -46,12 +59,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:alpha="0.6"
-            android:text="next"
+            android:layout_marginRight="16dp"
             android:textColor="#ffffff"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textSize="24sp"
+            android:textStyle="normal"
             android:visibility="visible" />
 
     </RelativeLayout>

@@ -52,7 +52,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_detail_activty);
 
         Intent inetent_cityname = getIntent();
-        mcity = inetent_cityname.getStringExtra("CitytoDetail");
+        mcity = inetent_cityname.getStringExtra("ForcastCityDetail");
         mhandler = new Handler();
         SetUpUI();
         updateWeatherData(mcity);
@@ -219,5 +219,12 @@ public class DetailActivty extends Activity implements View.OnClickListener {
 
     }
 
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        System.gc();
+    }
 
 }

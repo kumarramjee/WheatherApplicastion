@@ -8,11 +8,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,7 +36,6 @@ import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.Locationfi
 
 public class MainActivity extends Activity implements View.OnClickListener {
     Toolbar mtoolbar;
-    private Button submit;
     private TextView txt_Title;
     private TextView txt_Next;
     private AutoCompleteTextView city;
@@ -53,28 +54,31 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private RelativeLayout rLayout;
     private Drawable drawable;
     private Locationfinder mlocationfinder;
+    TextView txt_header;
+    String senddaytype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        SetupToolbar();
-        SetUpUI();
         mlocationfinder = new Locationfinder();
         CityName = mlocationfinder.getCurrentLOcationName(mContext);
+        SetupToolbar();
+        SetUpUI();
         mhandler = new Handler();
         res = getResources();
         GpsLocation getgpslocation = new GpsLocation();
         getgpslocation.turnGPSOn();
         GetDetailWeatherDetail(CityName);
-        submit.setOnClickListener(this);
         txt_Next.setOnClickListener(this);
         rLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
+              /*  InputMethodManager imm = (InputMethodManager) getSystemService(Context.
+                        INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+          */
                 if (rootlayot.VISIBLE == View.VISIBLE) {
                     rootlayot.setVisibility(View.GONE);
                 }
@@ -82,7 +86,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 return true;
             }
         });
-
         city.setAdapter(new GooglePlacesAutocompleteAdapter(this, R.layout.list_item));
         city.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -90,14 +93,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 x = position;
             }
         });
+
+        city.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int keyCode, KeyEvent event) {
+                getCityDetail();
+                return false;
+            }
+        });
     }
 
     private void GetDetailWeatherDetail(String cityName) {
         if (cityName.length() == 0) {
-            Toast.makeText(MainActivity.this, "Not able to find current location.Chechk ur connection", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Not able to find current location.Check ur connection", Toast.LENGTH_SHORT).show();
+            drawable = res.getDrawable(R.drawable.nonelse);
+            rLayout.setBackground(drawable);
         } else {
-
-
             new Thread() {
                 public void run() {
                     final JSONObject json = FetchJson.getJSON(mContext, CityName);
@@ -125,11 +135,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void renderWeather(JSONObject json) {
         try {
-            mcityField.setText(json.getString("name").toUpperCase(Locale.US) +
+            txt_header.setText(json.getString("name") +
                     ", " +
                     json.getJSONObject("sys").getString("country"));
+            // mcityField.setText("");
             JSONObject details = json.getJSONArray("weather").getJSONObject(0);
             JSONObject main = json.getJSONObject("main");
+
+            senddaytype = details.getString("description");
+
             mdetailsField.setText(
                     details.getString("description").toUpperCase(Locale.US) +
                             "\n" + "Humidity: " + main.getString("humidity") + "%" +
@@ -138,10 +152,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             setImage(details.getString("description").toUpperCase(Locale.US));
             mcurrentTemperatureField.setText(
-                    String.format("%.2f", main.getDouble("temp")) + " ℃");
+                    String.format(main.getInt("temp") + " ℃"));
+            mcurrentTemperatureField.setTextSize(5, 20);
             DateFormat df = DateFormat.getDateTimeInstance();
             updatedOn = df.format(new Date(json.getLong("dt") * 1000));
             mupdatedField.setText("Last update: " + updatedOn);
+            //mupdatedField.setText("Last update: " + updatedOn);
+            mupdatedField.setText("");
         } catch (Exception e) {
             Log.e("SimpleWeather", "One or more fields not found in the JSON data");
         }
@@ -197,7 +214,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void SetUpUI() {
-        submit = (Button) findViewById(R.id.submit);
         city = (AutoCompleteTextView) findViewById(R.id.edittextplace);
         rootlayot = (RelativeLayout) findViewById(R.id.rootlayot);
         rootlayot.setVisibility(View.INVISIBLE);
@@ -210,8 +226,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void SetupToolbar() {
+        txt_header = (TextView) findViewById(R.id.txt_header);
+        // txt_header.setText(CityName);
         txt_Title = (TextView) findViewById(R.id.txt_Title);
-        txt_Title.setText("Weather Detail");
+        txt_Title.setVisibility(View.INVISIBLE);
         txt_Next = (TextView) findViewById(R.id.txt_Next);
         txt_Next.setText("+");
         txt_Next.setTextSize(30);
@@ -224,22 +242,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.submit:
 
-                mcityname = city.getText().toString();
-                if ((mcityname.length() == 0) || (mcityname == null)) {
-
-                    Toast.makeText(this, "Enter City Name", Toast.LENGTH_SHORT).show();
-                } else {
-                    //GetDetailWeatherDetail(mcityname);
-                    Intent intent_submit = new Intent(MainActivity.this, DetailActivty.class);
-                    intent_submit.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                            | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent_submit.putExtra("CitytoDetail", mcityname);
-                    startActivity(intent_submit);
-                }
-                break;
             case R.id.txt_Next:
+                //  txt_Title.setVisibility(View.VISIBLE);
+                //  txt_header.setVisibility(View.INVISIBLE);
+
                 rootlayot.setVisibility(View.VISIBLE);
 
                 break;
@@ -248,5 +255,28 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
+    private void getCityDetail() {
+        mcityname = city.getText().toString();
+        if ((mcityname.length() == 0) || (mcityname == null)) {
+
+            Toast.makeText(this, "Enter City Name", Toast.LENGTH_SHORT).show();
+        } else {
+            //GetDetailWeatherDetail(mcityname);
+            Intent intent_submit = new Intent(MainActivity.this, DetailActivty.class);
+            intent_submit.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent_submit.putExtra("ForcastCityDetail", mcityname);
+           // intent_submit.putExtra("Daytype", senddaytype);
+
+            startActivity(intent_submit);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        System.gc();
+    }
 
 }
