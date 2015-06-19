@@ -17,5 +17,35 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">false</item>
     </style>
+    <style name="AttributionText" parent="AppTheme">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#999999</item>
+    </style>
+    <style name="CurrentTemperatureText" parent="AppTheme">
+        <item name="android:textSize">@dimen/current_temperature_text</item>
+        <item name="android:textColor">@color/brand_main</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">none</item>
+    </style>
+    <style name="LocationText" parent="AppTheme">
+        <item name="android:textSize">@dimen/location_text</item>
+        <item name="android:ellipsize">none</item>
+    </style>
+
+    <style name="WeatherForecastListItemText" parent="AppTheme">
+        <item name="android:textSize">@dimen/weather_forecast_list_item_text</item>
+        <item name="android:paddingTop">@dimen/list_item_text_padding</item>
+        <item name="android:paddingBottom">@dimen/list_item_text_padding</item>
+        <item name="android:layout_width">0dp</item>
+        <!-- To force the text views into columns -->
+    </style>
+
+    <style name="WeatherForecastListItemTextEmphasis" parent="WeatherForecastListItemText">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="WeatherForecastListItemTextDeEmphasis" parent="WeatherForecastListItemText">
+        <item name="android:textColor">@color/text_de_emphasized</item>
+    </style>
 
 </resources>

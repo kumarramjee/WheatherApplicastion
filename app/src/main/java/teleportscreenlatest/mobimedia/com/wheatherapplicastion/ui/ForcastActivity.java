@@ -2,14 +2,11 @@ package teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,14 +15,11 @@ import android.widget.TextView;
 
 import org.json.JSONException;
 
-import java.util.Locale;
-
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.HttpClient.WeatherHttpClient;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.DailyForecastPageAdapter;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherDetailImage;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Weather;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherForecast;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherForecastForcastActivity;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.parser.JSONWeatherParser;
 
 import static java.lang.Integer.parseInt;
@@ -48,7 +42,6 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
     private TextView txt_Next;
     private String typeofday;
     private RelativeLayout relativimage;
-    private WeatherDetailImage weathedetail;
     private TextView current_temperature_field;
     private TextView details_field;
     private TextView daytype;
@@ -60,6 +53,7 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
         city = getIntent().getStringExtra("ForcastCityDetail");
         String lang = "en";
         SetUpUI();
+        cityText.setText(city);
         res = getResources();
         drawable = res.getDrawable(R.drawable.skyclear);
         typeofday = getIntent().getStringExtra("Daytype");
@@ -67,9 +61,9 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
         setImage(typeofday);
 
 
-        JSONWeatherTask task = new JSONWeatherTask();
+      /*  JSONWeatherTask task = new JSONWeatherTask();
         task.execute(new String[]{city, lang});
-        JSONForecastWeatherTask task1 = new JSONForecastWeatherTask();
+       */ JSONForecastWeatherTask task1 = new JSONForecastWeatherTask();
         task1.execute(new String[]{city, lang, forecastDaysNum});
     }
 
@@ -159,73 +153,20 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
         }
     }
 
-
-    private class JSONWeatherTask extends AsyncTask<String, Void, Weather> {
-        @Override
-        protected Weather doInBackground(String... params) {
-            Weather weather = new Weather();
-            String data = ((new WeatherHttpClient()).getWeatherData(params[0], params[1]));
-
-            try {
-                weather = JSONWeatherParser.getWeather(data);
-                System.out.println("Weather [" + weather + "]");
-                // Let's retrieve the icon
-              //  weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return weather;
-
-        }
-
+    private class JSONForecastWeatherTask extends AsyncTask<String, Void, WeatherForecastForcastActivity> {
 
         @Override
-        protected void onPostExecute(Weather weather) {
-            super.onPostExecute(weather);
-
-          /*  if (weather.iconData != null && weather.iconData.length > 0) {
-                Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
-                //      imgView.setImageBitmap(img);
-            }*/
-
-
-            cityText.setText((weather.location.getCity() + "," + weather.location.getCountry()));
-            //   details_field.setText(weather.currentCondition.getHumidity() + "%" + weather.currentCondition.getPressure() + " hPa");
-            //  current_temperature_field.setText(Math.round((weather.temperature.getTemp() - 265.15)) + " ℃");
-            //   daytype.setText("hi");
-
-            //     condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
-            //      currentconditionname = (weather.currentCondition.getDescr());
-            //   setImage(currentconditionname);
-            /*
-
-			temp.setText("" + Math.round((weather.temperature.getTemp() - 275.15)) + "�C");
-			hum.setText("" + weather.currentCondition.getHumidity() + "%");
-			press.setText("" + weather.currentCondition.getPressure() + " hPa");
-			windSpeed.setText("" + weather.wind.getSpeed() + " mps");
-			windDeg.setText("" + weather.wind.getDeg() + "�");
-			*/
-        }
-
-
-    }
-
-
-    private class JSONForecastWeatherTask extends AsyncTask<String, Void, WeatherForecast> {
-
-        @Override
-        protected WeatherForecast doInBackground(String... params) {
+        protected WeatherForecastForcastActivity doInBackground(String... params) {
             Weather weather = new Weather();
 
             String data = ((new WeatherHttpClient()).getForecastWeatherData(params[0], params[1], params[2]));
-            WeatherForecast forecast = new WeatherForecast();
+            WeatherForecastForcastActivity forecast = new WeatherForecastForcastActivity();
             try {
                 forecast = JSONWeatherParser.getForecastWeather(data);
                 System.out.println("Weather [" + forecast + "]");
 
                 // Let's retrieve the icon
-             //   weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
+                //   weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -235,11 +176,8 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
         }
 
 
-
-
-
         @Override
-        protected void onPostExecute(WeatherForecast forecastWeather) {
+        protected void onPostExecute(WeatherForecastForcastActivity forecastWeather) {
             super.onPostExecute(forecastWeather);
 
             DailyForecastPageAdapter adapter = new DailyForecastPageAdapter(parseInt(forecastDaysNum), getSupportFragmentManager(), forecastWeather);

@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +47,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
     private String updatedOn;
     private String timeday;
     private String senddaytype;
+    TextView txt_header;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +57,14 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         Intent inetent_cityname = getIntent();
         mcity = inetent_cityname.getStringExtra("ForcastCityDetail");
         mhandler = new Handler();
+
         SetUpUI();
+       // txt_header.setText(mcity);
+
         updateWeatherData(mcity);
         mtxt_Next.setOnClickListener(this);
         res = getResources();
+
 
     }
 
@@ -66,7 +73,11 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         mtxt_Title = (TextView) findViewById(R.id.txt_Title);
         mtxt_Title.setText("Detail Infomartion");
         mtxt_Next = (TextView) findViewById(R.id.txt_Next);
-        mtxt_Next.setText(">");
+        mtxt_Next.setText("NEXT");
+        mtxt_Next.setTextSize(3,5);
+        txt_header = (TextView) findViewById(R.id.txt_header);
+
+
         mcityField = (TextView) findViewById(R.id.city_field);
         mupdatedField = (TextView) findViewById(R.id.updated_field);
         mdetailsField = (TextView) findViewById(R.id.details_field);
@@ -110,9 +121,11 @@ public class DetailActivty extends Activity implements View.OnClickListener {
 
     private void renderWeather(JSONObject json) {
         try {
-            mcityField.setText(json.getString("name").toUpperCase(Locale.US) +
+            txt_header.setText(json.getString("name").toUpperCase(Locale.US) +
                     ", " +
                     json.getJSONObject("sys").getString("country"));
+           // mcityField.setVisibility(View.INVISIBLE);
+
 
             JSONObject details = json.getJSONArray("weather").getJSONObject(0);
             JSONObject main = json.getJSONObject("main");
@@ -195,12 +208,8 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                 startActivity(intent_back);
                 break;
             case R.id.txt_Next:
-
                 if ((mcity.length() < 0) || (senddaytype.length() < 0)) {
-
                 } else {
-
-
                     Intent intent_forcast = new Intent(DetailActivty.this, ForcastActivity.class);
                     intent_forcast.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                             | Intent.FLAG_ACTIVITY_CLEAR_TASK);

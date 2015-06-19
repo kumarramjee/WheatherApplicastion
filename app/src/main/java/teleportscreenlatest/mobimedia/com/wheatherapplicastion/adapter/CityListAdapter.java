@@ -1,8 +1,6 @@
 package teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter;
 
-import android.app.FragmentManager;
 import android.content.Context;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherForecast;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherForecastForcastActivity;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.DayForecast;
 
 /**
@@ -25,7 +20,7 @@ public class CityListAdapter extends BaseAdapter {
     DayForecast dayForecast;
     private int numDays;
     private android.support.v4.app.FragmentManager fm;
-    private WeatherForecast forecast;
+    private WeatherForecastForcastActivity forecast;
     Context context;
     String getCurrentday;
     TextView dayname;
@@ -34,7 +29,7 @@ public class CityListAdapter extends BaseAdapter {
     TextView dayhumidity;
     private final static SimpleDateFormat sdf = new SimpleDateFormat("E, dd-MM");
 
-    public CityListAdapter(int numDays, WeatherForecast weatherForecast)
+    public CityListAdapter(int numDays, WeatherForecastForcastActivity weatherForecast)
 
     {
         super();

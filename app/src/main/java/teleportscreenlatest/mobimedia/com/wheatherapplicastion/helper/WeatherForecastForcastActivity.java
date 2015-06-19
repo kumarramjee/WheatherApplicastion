@@ -11,7 +11,7 @@ import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.DayForecast
 /**
  * Created by ram on 15/6/15.
  */
-public class WeatherForecast {
+public class WeatherForecastForcastActivity {
 
     private List<DayForecast> daysForecast = new ArrayList<DayForecast>();
 

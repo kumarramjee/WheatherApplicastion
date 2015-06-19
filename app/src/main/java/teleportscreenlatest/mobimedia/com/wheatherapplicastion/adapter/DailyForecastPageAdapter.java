@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.fragements.DayForecastFragment;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherForecast;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherForecastForcastActivity;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.DayForecast;
 
 /**
@@ -20,10 +20,10 @@ public class DailyForecastPageAdapter extends FragmentPagerAdapter {
 
     private int numDays;
     private FragmentManager fm;
-    private WeatherForecast forecast;
+    private WeatherForecastForcastActivity forecast;
     private final static SimpleDateFormat sdf = new SimpleDateFormat("E, dd-MM");
 
-    public DailyForecastPageAdapter(int numDays, FragmentManager fm, WeatherForecast forecast) {
+    public DailyForecastPageAdapter(int numDays, FragmentManager fm, WeatherForecastForcastActivity forecast) {
         super(fm);
         this.numDays = numDays;
         this.fm = fm;

@@ -8,6 +8,9 @@
     <color name="colorSecondaryDark">#607D8B</color>
     <color name="windowBackgroundColor">#333333</color>
     <color name="black_translucent">#80000000</color>
-
+    <color name="brand_main">#33B5E5</color>
+    <color name="text">#333333</color>
+    <color name="text_de_emphasized">#666666</color>
+    <color name="text_faint">#999999</color>
 
 </resources>

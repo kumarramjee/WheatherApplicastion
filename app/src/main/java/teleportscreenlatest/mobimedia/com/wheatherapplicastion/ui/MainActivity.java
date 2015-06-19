@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -21,20 +25,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import android.support.v4.app.Fragment;
+
 import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.GooglePlacesAutocompleteAdapter;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.fragements.NavigationDrawerFragement;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.GpsLocation;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchJson;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.Locationfinder;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.StorecityName;
 
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends FragmentActivity implements View.OnClickListener{
     Toolbar mtoolbar;
     private TextView txt_Title;
     private TextView txt_Next;
@@ -56,6 +67,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Locationfinder mlocationfinder;
     TextView txt_header;
     String senddaytype;
+    DrawerLayout mDrawerlayout;
+    NavigationDrawerFragement mnavigationdrawerfragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +83,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
         GpsLocation getgpslocation = new GpsLocation();
         getgpslocation.turnGPSOn();
         GetDetailWeatherDetail(CityName);
+
+
+        mnavigationdrawerfragment = (NavigationDrawerFragement) getSupportFragmentManager()
+                .findFragmentById(R.id.navigatiodrawerfragement);
+        DrawerLayout mDrawerlayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+
+        mnavigationdrawerfragment.SetUP(R.id.navigatiodrawerfragement, (DrawerLayout) findViewById(R.id.drawerlayout), mtoolbar);
+
+
+        Bundle bundle = new Bundle();
+        bundle.putString("CityName", mcityname);
+        mnavigationdrawerfragment = new NavigationDrawerFragement();
+        mnavigationdrawerfragment.setArguments(bundle);
+
+
         txt_Next.setOnClickListener(this);
         rLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -234,9 +262,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         txt_Next.setText("+");
         txt_Next.setTextSize(30);
         mtoolbar = (Toolbar) findViewById(R.id.customActionbar);
-
         ImageView back_navigation = (ImageView) findViewById(R.id.back_navigation);
-        back_navigation.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -266,7 +292,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             intent_submit.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                     | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent_submit.putExtra("ForcastCityDetail", mcityname);
-           // intent_submit.putExtra("Daytype", senddaytype);
+            // intent_submit.putExtra("Daytype", senddaytype);
 
             startActivity(intent_submit);
         }
@@ -278,5 +304,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         System.gc();
     }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        System.gc();
+    }
+
 
 }

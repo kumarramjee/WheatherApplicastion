@@ -12,77 +12,67 @@
         layout="@layout/toolbar"></include>
 
     <RelativeLayout
-        android:id="@+id/mainmn"
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:layout_margin="16dp">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
 
-        <TextView
-            android:id="@+id/city_field"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/mainmn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:textColor="#ffffff"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_margin="16dp">
 
-            android:textSize="40sp"
-            android:textStyle="normal" />
+            <TextView
+                android:id="@+id/city_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:textSize="40sp"
+                android:textStyle="normal"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/updated_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/city_field"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#d3d3d3"
-            android:textSize="15sp" />
+            <TextView
+                android:id="@+id/updated_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#EEE"
+                android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/current_temperature_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerHorizontal="true"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#ffffff"
-            android:textSize="40sp"
-            android:textStyle="normal" />
+            <TextView
+                android:id="@+id/current_temperature_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="true"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#EEE"
+                android:textSize="40sp"
+                android:textStyle="normal" />
 
-        <TextView
-            android:id="@+id/details_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_centerHorizontal="true"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#ffffff" />
+            <TextView
+                android:id="@+id/details_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerHorizontal="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#EEE" />
+
+        </RelativeLayout>
+
 
     </RelativeLayout>
 
-    <android.support.v4.view.ViewPager
 
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/mainmn"
-        android:layout_weight="6">
-
-        <android.support.v4.view.PagerTitleStrip
-            android:id="@+id/pager_title_strip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:background="#E6E6E6"
-            android:paddingBottom="4dp"
-            android:paddingTop="4dp"
-            android:textColor="#fff" />
-
-    </android.support.v4.view.ViewPager>
 </RelativeLayout>
+
 

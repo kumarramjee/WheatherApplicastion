@@ -5,7 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Weather;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherForecast;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherForecastForcastActivity;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Location;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.DayForecast;
 
@@ -68,9 +68,9 @@ public class JSONWeatherParser {
         return weather;
     }
 
-    public static WeatherForecast getForecastWeather(String data) throws JSONException {
+    public static WeatherForecastForcastActivity getForecastWeather(String data) throws JSONException {
 
-        WeatherForecast forecast = new WeatherForecast();
+        WeatherForecastForcastActivity forecast = new WeatherForecastForcastActivity();
 
         // We create out JSONObject from the data
         JSONObject jObj = new JSONObject(data);
