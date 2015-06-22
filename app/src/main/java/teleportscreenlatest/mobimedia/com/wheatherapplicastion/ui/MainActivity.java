@@ -90,6 +90,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         DrawerLayout mDrawerlayout = (DrawerLayout) findViewById(R.id.drawerlayout);
 
         mnavigationdrawerfragment.SetUP(R.id.navigatiodrawerfragement, (DrawerLayout) findViewById(R.id.drawerlayout), mtoolbar);
+        if (mnavigationdrawerfragment != null && mnavigationdrawerfragment.isDrawerOpen())
+            mnavigationdrawerfragment.closeDrawer();
 
 
         Bundle bundle = new Bundle();

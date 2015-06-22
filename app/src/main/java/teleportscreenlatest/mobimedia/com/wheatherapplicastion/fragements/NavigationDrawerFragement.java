@@ -121,7 +121,16 @@ public class NavigationDrawerFragement extends Fragment {
     public void SetList(String cityname) {
 
 
-      //  fetchedlist.setText(cityname);
+        //  fetchedlist.setText(cityname);
 
+    }
+
+    public boolean isDrawerOpen() {
+        return mDrawerlayout != null
+                && mDrawerlayout.isDrawerOpen(containerView);
+    }
+
+    public void closeDrawer() {
+        mDrawerlayout.isDrawerOpen(containerView);
     }
 }
