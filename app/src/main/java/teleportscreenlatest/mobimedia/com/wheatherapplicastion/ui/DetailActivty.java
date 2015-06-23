@@ -10,9 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,8 +21,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchJson;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchJson;
 
 
 public class DetailActivty extends Activity implements View.OnClickListener {
@@ -56,12 +54,20 @@ public class DetailActivty extends Activity implements View.OnClickListener {
 
         Intent inetent_cityname = getIntent();
         mcity = inetent_cityname.getStringExtra("ForcastCityDetail");
+
+
         mhandler = new Handler();
 
         SetUpUI();
-       // txt_header.setText(mcity);
+        // txt_header.setText(mcity);
 
-        updateWeatherData(mcity);
+        if (mcity == null) {
+            Toast.makeText(this,"Not able to find location.",Toast.LENGTH_SHORT).show();
+
+        } else {
+
+            updateWeatherData(mcity);
+        }
         mtxt_Next.setOnClickListener(this);
         res = getResources();
 
@@ -74,7 +80,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         mtxt_Title.setText("Detail Infomartion");
         mtxt_Next = (TextView) findViewById(R.id.txt_Next);
         mtxt_Next.setText("NEXT");
-        mtxt_Next.setTextSize(3,5);
+        mtxt_Next.setTextSize(3, 5);
         txt_header = (TextView) findViewById(R.id.txt_header);
 
 
@@ -124,7 +130,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
             txt_header.setText(json.getString("name").toUpperCase(Locale.US) +
                     ", " +
                     json.getJSONObject("sys").getString("country"));
-           // mcityField.setVisibility(View.INVISIBLE);
+            // mcityField.setVisibility(View.INVISIBLE);
 
 
             JSONObject details = json.getJSONArray("weather").getJSONObject(0);
@@ -236,4 +242,9 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         System.gc();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+    }
 }

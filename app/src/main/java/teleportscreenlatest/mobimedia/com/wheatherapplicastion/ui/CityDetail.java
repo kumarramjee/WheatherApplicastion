@@ -13,10 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.fragements.WeatherFragment;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchForcastForDayJson;
-
-import static java.lang.Integer.parseInt;
 
 public class CityDetail extends Activity {
     TextView countryname;

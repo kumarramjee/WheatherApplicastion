@@ -18,8 +18,8 @@ import org.json.JSONException;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.HttpClient.WeatherHttpClient;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.DailyForecastPageAdapter;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Weather;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherForecastForcastActivity;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Weather;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.parser.JSONWeatherParser;
 
 import static java.lang.Integer.parseInt;

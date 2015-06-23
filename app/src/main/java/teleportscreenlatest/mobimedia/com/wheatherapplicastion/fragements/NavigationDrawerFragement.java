@@ -3,6 +3,7 @@ package teleportscreenlatest.mobimedia.com.wheatherapplicastion.fragements;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,13 +11,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +36,7 @@ public class NavigationDrawerFragement extends Fragment {
     private boolean mUserLearnedDrawer;
     TextView fetchedlist;
     String searchedcountryname;
+    ListView lview;
 
     public NavigationDrawerFragement() {
     }
@@ -50,11 +55,13 @@ public class NavigationDrawerFragement extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         fetchedlist = (TextView) v.findViewById(R.id.fetchedlist);
+        lview = (ListView) v.findViewById(R.id.navigationlistitem);
+        lview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        //searchedcountryname = getArguments().getString("CityName").toString();
-        // Log.i("selected country is"," value==:"+searchedcountryname);
-
-        //  fetchedlist.setText(searchedcountryname);
+            }
+        });
 
 
         return v;
@@ -133,4 +140,6 @@ public class NavigationDrawerFragement extends Fragment {
     public void closeDrawer() {
         mDrawerlayout.isDrawerOpen(containerView);
     }
+
+
 }

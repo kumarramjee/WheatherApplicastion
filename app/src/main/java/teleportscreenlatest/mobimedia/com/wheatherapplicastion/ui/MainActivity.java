@@ -1,21 +1,18 @@
 package teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -25,27 +22,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
-import android.support.v4.app.Fragment;
-
 import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.GooglePlacesAutocompleteAdapter;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.fragements.NavigationDrawerFragement;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.GpsLocation;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchJson;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.Locationfinder;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.StorecityName;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchJson;
 
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener{
+public class MainActivity extends FragmentActivity implements View.OnClickListener {
     Toolbar mtoolbar;
     private TextView txt_Title;
     private TextView txt_Next;
@@ -92,12 +83,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         mnavigationdrawerfragment.SetUP(R.id.navigatiodrawerfragement, (DrawerLayout) findViewById(R.id.drawerlayout), mtoolbar);
         if (mnavigationdrawerfragment != null && mnavigationdrawerfragment.isDrawerOpen())
             mnavigationdrawerfragment.closeDrawer();
-
-
-        Bundle bundle = new Bundle();
-        bundle.putString("CityName", mcityname);
-        mnavigationdrawerfragment = new NavigationDrawerFragement();
-        mnavigationdrawerfragment.setArguments(bundle);
 
 
         txt_Next.setOnClickListener(this);

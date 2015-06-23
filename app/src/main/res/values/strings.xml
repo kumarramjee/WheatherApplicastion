@@ -45,4 +45,12 @@
     <string name="fifteen_degrees">15</string>
     <string name="today">TodaY</string>
     <string name="tomorrow">Tomorrow</string>
+
+
+    <string-array name="navigationlistitem">
+        <item>Current Location</item>
+        <item>Get PLaces</item>
+        <item>Edit Location</item>
+        <item>Sign Out</item>
+    </string-array>
 </resources>
