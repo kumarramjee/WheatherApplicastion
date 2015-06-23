@@ -72,6 +72,12 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         res = getResources();
 
 
+
+
+
+
+
+
     }
 
     private void SetUpUI() {
@@ -142,10 +148,12 @@ public class DetailActivty extends Activity implements View.OnClickListener {
 
             senddaytype = details.getString("description").toUpperCase(Locale.US).toString().trim();
 
-            setImage(details.getString("description").toUpperCase(Locale.US));
+            Log.i("Detail Activity","Desscription if day:=="+senddaytype);
+
+            setImage(senddaytype);
 
             mcurrentTemperatureField.setText(
-                    String.format("%.2f", main.getDouble("temp")) + " ℃");
+                    String.format("%.2f", main.getDouble("temp")) + "℃");
 
             DateFormat df = DateFormat.getDateTimeInstance();
             updatedOn = df.format(new Date(json.getLong("dt") * 1000));

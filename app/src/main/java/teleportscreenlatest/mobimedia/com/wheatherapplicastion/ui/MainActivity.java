@@ -120,8 +120,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private void GetDetailWeatherDetail(String cityName) {
         if (cityName.length() == 0) {
             Toast.makeText(MainActivity.this, "Not able to find current location.Check ur connection", Toast.LENGTH_SHORT).show();
-            drawable = res.getDrawable(R.drawable.nonelse);
-            rLayout.setBackground(drawable);
+
         } else {
             new Thread() {
                 public void run() {

@@ -26,9 +26,7 @@
             android:layout_margin="5dp"
             android:gravity="center_vertical"
             android:text="Daytype"
-
             android:textColor="#ffffff"
-
             />
 
         <TextView
@@ -37,7 +35,15 @@
             android:layout_height="56dp"
             android:layout_margin="5dp"
             android:gravity="center_vertical"
-            android:text="Daytemp"
+            android:text="Min"
+            android:textColor="#ffffff" />
+        <TextView
+            android:id="@+id/daytempmax"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_margin="5dp"
+            android:gravity="center_vertical"
+            android:text="Max"
 
             android:textColor="#ffffff" />
 
@@ -48,7 +54,6 @@
             android:layout_margin="5dp"
             android:gravity="center_vertical"
             android:text="Humidity"
-
             android:textColor="#ffffff" />
 
     </LinearLayout>
