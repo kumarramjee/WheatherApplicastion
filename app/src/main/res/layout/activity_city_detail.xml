@@ -1,10 +1,53 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/container"
     tools:context="teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui.CityDetail">
-<!--
+
+
+    <TextView
+        android:id="@+id/dayname"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_margin="5dp"
+        android:gravity="center_vertical"
+        android:text="DayName"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/daytype"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_below="@+id/dayname"
+        android:layout_margin="5dp"
+        android:gravity="center_vertical"
+        android:text="Daytype"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/daytemp"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_below="@+id/daytype"
+        android:layout_margin="5dp"
+        android:gravity="center_vertical"
+        android:text="Min"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/daytempmax"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_below="@+id/daytemp"
+        android:layout_margin="5dp"
+        android:gravity="center_vertical"
+        android:text="Max"
+
+        android:textColor="#000000" />
+
+
+    <!--
 
 
     <RelativeLayout
@@ -46,4 +89,4 @@
 -->
 
 
-</FrameLayout>
+</RelativeLayout>

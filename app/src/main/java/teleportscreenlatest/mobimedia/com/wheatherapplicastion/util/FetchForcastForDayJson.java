@@ -23,9 +23,11 @@ public class FetchForcastForDayJson {
 
     public static JSONObject getJSON(Context context, String city) {
         try {
+
+
             URL url = new URL(String.format(FORCAST_DAY_DETAIL_API, city));
 
-            Log.i("FetchForcastForDayJson","Forcast activity=="+url);
+            Log.i("FetchForcastForDayJson","Forcast Url is:=="+url);
 
             HttpURLConnection connection =
                     (HttpURLConnection) url.openConnection();

@@ -81,15 +81,12 @@ public class DetailActivty extends Activity implements View.OnClickListener {
     }
 
     private void SetUpUI() {
-
         mtxt_Title = (TextView) findViewById(R.id.txt_Title);
         mtxt_Title.setText("Detail Infomartion");
         mtxt_Next = (TextView) findViewById(R.id.txt_Next);
         mtxt_Next.setText("NEXT");
         mtxt_Next.setTextSize(3, 5);
         txt_header = (TextView) findViewById(R.id.txt_header);
-
-
         mcityField = (TextView) findViewById(R.id.city_field);
         mupdatedField = (TextView) findViewById(R.id.updated_field);
         mdetailsField = (TextView) findViewById(R.id.details_field);
@@ -100,8 +97,6 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         mback_navigation.setBackground(upArrow);
         mback_navigation.setOnClickListener(this);
         rLayout = (RelativeLayout) findViewById(R.id.rLayout);
-
-
     }
 
     private void updateWeatherData(final String city) {
