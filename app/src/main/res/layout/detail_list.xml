@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
 
-    <LinearLayout
+    android:background="#80000000">
+
+    <RelativeLayout
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="56dp"
+        android:layout_margin="16dp"
         android:background="#80000000"
         android:orientation="horizontal">
 
@@ -14,49 +17,50 @@
             android:id="@+id/dayname"
             android:layout_width="wrap_content"
             android:layout_height="56dp"
+            android:layout_alignParentLeft="true"
             android:layout_margin="5dp"
             android:gravity="center_vertical"
             android:text="DayName"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/daytype"
             android:layout_width="wrap_content"
             android:layout_height="56dp"
             android:layout_margin="5dp"
+            android:layout_toRightOf="@+id/dayname"
             android:gravity="center_vertical"
             android:text="Daytype"
             android:textColor="#ffffff"
-            />
+
+            android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/daytemp"
+            android:id="@+id/daytempmin"
             android:layout_width="wrap_content"
             android:layout_height="56dp"
             android:layout_margin="5dp"
+            android:layout_toRightOf="@+id/daytype"
             android:gravity="center_vertical"
             android:text="Min"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+
+            android:textSize="25sp" />
+
         <TextView
             android:id="@+id/daytempmax"
             android:layout_width="wrap_content"
             android:layout_height="56dp"
+            android:layout_alignParentRight="true"
             android:layout_margin="5dp"
             android:gravity="center_vertical"
             android:text="Max"
+            android:textColor="#ffffff"
+            android:textSize="25sp" />
 
-            android:textColor="#ffffff" />
 
-        <TextView
-            android:id="@+id/dayhumidity"
-            android:layout_width="wrap_content"
-            android:layout_height="56dp"
-            android:layout_margin="5dp"
-            android:gravity="center_vertical"
-            android:text="Humidity"
-            android:textColor="#ffffff" />
-
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </RelativeLayout>

@@ -6,6 +6,20 @@
     tools:context="teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui.CityDetail">
 
 
+
+
+    <ListView
+        android:id="@+id/forcastdetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80ffffff"
+
+        ></ListView>
+
+    <!--
+
+
+
     <TextView
         android:id="@+id/dayname"
         android:layout_width="wrap_content"
@@ -46,7 +60,7 @@
 
         android:textColor="#000000" />
 
-
+-->
     <!--
 
 

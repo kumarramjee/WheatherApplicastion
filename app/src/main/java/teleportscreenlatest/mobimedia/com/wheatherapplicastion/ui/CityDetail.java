@@ -13,39 +13,92 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Location;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.CityDetailAdapter;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Day;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.parser.ParseForcastDay;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchForcastForDayJson;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchJson;
 
 public class CityDetail extends Activity {
-    TextView countryname;
-    TextView dayType;
-    String city = "";
+    private TextView countryname;
+    private String city = "";
     private static String forecastDaysNum = "16";
-    String lang = "en";
-    ListView citylist;
-    Context mContext = this;
+    private String lang = "en";
+    private Context mContext = this;
     private Handler mhandler;
-    TextView dayname;
-    TextView daytype, daytemp, daytempmax;
-    String day = "", min = "", max = "", night = "";
+    ListView forcastdetail;
+    List<Day> datalist;
+
+    List<Day> daylist = new ArrayList<Day>();
+    List<Day> datalisted = new ArrayList<Day>();
+
+    ParseForcastDay parse;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_detail);
+        parse = new ParseForcastDay();
         city = getIntent().getStringExtra("ForcastCityDetail");
         mhandler = new Handler();
         GetDetailWeatherDetail(city);
-        SetUPUI();
+        datalist = new ArrayList<Day>();
+        datalisted = parse.GetListFromJson();
+
+
+
+        CityDetailAdapter cityadapter = new CityDetailAdapter(mContext, datalist);
+        forcastdetail = (ListView) findViewById(R.id.forcastdetail);
+        forcastdetail.setAdapter(cityadapter);
     }
 
-    private void SetUPUI() {
-        dayname = (TextView) findViewById(R.id.dayname);
-        daytype = (TextView) findViewById(R.id.daytype);
-        daytemp = (TextView) findViewById(R.id.daytemp);
-        daytempmax = (TextView) findViewById(R.id.daytempmax);
+    private List<Day> getListbyJsonParsing(String city) {
+        Log.i("City Detail ", "City for json==" + city);
+
+
+        final JSONObject getjson = FetchForcastForDayJson.getJSON(mContext, city);
+
+        datalisted = getAllListitem(getjson);
+
+
+        return datalisted;
+    }
+
+    private List<Day> getAllListitem(JSONObject json) {
+
+        {
+            try {
+              /*  Day dayobject = new Day();
+
+
+                JSONArray ListArray = json.getJSONArray("list");
+                for (int i = 0; i < ListArray.length(); i++) {
+                    JSONObject jobject = ListArray.getJSONObject(i);
+                    String date = jobject.getString("dt");
+                    JSONObject temp = jobject.getJSONObject("temp");
+                    dayobject.day = temp.getString("day");
+                    dayobject.min = temp.getString("min");
+                    dayobject.max = temp.getString("max");
+                    JSONArray weather = jobject.getJSONArray("weather");
+                    for (int j = 0; j < weather.length(); j++) {
+                        JSONObject jweather = weather.getJSONObject(j);
+                        dayobject.weather = jweather.getString("description");
+                    }
+                    daylist.add(dayobject);
+
+                }
+                Log.i("ParseForcast", "list values==" + daylist.size());
+*/
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return daylist;
     }
 
     private void GetDetailWeatherDetail(final String city) {
@@ -57,7 +110,6 @@ public class CityDetail extends Activity {
             new Thread() {
                 public void run() {
                     final JSONObject json = FetchForcastForDayJson.getJSON(mContext, city);
-                    Log.i("City Detail ", "Json Values:==" + json);
 
                     if (json == null) {
                         mhandler.post(new Runnable() {
@@ -70,7 +122,7 @@ public class CityDetail extends Activity {
                             public void run() {
 
 
-                                RenderWeatherDay(json);
+                                parse.RenderWeatherDay(json);
                             }
                         });
                     }
@@ -78,46 +130,4 @@ public class CityDetail extends Activity {
             }.start();
         }
     }
-
-    private void RenderWeatherDay(JSONObject json) {
-        Log.i("CityDetail Activtiy", "Detail Form is:==" + json);
-        try {
-
-            JSONObject City = json.getJSONObject("city");
-            String Cityname = City.getString("name");
-
-            String CountryName = City.getString("country");
-            Log.i("City name is", "City name==" + Cityname);
-
-            JSONArray ListArray = json.getJSONArray("list");
-            Log.i("City Detail Activty", "==" + ListArray);
-
-
-
-            for (int i = 0; i < ListArray.length(); i++) {
-                JSONObject jobject = ListArray.getJSONObject(i);
-
-                Log.i("CityDetailActivity","Result=="+jobject);
-
-
-                String date=jobject.getString("dt");
-                Log.i("CityDetail","Activty=="+date);
-
-                JSONObject temp=jobject.getJSONObject("temp");
-
-
-            //    String jdate = jobject.getJSONObject("dt");
-
-
-            }
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-
 }

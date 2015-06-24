@@ -19,7 +19,7 @@ public class FetchForcastForDayJson {
 
 
     private static final String FORCAST_DAY_DETAIL_API =
-            "http://api.openweathermap.org/data/2.5/forecast/daily?q=%s&units=metric&cnt=7";
+            "http://api.openweathermap.org/data/2.5/forecast/daily?q=%s&units=metric&cnt=16";
 
     public static JSONObject getJSON(Context context, String city) {
         try {

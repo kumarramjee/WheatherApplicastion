@@ -51,35 +51,19 @@ public class DetailActivty extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_activty);
-
         Intent inetent_cityname = getIntent();
         mcity = inetent_cityname.getStringExtra("ForcastCityDetail");
-
-
         mhandler = new Handler();
-
         SetUpUI();
-        // txt_header.setText(mcity);
-
         if (mcity == null) {
             Toast.makeText(this,"Not able to find location.",Toast.LENGTH_SHORT).show();
-
         } else {
 
             updateWeatherData(mcity);
         }
         mtxt_Next.setOnClickListener(this);
         res = getResources();
-
-
-
-
-
-
-
-
     }
-
     private void SetUpUI() {
         mtxt_Title = (TextView) findViewById(R.id.txt_Title);
         mtxt_Title.setText("Detail Infomartion");
@@ -131,8 +115,6 @@ public class DetailActivty extends Activity implements View.OnClickListener {
             txt_header.setText(json.getString("name").toUpperCase(Locale.US) +
                     ", " +
                     json.getJSONObject("sys").getString("country"));
-            // mcityField.setVisibility(View.INVISIBLE);
-
 
             JSONObject details = json.getJSONArray("weather").getJSONObject(0);
             JSONObject main = json.getJSONObject("main");
@@ -142,8 +124,6 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                             "\n" + "Pressure: " + main.getString("pressure") + " hPa");
 
             senddaytype = details.getString("description").toUpperCase(Locale.US).toString().trim();
-
-            Log.i("Detail Activity","Desscription if day:=="+senddaytype);
 
             setImage(senddaytype);
 
