@@ -51,6 +51,11 @@
         <item>Current Location</item>
         <item>Get PLaces</item>
         <item>Edit Location</item>
+        <item>Inbox</item>
+        <item>SentItem</item>
+        <item>DraftBox</item>
+        <item>Settings</item>
+        <item>Notifications</item>
         <item>Sign Out</item>
     </string-array>
 </resources>

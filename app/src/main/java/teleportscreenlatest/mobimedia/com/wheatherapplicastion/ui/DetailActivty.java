@@ -127,8 +127,12 @@ public class DetailActivty extends Activity implements View.OnClickListener {
 
             setImage(senddaytype);
 
+           /* mcurrentTemperatureField.setText(
+                    String.format("", main.getDouble("temp")) + "℃");
+*/
             mcurrentTemperatureField.setText(
-                    String.format("%.2f", main.getDouble("temp")) + "℃");
+                    String.format(main.getInt("temp") + " ℃"));
+            mcurrentTemperatureField.setTextSize(5, 20);
 
             DateFormat df = DateFormat.getDateTimeInstance();
             updatedOn = df.format(new Date(json.getLong("dt") * 1000));
