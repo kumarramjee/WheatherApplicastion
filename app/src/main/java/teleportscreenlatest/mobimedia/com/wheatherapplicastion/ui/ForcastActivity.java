@@ -110,7 +110,7 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
             relativimage.setBackground(drawable);
 
         } else if (description.equals("BROKEN CLOUDS")) {
-            drawable = res.getDrawable(R.drawable.brokenclouds);
+            drawable = res.getDrawable(R.drawable.brokencloud);
             relativimage.setBackground(drawable);
 
         } else if (description.equals("SCATTERED CLOUDS")) {

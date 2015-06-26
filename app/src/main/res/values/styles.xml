@@ -13,4 +13,9 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">160dp</item>
     </style>
+
+    <style name="Theme.white" parent="android:Theme">
+        <item name="android:color">#ffffff</item>
+
+    </style>
 </resources>

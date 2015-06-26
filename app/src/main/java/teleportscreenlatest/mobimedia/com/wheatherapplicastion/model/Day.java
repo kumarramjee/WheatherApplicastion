@@ -10,4 +10,6 @@ public class Day {
     public String max;
     public String  weather;
 
+
+
 }

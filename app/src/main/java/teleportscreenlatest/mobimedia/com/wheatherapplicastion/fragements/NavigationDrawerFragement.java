@@ -3,24 +3,26 @@ package teleportscreenlatest.mobimedia.com.wheatherapplicastion.fragements;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui.MainActivity;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.NavigationDrawerAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,6 +39,10 @@ public class NavigationDrawerFragement extends Fragment {
     TextView fetchedlist;
     String searchedcountryname;
     ListView lview;
+    String navlist[];// = {"Current Location", "Get PLaces", "Edit Location", "Inbox", "SentItem", "DraftBox", "Settings", "Notifications", "Sign Out"};
+
+    List mdrawerlist;//
+    List mdrawerlistItem;
 
     public NavigationDrawerFragement() {
     }
@@ -48,6 +54,11 @@ public class NavigationDrawerFragement extends Fragment {
         if (savedInstanceState != null) {
             mFromSavedInstanceState = true;
         }
+        navlist = getResources().getStringArray(R.array.navigationlistitem);
+
+        mdrawerlist = new ArrayList();
+        mdrawerlistItem = new ArrayList();
+
     }
 
     @Override
@@ -56,6 +67,25 @@ public class NavigationDrawerFragement extends Fragment {
         View v = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         fetchedlist = (TextView) v.findViewById(R.id.fetchedlist);
         lview = (ListView) v.findViewById(R.id.navigationlistitem);
+
+        mdrawerlist.add("Current Location");
+        mdrawerlist.add("Get Places");
+        mdrawerlist.add("Edit Location");
+        mdrawerlist.add("Inbox");
+        mdrawerlist.add("Sent Item");
+        mdrawerlist.add("Draft Box");
+        mdrawerlist.add("Settings");
+        mdrawerlist.add("Notifications");
+        mdrawerlist.add("News");
+        mdrawerlist.add("SignOut");
+        mdrawerlistItem.add(mdrawerlist);
+
+
+      /*  NavigationDrawerAdapter nadapter = new NavigationDrawerAdapter(getActivity().getApplicationContext(), mdrawerlistItem);
+        lview.setAdapter(nadapter);
+*/
+
+
         lview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

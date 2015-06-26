@@ -3,104 +3,28 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/haze"
     tools:context="teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui.CityDetail">
 
-
-
+    <TextView
+        android:id="@+id/cityName"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="INdia"
+        android:textColor="#ffffff"
+        android:textSize="25sp" />
 
     <ListView
         android:id="@+id/forcastdetail"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#80ffffff"
-
-        ></ListView>
-
-    <!--
-
-
-
-    <TextView
-        android:id="@+id/dayname"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:layout_margin="5dp"
-        android:gravity="center_vertical"
-        android:text="DayName"
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/daytype"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:layout_below="@+id/dayname"
-        android:layout_margin="5dp"
-        android:gravity="center_vertical"
-        android:text="Daytype"
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/daytemp"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:layout_below="@+id/daytype"
-        android:layout_margin="5dp"
-        android:gravity="center_vertical"
-        android:text="Min"
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/daytempmax"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:layout_below="@+id/daytemp"
-        android:layout_margin="5dp"
-        android:gravity="center_vertical"
-        android:text="Max"
-
-        android:textColor="#000000" />
-
--->
-    <!--
-
-
-    <RelativeLayout
-        android:id="@+id/citydetaail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/countryname"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:gravity="center_horizontal"
-            android:text="India"
-            android:textColor="#000000"
-            android:textSize="25sp"
-
-            android:textStyle="normal"
-
-            />
-
-        <TextView
-            android:id="@+id/daytype"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_below="@+id/countryname"
-            android:gravity="center_horizontal"
-            android:text="haze"
-            android:textSize="20sp" />
-
-
-    </RelativeLayout>
-
-    <ListView
-        android:id="@+id/citylist"
+        style="@style/Theme.white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/citydetaail"
-        android:background="#00ffff"></ListView>
--->
-
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/cityName"
+        android:layout_marginTop="150dp"
+        android:background="#80ffffff"
+        ></ListView>
 
 </RelativeLayout>

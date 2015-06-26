@@ -15,8 +15,8 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
         android:layout_margin="16dp">
-
 
         <TextView
             android:id="@+id/city_field"
@@ -39,7 +39,7 @@
             android:layout_marginTop="30dp"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#EEE"
+            android:textColor="#80d4d4d4"
             android:textSize="15sp" />
 
         <TextView
@@ -49,7 +49,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#000000"
+            android:textColor="#80000000"
             android:textSize="80sp"
             android:textStyle="normal" />
 
@@ -61,10 +61,16 @@
             android:layout_alignParentLeft="true"
             android:layout_centerHorizontal="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000000" />
+            android:textColor="#80000000" />
 
+        <ListView
+            android:id="@+id/detailtemp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/current_temperature_field"
+            android:entries="@array/navigationlistitem"
+            android:visibility="visible"></ListView>
     </RelativeLayout>
-
 
 </RelativeLayout>
 

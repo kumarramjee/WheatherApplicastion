@@ -11,7 +11,9 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +48,8 @@ public class DetailActivty extends Activity implements View.OnClickListener {
     private String timeday;
     private String senddaytype;
     TextView txt_header;
+    RelativeLayout container;
+    ListView detailtemp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +60,15 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         mhandler = new Handler();
         SetUpUI();
         if (mcity == null) {
-            Toast.makeText(this,"Not able to find location.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Not able to find location.", Toast.LENGTH_SHORT).show();
         } else {
 
             updateWeatherData(mcity);
         }
         mtxt_Next.setOnClickListener(this);
         res = getResources();
+
+        rLayout.setOnClickListener(this);
     }
     private void SetUpUI() {
         mtxt_Title = (TextView) findViewById(R.id.txt_Title);
@@ -81,8 +87,9 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         mback_navigation.setBackground(upArrow);
         mback_navigation.setOnClickListener(this);
         rLayout = (RelativeLayout) findViewById(R.id.rLayout);
+        container = (RelativeLayout) findViewById(R.id.container);
+        detailtemp = (ListView) findViewById(R.id.detailtemp);
     }
-
     private void updateWeatherData(final String city) {
         new Thread() {
             public void run() {
@@ -108,8 +115,6 @@ public class DetailActivty extends Activity implements View.OnClickListener {
             }
         }.start();
     }
-
-
     private void renderWeather(JSONObject json) {
         try {
             txt_header.setText(json.getString("name").toUpperCase(Locale.US) +
@@ -124,13 +129,8 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                             "\n" + "Pressure: " + main.getString("pressure") + " hPa");
 
             senddaytype = details.getString("description").toUpperCase(Locale.US).toString().trim();
-
             setImage(senddaytype);
-
-           /* mcurrentTemperatureField.setText(
-                    String.format("", main.getDouble("temp")) + "℃");
-*/
-            mcurrentTemperatureField.setText(
+                 mcurrentTemperatureField.setText(
                     String.format(main.getInt("temp") + " ℃"));
             mcurrentTemperatureField.setTextSize(5, 20);
 
@@ -159,14 +159,15 @@ public class DetailActivty extends Activity implements View.OnClickListener {
 
         } else if (description.equals("MODERATE RAIN")) {
             drawable = res.getDrawable(R.drawable.moderaterain);
+
             rLayout.setBackground(drawable);
 
         } else if (description.equals("LIGHT RAIN")) {
-            drawable = res.getDrawable(R.drawable.lihjtrain);
+            drawable = res.getDrawable(R.drawable.lightrain);
             rLayout.setBackground(drawable);
 
         } else if (description.equals("BROKEN CLOUDS")) {
-            drawable = res.getDrawable(R.drawable.brokenclouds);
+            drawable = res.getDrawable(R.drawable.brokencloud);
             rLayout.setBackground(drawable);
 
         } else if (description.equals("SCATTERED CLOUDS")) {
@@ -208,13 +209,13 @@ public class DetailActivty extends Activity implements View.OnClickListener {
                             | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent_forcast.putExtra("ForcastCityDetail", mcity);
                     intent_forcast.putExtra("Daytype", senddaytype);
-
-
                     startActivity(intent_forcast);
                     break;
-
-
                 }
+            case R.id.container:
+                container.setVisibility(View.INVISIBLE);
+                detailtemp.setVisibility(View.VISIBLE);
+                break;
             default:
                 break;
         }

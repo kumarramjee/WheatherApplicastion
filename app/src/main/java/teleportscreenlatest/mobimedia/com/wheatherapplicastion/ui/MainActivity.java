@@ -74,26 +74,17 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         GpsLocation getgpslocation = new GpsLocation();
         getgpslocation.turnGPSOn();
         GetDetailWeatherDetail(CityName);
-
-
         mnavigationdrawerfragment = (NavigationDrawerFragement) getSupportFragmentManager()
                 .findFragmentById(R.id.navigatiodrawerfragement);
         DrawerLayout mDrawerlayout = (DrawerLayout) findViewById(R.id.drawerlayout);
-
         mnavigationdrawerfragment.SetUP(R.id.navigatiodrawerfragement, (DrawerLayout) findViewById(R.id.drawerlayout), mtoolbar);
         if (mnavigationdrawerfragment != null && mnavigationdrawerfragment.isDrawerOpen())
             mnavigationdrawerfragment.closeDrawer();
-
-
         txt_Next.setOnClickListener(this);
         rLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-              /*  InputMethodManager imm = (InputMethodManager) getSystemService(Context.
-                        INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-          */
                 if (rootlayot.VISIBLE == View.VISIBLE) {
                     rootlayot.setVisibility(View.GONE);
                 }
@@ -171,7 +162,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             DateFormat df = DateFormat.getDateTimeInstance();
             updatedOn = df.format(new Date(json.getLong("dt") * 1000));
             mupdatedField.setText("Last update: " + updatedOn);
-            //mupdatedField.setText("Last update: " + updatedOn);
+            // mupdatedField.setText("Last update: " + updatedOn);
             mupdatedField.setText("");
         } catch (Exception e) {
             Log.e("SimpleWeather", "One or more fields not found in the JSON data");
@@ -193,7 +184,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             rLayout.setBackground(drawable);
 
         } else if (description.equals("MODERATE RAIN")) {
-            drawable = res.getDrawable(R.drawable.moderaterain);
+            drawable = res.getDrawable(R.drawable.moderate);
             rLayout.setBackground(drawable);
 
         } else if (description.equals("LIGHT RAIN")) {
@@ -246,7 +237,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         txt_Title.setVisibility(View.INVISIBLE);
         txt_Next = (TextView) findViewById(R.id.txt_Next);
         txt_Next.setText("+");
-        txt_Next.setTextSize(30);
+        txt_Next.setTextSize(35);
         mtoolbar = (Toolbar) findViewById(R.id.customActionbar);
         ImageView back_navigation = (ImageView) findViewById(R.id.back_navigation);
     }
@@ -256,8 +247,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         switch (v.getId()) {
 
             case R.id.txt_Next:
-                //  txt_Title.setVisibility(View.VISIBLE);
-                //  txt_header.setVisibility(View.INVISIBLE);
 
                 rootlayot.setVisibility(View.VISIBLE);
 
@@ -273,7 +262,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
             Toast.makeText(this, "Enter City Name", Toast.LENGTH_SHORT).show();
         } else {
-            //GetDetailWeatherDetail(mcityname);
+            //    GetDetailWeatherDetail(mcityname);
             Intent intent_submit = new Intent(MainActivity.this, DetailActivty.class);
             intent_submit.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                     | Intent.FLAG_ACTIVITY_CLEAR_TASK);

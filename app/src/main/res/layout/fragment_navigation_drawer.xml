@@ -3,7 +3,7 @@
     android:id="@+id/navigation_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d3d3d3"
+    android:background="#ffffff"
     tools:context="teleportscreenlatest.mobimedia.com.wheatherapplicastion.fragements.NavigationDrawerFragement">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,7 +11,9 @@
         android:id="@+id/siginlayout"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:layout_margin="10dp">
+        android:layout_marginTop="0dp"
+        android:background="#000000"
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/signinIMage"
@@ -34,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
+            android:layout_marginTop="2dp"
             android:background="#d4d4d4"></View>
     </RelativeLayout>
 
@@ -47,11 +50,12 @@
     <ListView
         android:id="@+id/navigationlistitem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/fetchedlist"
-        android:cacheColorHint="#ffffff"
+        android:layout_centerVertical="true"
+        android:layout_margin="15dp"
         android:entries="@array/navigationlistitem"
-        android:textColor="#ffffff"></ListView>
+       ></ListView>
 
 
 </RelativeLayout>

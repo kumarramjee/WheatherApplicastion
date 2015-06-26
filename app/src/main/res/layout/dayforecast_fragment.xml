@@ -3,7 +3,7 @@
     android:id="@+id/swipelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/weatherimage">
+    android:background="@drawable/weatherbackground">
     <!--  Image weather condition -->
     <ImageView
         android:id="@+id/forCondIcon"

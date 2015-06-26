@@ -9,8 +9,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -31,75 +29,60 @@ public class CityDetail extends Activity {
     private Handler mhandler;
     ListView forcastdetail;
     List<Day> datalist;
-
-    List<Day> daylist = new ArrayList<Day>();
-    List<Day> datalisted = new ArrayList<Day>();
-
+    ListView lview;
+    List<Day> daylist;
     ParseForcastDay parse;
-
+    JSONObject jsoncity;
+    TextView cityName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_detail);
+        SetUpUI();
         parse = new ParseForcastDay();
         city = getIntent().getStringExtra("ForcastCityDetail");
-        mhandler = new Handler();
-        GetDetailWeatherDetail(city);
+        cityName.setText(city);
+        daylist = new ArrayList<Day>();
         datalist = new ArrayList<Day>();
-        datalisted = parse.GetListFromJson();
-
-
-
+        mhandler = new Handler();
+        //  GetDetailWeatherDetail(city);
+        datalist = GetDetailWeatherDetailJson(city);
         CityDetailAdapter cityadapter = new CityDetailAdapter(mContext, datalist);
-        forcastdetail = (ListView) findViewById(R.id.forcastdetail);
-        forcastdetail.setAdapter(cityadapter);
+        lview.setAdapter(cityadapter);
+
     }
 
-    private List<Day> getListbyJsonParsing(String city) {
-        Log.i("City Detail ", "City for json==" + city);
+    private void SetUpUI() {
+        lview = (ListView) findViewById(R.id.forcastdetail);
+        cityName = (TextView) findViewById(R.id.cityName);
 
 
-        final JSONObject getjson = FetchForcastForDayJson.getJSON(mContext, city);
+    }
 
-        datalisted = getAllListitem(getjson);
+    private List<Day> GetDetailWeatherDetailJson(String city) {
+        List<Day> datalisted = new ArrayList<Day>();
+        if (city.length() == 0) {
+            Toast.makeText(mContext, "Not able to find your location.Check ur connection", Toast.LENGTH_SHORT).show();
 
+        } else {
+            JSONObject json = FetchForcastForDayJson.getJSON(mContext, city);
+
+            Log.i("Json For city", "Values==" + json);
+
+            if (json == null) {
+                Toast.makeText(CityDetail.this, "Not Getting information.", Toast.LENGTH_SHORT).show();
+            } else {
+
+                datalisted = parse.getRenderWeatherDayListValues(json);
+
+            }
+
+        }
 
         return datalisted;
     }
 
-    private List<Day> getAllListitem(JSONObject json) {
-
-        {
-            try {
-              /*  Day dayobject = new Day();
-
-
-                JSONArray ListArray = json.getJSONArray("list");
-                for (int i = 0; i < ListArray.length(); i++) {
-                    JSONObject jobject = ListArray.getJSONObject(i);
-                    String date = jobject.getString("dt");
-                    JSONObject temp = jobject.getJSONObject("temp");
-                    dayobject.day = temp.getString("day");
-                    dayobject.min = temp.getString("min");
-                    dayobject.max = temp.getString("max");
-                    JSONArray weather = jobject.getJSONArray("weather");
-                    for (int j = 0; j < weather.length(); j++) {
-                        JSONObject jweather = weather.getJSONObject(j);
-                        dayobject.weather = jweather.getString("description");
-                    }
-                    daylist.add(dayobject);
-
-                }
-                Log.i("ParseForcast", "list values==" + daylist.size());
-*/
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        return daylist;
-    }
 
     private void GetDetailWeatherDetail(final String city) {
 
@@ -123,6 +106,8 @@ public class CityDetail extends Activity {
 
 
                                 parse.RenderWeatherDay(json);
+
+
                             }
                         });
                     }
