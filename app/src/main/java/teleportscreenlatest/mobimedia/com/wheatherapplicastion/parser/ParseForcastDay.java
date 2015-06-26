@@ -18,11 +18,10 @@ import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchForcast
  * Created by ram on 24/6/15.
  */
 public class ParseForcastDay {
-    List<Day> daylist = new ArrayList<Day>();
-    JSONObject json;
     List<Day> datalist = new ArrayList<Day>();
-
-    public void RenderWeatherDay(JSONObject json) {
+    Day dayremain=new Day();
+    public List<Day> RenderWeatherDay(JSONObject json) {
+        List<Day> daylist = new ArrayList<Day>();
         try {
             Day dayobject = new Day();
             JSONObject City = json.getJSONObject("city");
@@ -43,19 +42,35 @@ public class ParseForcastDay {
                     dayobject.weather = jweather.getString("description");
                 }
                 daylist.add(dayobject);
+                Log.i("Parse Forcast Day ", "different value ==" + dayobject.day + "," + dayobject.min + "," + dayobject.max + "," + dayobject.weather);
 
+/*
+                Log.i("Parse json", "for City Detail==" + datalist);
+                for (int j = 0; j < daylist.size(); j++) {
+                    {
+                        //dayobject=daylist.get(i);
+
+                    }
+
+                }
+*/
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        /*for (int j = 0; j < daylist.size(); j++) {
+            Log.i("Parse to jsoin",":==:"+daylist.get(j));
+            String max=daylist.get(j).max;
+            String min=daylist.get(j).min;
+            String day=daylist.get(j).day;
+            String weather=daylist.get(j).weather;
+            Log.i("parse to json","Activity reesuklt==="+max+","+min+","+day+","+weather);
+        }*/
+        return daylist;
     }
-
-
     public List<Day> getRenderWeatherDayListValues(JSONObject json) {
-
+        List<Day> daylist = new ArrayList<Day>();
         try {
-            Day dayobject = new Day();
             JSONObject City = json.getJSONObject("city");
             String Cityname = City.getString("name");
             String CountryName = City.getString("country");
@@ -63,6 +78,7 @@ public class ParseForcastDay {
             JSONArray ListArray = json.getJSONArray("list");
             for (int i = 0; i < ListArray.length(); i++) {
                 JSONObject jobject = ListArray.getJSONObject(i);
+                Day dayobject = new Day();
                 String date = jobject.getString("dt");
                 JSONObject temp = jobject.getJSONObject("temp");
                 dayobject.day = temp.getString("day");
@@ -73,14 +89,13 @@ public class ParseForcastDay {
                     JSONObject jweather = weather.getJSONObject(j);
                     dayobject.weather = jweather.getString("description");
                 }
+
+
                 daylist.add(dayobject);
-
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
         return daylist;
     }

@@ -44,48 +44,20 @@ public class CityDetail extends Activity {
         city = getIntent().getStringExtra("ForcastCityDetail");
         cityName.setText(city);
         daylist = new ArrayList<Day>();
-        datalist = new ArrayList<Day>();
         mhandler = new Handler();
-        //  GetDetailWeatherDetail(city);
-        datalist = GetDetailWeatherDetailJson(city);
-        CityDetailAdapter cityadapter = new CityDetailAdapter(mContext, datalist);
+        daylist = GetDetailWeatherDetail(city);
+
+        Log.i("City Detail", "Activity" + daylist.size());
+
+        CityDetailAdapter cityadapter = new CityDetailAdapter(mContext, daylist);
         lview.setAdapter(cityadapter);
-
     }
-
     private void SetUpUI() {
         lview = (ListView) findViewById(R.id.forcastdetail);
         cityName = (TextView) findViewById(R.id.cityName);
-
-
     }
-
-    private List<Day> GetDetailWeatherDetailJson(String city) {
-        List<Day> datalisted = new ArrayList<Day>();
-        if (city.length() == 0) {
-            Toast.makeText(mContext, "Not able to find your location.Check ur connection", Toast.LENGTH_SHORT).show();
-
-        } else {
-            JSONObject json = FetchForcastForDayJson.getJSON(mContext, city);
-
-            Log.i("Json For city", "Values==" + json);
-
-            if (json == null) {
-                Toast.makeText(CityDetail.this, "Not Getting information.", Toast.LENGTH_SHORT).show();
-            } else {
-
-                datalisted = parse.getRenderWeatherDayListValues(json);
-
-            }
-
-        }
-
-        return datalisted;
-    }
-
-
-    private void GetDetailWeatherDetail(final String city) {
-
+    private List<Day> GetDetailWeatherDetail(final String city) {
+        datalist = new ArrayList<Day>();
         if (city.length() == 0) {
             Toast.makeText(mContext, "Not able to find current location.Check ur connection", Toast.LENGTH_SHORT).show();
 
@@ -105,14 +77,14 @@ public class CityDetail extends Activity {
                             public void run() {
 
 
-                                parse.RenderWeatherDay(json);
-
-
+                                datalist = parse.RenderWeatherDay(json);
+                                Log.i("City DetailActivtiy", "==" + datalist.size());
                             }
                         });
                     }
                 }
             }.start();
         }
+        return datalist;
     }
 }
