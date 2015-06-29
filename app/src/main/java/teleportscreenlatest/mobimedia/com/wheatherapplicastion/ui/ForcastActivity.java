@@ -63,7 +63,8 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
 
       /*  JSONWeatherTask task = new JSONWeatherTask();
         task.execute(new String[]{city, lang});
-       */ JSONForecastWeatherTask task1 = new JSONForecastWeatherTask();
+       */
+        JSONForecastWeatherTask task1 = new JSONForecastWeatherTask();
         task1.execute(new String[]{city, lang, forecastDaysNum});
     }
 

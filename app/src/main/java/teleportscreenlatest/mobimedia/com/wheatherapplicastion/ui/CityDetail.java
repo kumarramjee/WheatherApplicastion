@@ -52,10 +52,12 @@ public class CityDetail extends Activity {
         CityDetailAdapter cityadapter = new CityDetailAdapter(mContext, daylist);
         lview.setAdapter(cityadapter);
     }
+
     private void SetUpUI() {
         lview = (ListView) findViewById(R.id.forcastdetail);
         cityName = (TextView) findViewById(R.id.cityName);
     }
+
     private List<Day> GetDetailWeatherDetail(final String city) {
         datalist = new ArrayList<Day>();
         if (city.length() == 0) {

@@ -70,6 +70,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
 
         rLayout.setOnClickListener(this);
     }
+
     private void SetUpUI() {
         mtxt_Title = (TextView) findViewById(R.id.txt_Title);
         mtxt_Title.setText("Detail Infomartion");
@@ -90,6 +91,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         container = (RelativeLayout) findViewById(R.id.container);
         detailtemp = (ListView) findViewById(R.id.detailtemp);
     }
+
     private void updateWeatherData(final String city) {
         new Thread() {
             public void run() {
@@ -115,6 +117,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
             }
         }.start();
     }
+
     private void renderWeather(JSONObject json) {
         try {
             txt_header.setText(json.getString("name").toUpperCase(Locale.US) +
@@ -130,7 +133,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
 
             senddaytype = details.getString("description").toUpperCase(Locale.US).toString().trim();
             setImage(senddaytype);
-                 mcurrentTemperatureField.setText(
+            mcurrentTemperatureField.setText(
                     String.format(main.getInt("temp") + " ℃"));
             mcurrentTemperatureField.setTextSize(5, 20);
 
