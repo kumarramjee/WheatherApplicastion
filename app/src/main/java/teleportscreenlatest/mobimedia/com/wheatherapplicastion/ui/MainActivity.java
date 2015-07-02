@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -262,13 +261,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
             Toast.makeText(this, "Enter City Name", Toast.LENGTH_SHORT).show();
         } else {
-            //    GetDetailWeatherDetail(mcityname);
-            Intent intent_submit = new Intent(MainActivity.this, DetailActivty.class);
+            Intent intent_submit = new Intent(MainActivity.this, CityDetail.class);
             intent_submit.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                     | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent_submit.putExtra("ForcastCityDetail", mcityname);
-            // intent_submit.putExtra("Daytype", senddaytype);
-
             startActivity(intent_submit);
         }
     }

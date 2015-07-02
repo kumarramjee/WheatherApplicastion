@@ -62,12 +62,10 @@ public class DetailActivty extends Activity implements View.OnClickListener {
         if (mcity == null) {
             Toast.makeText(this, "Not able to find location.", Toast.LENGTH_SHORT).show();
         } else {
-
             updateWeatherData(mcity);
         }
         mtxt_Next.setOnClickListener(this);
         res = getResources();
-
         rLayout.setOnClickListener(this);
     }
 

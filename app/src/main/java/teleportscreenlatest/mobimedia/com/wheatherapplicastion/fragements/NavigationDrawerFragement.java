@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class NavigationDrawerFragement extends Fragment {
     String searchedcountryname;
     ListView lview;
     String navlist[];// = {"Current Location", "Get PLaces", "Edit Location", "Inbox", "SentItem", "DraftBox", "Settings", "Notifications", "Sign Out"};
-
+    Context context;
     List mdrawerlist;//
     List mdrawerlistItem;
 

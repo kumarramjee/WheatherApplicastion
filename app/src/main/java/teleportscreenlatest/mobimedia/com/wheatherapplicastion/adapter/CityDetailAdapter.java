@@ -8,56 +8,33 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.WeatherForecastForcastActivity;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Day;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.DayForecast;
 
 /**
  * Created by ram on 18/6/15.
  */
 public class CityDetailAdapter extends BaseAdapter {
-    DayForecast dayForecast;
-    private int numDays;
-    private android.support.v4.app.FragmentManager fm;
-    private WeatherForecastForcastActivity forecast;
-    private Context mContext;
-    private String getCurrentday;
-    private TextView day;
-    private TextView description;
-    private TextView daytempmin;
-    private TextView daytempmax;
-    private final static SimpleDateFormat sdf = new SimpleDateFormat("E, dd-MM");
+
     List<Day> datalist = new ArrayList<Day>();
     Context context;
 
-    public CityDetailAdapter(Context mContext, List<Day> datalist)
-
-    {
-        super();
-        this.numDays = numDays;
-        this.datalist = datalist;
-
+    public CityDetailAdapter(Context context, List<Day> mDayList) {
+        this.context = context;
+        this.datalist = mDayList;
     }
-
 
     @Override
     public int getCount() {
-
-        Log.i("Datalist Size is", "==" + datalist.size());
         return datalist.size();
-
     }
-
     @Override
     public Day getItem(int position) {
         return datalist.get(position);
     }
-
     @Override
     public long getItemId(int position) {
         return 0;
@@ -65,25 +42,45 @@ public class CityDetailAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+
+
+        ViewHolder holder;
+
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View rowView = inflater.inflate(R.layout.detail_list, parent, false);
-
+            holder = new ViewHolder();
+            convertView = inflater.inflate(R.layout.detail_list, null);
+            holder = new ViewHolder();
+            holder.day1 = (TextView) convertView.findViewById(R.id.dayname);
+            holder.description = (TextView) convertView.findViewById(R.id.daytype);
+            holder.daytempmin = (TextView) convertView.findViewById(R.id.daytempmin);
+            holder.daytempmax = (TextView) convertView.findViewById(R.id.daytempmax);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
-        day = (TextView) convertView.findViewById(R.id.dayname);
-        description = (TextView) convertView.findViewById(R.id.description);
-        daytempmin = (TextView) convertView.findViewById(R.id.daytempmin);
-        daytempmax = (TextView) convertView.findViewById(R.id.daytempmax);
+        Day mday = (Day) getItem(position);
+        holder.day1.setText(mday.day);
 
-        Day mday = getItem(position);
+        holder.description.setText((mday.weather));
 
-        day.setText(mday.day);
-        description.setText(mday.weather);
-        daytempmin.setText(mday.min);
-        daytempmax.setText(mday.max);
+        holder.daytempmax.setText(mday.max+"℃");
+
+        holder.daytempmin.setText(mday.min+"℃");
+
+        Log.i("City Detail Adapter", "all Rows values==" + mday.min + "," + mday.max + "," + mday.weather + "," + mday.day);
 
         return convertView;
+
     }
 
+    /*private view holder class*/
+    private class ViewHolder {
+        TextView day1;
+        TextView description;
+        TextView daytempmin;
+        TextView daytempmax;
+    }
 
 }

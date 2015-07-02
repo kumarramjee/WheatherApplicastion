@@ -9,23 +9,27 @@
         style="@style/WeatherForecastListItemText"
         android:layout_marginRight="20dp"
         android:layout_weight="3"
-        android:text="@string/monday" />
+        android:text="@string/monday"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/description"
         style="@style/WeatherForecastListItemText"
         android:layout_weight="5"
-        android:text="@string/sky_is_clear" />
+        android:text="@string/sky_is_clear"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/maximum_temperature"
         style="@style/WeatherForecastListItemTextEmphasis"
         android:layout_weight="1"
-        android:text="@string/nineteen_degrees" />
+        android:text="@string/nineteen_degrees"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/minimum_temperature"
         style="@style/WeatherForecastListItemTextDeEmphasis"
         android:layout_weight="1"
-        android:text="@string/fifteen_degrees" />
+        android:text="@string/fifteen_degrees"
+        android:layout_height="wrap_content" />
 </LinearLayout>

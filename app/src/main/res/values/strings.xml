@@ -59,4 +59,5 @@
         <item>Sign Out</item>
     </string-array>
     <string name="title_activity_binding">BindingActivity</string>
+    <string name="title_activity_fbuster_animation">FBUSterAnimation</string>
 </resources>

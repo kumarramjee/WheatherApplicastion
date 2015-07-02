@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:background="#80000000">
+    >
 
     <RelativeLayout
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_margin="16dp"
-        android:background="#80000000"
+        android:background="@drawable/skyclear"
         android:orientation="horizontal">
 
         <TextView
@@ -18,35 +17,33 @@
             android:layout_width="wrap_content"
             android:layout_height="56dp"
             android:layout_alignParentLeft="true"
-            android:layout_margin="5dp"
+            android:layout_margin="15dp"
             android:gravity="center_vertical"
             android:text="DayName"
-            android:textColor="#ffffff"
-            android:textSize="25sp" />
+            android:textColor="#80ffffff"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/daytype"
             android:layout_width="wrap_content"
             android:layout_height="56dp"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:layout_toRightOf="@+id/dayname"
             android:gravity="center_vertical"
             android:text="Daytype"
-            android:textColor="#ffffff"
-
-            android:textSize="25sp" />
+            android:textColor="#80ffffff"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/daytempmin"
             android:layout_width="wrap_content"
             android:layout_height="56dp"
-            android:layout_margin="5dp"
-            android:layout_toRightOf="@+id/daytype"
+            android:layout_margin="10dp"
+            android:layout_toLeftOf="@+id/daytempmax"
             android:gravity="center_vertical"
             android:text="Min"
-            android:textColor="#ffffff"
-
-            android:textSize="25sp" />
+            android:textColor="#80ffffff"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/daytempmax"
@@ -55,9 +52,9 @@
             android:layout_alignParentRight="true"
             android:layout_margin="5dp"
             android:gravity="center_vertical"
-            android:text="Max"
-            android:textColor="#ffffff"
-            android:textSize="25sp" />
+            android:text="Max "
+            android:textColor="#80ffffff"
+            android:textSize="15sp" />
 
 
     </RelativeLayout>
