@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
@@ -24,7 +25,7 @@ import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Hour;
  */
 public class HourForecastAdapter extends BaseAdapter {
     Context context;
-    List<Hour> mhourlist;
+    List<Hour> mhourlist=new ArrayList<Hour>();
     TextView time;
     TextView daytypehour;
     TextView temperture;
