@@ -7,27 +7,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/bg_round_go"
-       >
+        android:background="@drawable/bg_round_go">
 
 
         <ImageView
             android:id="@+id/imageset"
             android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="16dp"
+            android:layout_height="30dp"
             android:layout_alignParentTop="true"
-            />
+            android:src="@drawable/sun"
+            android:layout_marginLeft="16dp" />
 
         <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/imageset"
             android:layout_margin="5dp"
             android:gravity="center_horizontal"
+            android:layout_centerInParent="true"
             android:text="2:00PM"
-            android:layout_below="@+id/imageset"
             android:textColor="#80ffffff"
             android:textSize="15sp"
 
@@ -38,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_below="@+id/time"
             android:layout_centerVertical="true"
             android:layout_margin="5dp"
             android:gravity="center_horizontal"
@@ -49,11 +49,13 @@
             android:id="@+id/temperture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/weatherdetailinfo"
             android:layout_marginLeft="5dp"
             android:gravity="center_horizontal"
+            android:layout_centerInParent="true"
             android:text="30"
             android:textColor="#80ffffff"
+            android:layout_marginBottom="5dp"
             android:textSize="15sp" />
     </RelativeLayout>
 
