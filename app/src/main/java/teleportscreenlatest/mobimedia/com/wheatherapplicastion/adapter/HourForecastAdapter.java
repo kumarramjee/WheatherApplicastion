@@ -25,7 +25,7 @@ import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Hour;
  */
 public class HourForecastAdapter extends BaseAdapter {
     Context context;
-    List<Hour> mhourlist=new ArrayList<Hour>();
+    List<Hour> mhourlist = new ArrayList<Hour>();
     TextView time;
     TextView daytypehour;
     TextView temperture;
@@ -60,7 +60,7 @@ public class HourForecastAdapter extends BaseAdapter {
                 convertView = inflater.inflate(R.layout.hourhorizontallist, null);
                 holder = new ViewHolder();
                 holder.time = (TextView) convertView.findViewById(R.id.time);
-                holder.icon=(ImageView)convertView.findViewById(R.id.imageset);
+                holder.icon = (ImageView) convertView.findViewById(R.id.imageset);
                 holder.weather = (TextView) convertView.findViewById(R.id.weatherdetailinfo);
                 holder.temperature = (TextView) convertView.findViewById(R.id.temperture);
                 convertView.setTag(holder);
@@ -68,9 +68,9 @@ public class HourForecastAdapter extends BaseAdapter {
                 holder = (ViewHolder) convertView.getTag();
             }
             Hour mhour = (Hour) getItem(position);
-            holder.time.setText((mhour.time).subSequence(11,(mhour.time.length()-3)));
+            holder.time.setText((mhour.time).subSequence(11, (mhour.time.length() - 3)));
             holder.icon.setImageResource(R.drawable.skky);
-            new DownloadImageTask(holder.icon).execute(mhour.icon);
+            new DownloadImageTask(holder.icon).execute(mhourlist.get(position).icon);
 
             holder.weather.setText((mhour.weather));
             holder.temperature.setText(mhour.temperature + "℃");
@@ -85,6 +85,7 @@ public class HourForecastAdapter extends BaseAdapter {
         TextView weather;
         ImageView icon;
     }
+
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 
@@ -104,5 +105,10 @@ public class HourForecastAdapter extends BaseAdapter {
             }
             return mIcon11;
         }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
+
     }
 }
