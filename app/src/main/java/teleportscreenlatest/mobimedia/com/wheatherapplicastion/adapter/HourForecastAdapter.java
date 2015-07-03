@@ -1,6 +1,7 @@
 package teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Day;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Hour;
 
 /**
@@ -29,12 +31,12 @@ public class HourForecastAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return mhourlist.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return mhourlist.get(position);
     }
 
     @Override
@@ -44,20 +46,32 @@ public class HourForecastAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
+        {
+            ViewHolder holder;
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.hourhorizontallist, null);
-
-        } else {
-            time=(TextView)convertView.findViewById(R.id.time);
-            daytypehour=(TextView)convertView.findViewById(R.id.daytypehour);
-            temperture=(TextView)convertView.findViewById(R.id.temperture);
-
-
-
+            if (convertView == null) {
+                holder = new ViewHolder();
+                convertView = inflater.inflate(R.layout.hourhorizontallist, null);
+                holder = new ViewHolder();
+                holder.time = (TextView) convertView.findViewById(R.id.time);
+                holder.weather = (TextView) convertView.findViewById(R.id.weatherdetailinfo);
+                holder.temperature = (TextView) convertView.findViewById(R.id.temperture);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+            Hour mhour = (Hour) getItem(position);
+            holder.time.setText((mhour.time).subSequence(11,(mhour.time.length()-3)));
+            holder.weather.setText((mhour.weather));
+            holder.temperature.setText(mhour.temperature + "℃");
+            Log.i("City Detail Adapter", "all Rows values==" + mhour.time + "," + mhour.weather + "," + mhour.temperature);
+            return convertView;
         }
+    }
 
-
-        return null;
+    private class ViewHolder {
+        TextView time;
+        TextView temperature;
+        TextView weather;
     }
 }
