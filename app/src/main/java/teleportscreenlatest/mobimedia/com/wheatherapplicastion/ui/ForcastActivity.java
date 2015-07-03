@@ -103,7 +103,7 @@ public class ForcastActivity extends FragmentActivity implements View.OnClickLis
             relativimage.setBackground(drawable);
 
         } else if (description.equals("MODERATE RAIN")) {
-            drawable = res.getDrawable(R.drawable.moderaterain);
+            drawable = res.getDrawable(R.drawable.mrain);
             relativimage.setBackground(drawable);
 
         } else if (description.equals("LIGHT RAIN")) {

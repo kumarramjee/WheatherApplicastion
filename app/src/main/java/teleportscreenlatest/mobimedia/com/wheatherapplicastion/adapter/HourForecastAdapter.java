@@ -1,13 +1,18 @@
 package teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.InputStream;
 import java.util.List;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
@@ -54,6 +59,7 @@ public class HourForecastAdapter extends BaseAdapter {
                 convertView = inflater.inflate(R.layout.hourhorizontallist, null);
                 holder = new ViewHolder();
                 holder.time = (TextView) convertView.findViewById(R.id.time);
+                holder.icon=(ImageView)convertView.findViewById(R.id.imageset);
                 holder.weather = (TextView) convertView.findViewById(R.id.weatherdetailinfo);
                 holder.temperature = (TextView) convertView.findViewById(R.id.temperture);
                 convertView.setTag(holder);
@@ -62,6 +68,9 @@ public class HourForecastAdapter extends BaseAdapter {
             }
             Hour mhour = (Hour) getItem(position);
             holder.time.setText((mhour.time).subSequence(11,(mhour.time.length()-3)));
+            holder.icon.setImageResource(R.drawable.skky);
+            new DownloadImageTask(holder.icon).execute(mhour.icon);
+
             holder.weather.setText((mhour.weather));
             holder.temperature.setText(mhour.temperature + "℃");
             Log.i("City Detail Adapter", "all Rows values==" + mhour.time + "," + mhour.weather + "," + mhour.temperature);
@@ -73,5 +82,26 @@ public class HourForecastAdapter extends BaseAdapter {
         TextView time;
         TextView temperature;
         TextView weather;
+        ImageView icon;
+    }
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
     }
 }

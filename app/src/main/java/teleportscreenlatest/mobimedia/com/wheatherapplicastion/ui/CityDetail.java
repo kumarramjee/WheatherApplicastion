@@ -3,15 +3,9 @@ package teleportscreenlatest.mobimedia.com.wheatherapplicastion.ui;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -51,12 +45,11 @@ public class CityDetail extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_detail);
         SetUpUI();
-        parse = new ParseForcastDay();
         city = getIntent().getStringExtra("ForcastCityDetail").toUpperCase();
         cityName.setText(city);
+
         new AsyncTaskForForecastDayDetail().execute(city);
         new AsyncTaskForDaywiseDetail().execute(city);
-
 
 
     }
@@ -114,6 +107,7 @@ public class CityDetail extends Activity {
                         for (int j = 0; j < weather.length(); j++) {
                             JSONObject jweather = weather.getJSONObject(j);
                             hourobject.weather = jweather.getString("description").toString();
+                            hourobject.icon=jweather.getString("icon");
                             hourobject.time = jobject.getString("dt_txt");
                             mHourList.add(hourobject);
                         }
@@ -125,6 +119,7 @@ public class CityDetail extends Activity {
             }
         }
     }
+
     public class AsyncTaskForForecastDayDetail extends AsyncTask<String, Void, List<Day>> {
         private final ProgressDialog dialog = new ProgressDialog(CityDetail.this);
 
@@ -180,6 +175,7 @@ public class CityDetail extends Activity {
                     for (int j = 0; j < weather.length(); j++) {
                         JSONObject jweather = weather.getJSONObject(j);
                         dayobject.weather = jweather.getString("description").toString();
+
                         mdayList.add(dayobject);
                     }
                 }

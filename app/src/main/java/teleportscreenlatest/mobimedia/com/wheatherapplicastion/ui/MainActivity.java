@@ -262,6 +262,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             Toast.makeText(this, "Enter City Name", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent_submit = new Intent(MainActivity.this, CityDetail.class);
+
             intent_submit.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                     | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent_submit.putExtra("ForcastCityDetail", mcityname);

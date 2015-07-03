@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -159,7 +158,7 @@ public class DetailActivty extends Activity implements View.OnClickListener {
             rLayout.setBackground(drawable);
 
         } else if (description.equals("MODERATE RAIN")) {
-            drawable = res.getDrawable(R.drawable.moderaterain);
+            drawable = res.getDrawable(R.drawable.mrain);
 
             rLayout.setBackground(drawable);
 
