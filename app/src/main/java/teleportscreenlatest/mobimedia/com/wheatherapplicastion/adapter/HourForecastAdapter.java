@@ -71,7 +71,6 @@ public class HourForecastAdapter extends BaseAdapter {
             holder.time.setText((mhour.time).subSequence(11, (mhour.time.length() - 3)));
             holder.icon.setImageResource(R.drawable.skky);
             new DownloadImageTask(holder.icon).execute(mhourlist.get(position).icon);
-
             holder.weather.setText((mhour.weather));
             holder.temperature.setText(mhour.temperature + "℃");
             Log.i("City Detail Adapter", "all Rows values==" + mhour.time + "," + mhour.weather + "," + mhour.temperature);

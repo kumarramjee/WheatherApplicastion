@@ -49,6 +49,7 @@ public class FetchHourForcastJson {
                 return null;
             }
 
+            Log.i("Json Data","=="+data);
             return data;
         } catch (Exception e) {
             return null;

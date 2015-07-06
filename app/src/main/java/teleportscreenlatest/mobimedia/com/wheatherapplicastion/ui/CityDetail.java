@@ -6,8 +6,10 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,12 +23,16 @@ import java.util.List;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.CityDetailAdapter;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.HourForecastAdapter;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.CurrentDayWeather;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Day;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.model.Hour;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.parser.ParseForcastDay;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchForcastForDayJson;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchHourForcastJson;
+import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchJson;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.HorizontalListView;
+
+import static android.widget.Toast.makeText;
 
 public class CityDetail extends Activity {
 
@@ -39,6 +45,8 @@ public class CityDetail extends Activity {
     List<Hour> mtimelist;
     HorizontalListView mhorizontal;
     HourForecastAdapter houradapter;
+    TextView temperature;
+    TextView daytipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +55,9 @@ public class CityDetail extends Activity {
         SetUpUI();
         city = getIntent().getStringExtra("ForcastCityDetail").toUpperCase();
         cityName.setText(city);
-
+        temperature.setVisibility(View.INVISIBLE);
+        daytipe.setVisibility(View.INVISIBLE);
+        // new CityDetail.AsyncTaskForCurrentweather().execute(city);
         new AsyncTaskForForecastDayDetail().execute(city);
         new AsyncTaskForDaywiseDetail().execute(city);
 
@@ -58,11 +68,50 @@ public class CityDetail extends Activity {
         lview = (ListView) findViewById(R.id.forcastdetail);
         cityName = (TextView) findViewById(R.id.cityName);
         mhorizontal = (HorizontalListView) findViewById(R.id.forcasthour);
+        temperature = (TextView) findViewById(R.id.temperature);
+        daytipe = (TextView) findViewById(R.id.daytipe);
     }
 
 
-    public class AsyncTaskForDaywiseDetail extends AsyncTask<String, Void, List<Hour>> {
+    public class AsyncTaskForCurrentweather extends AsyncTask<String, Void, Void> {
 
+        @Override
+        protected Void doInBackground(String... params) {
+            String cityname = params[0];
+            GetHourJson();
+            return null;
+        }
+
+        private void GetHourJson() {
+            try {
+                JSONObject json = FetchJson.getJSON(CityDetail.this, city);
+                RenderWeatherHour(json);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        private void RenderWeatherHour(JSONObject json) {
+            {
+                try {
+                    CurrentDayWeather currentweather = new CurrentDayWeather();
+                    JSONArray weather = json.getJSONArray("weather");
+                    for (int j = 0; j < weather.length(); j++) {
+                        JSONObject jweather = weather.getJSONObject(j);
+                        currentweather.typeofday = jweather.getString("description").toString();
+                        daytipe.setText(currentweather.typeofday);
+                    }
+                    JSONObject jdescripton = json.getJSONObject("main");
+                    String temp = jdescripton.getString("temp");
+                    temperature.setText(temp + "℃");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    public class AsyncTaskForDaywiseDetail extends AsyncTask<String, Void, List<Hour>> {
         @Override
         protected List<Hour> doInBackground(String... params) {
             List<Hour> hourlistAsync = new ArrayList<Hour>();
@@ -107,7 +156,7 @@ public class CityDetail extends Activity {
                         for (int j = 0; j < weather.length(); j++) {
                             JSONObject jweather = weather.getJSONObject(j);
                             hourobject.weather = jweather.getString("description").toString();
-                            hourobject.icon=jweather.getString("icon");
+                            hourobject.icon = jweather.getString("icon");
                             hourobject.time = jobject.getString("dt_txt");
                             mHourList.add(hourobject);
                         }
@@ -186,3 +235,4 @@ public class CityDetail extends Activity {
         }
     }
 }
+

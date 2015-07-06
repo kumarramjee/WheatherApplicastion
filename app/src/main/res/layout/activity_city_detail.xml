@@ -17,13 +17,43 @@
         android:textSize="24sp" />
 
     <RelativeLayout
+        android:id="@+id/tempdetail"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_below="@+id/cityName">
+
+        <TextView
+            android:id="@+id/temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="Hi"
+            android:layout_marginLeft="26dp"
+            android:textSize="12sp"
+            android:textColor="#ffffff"
+            />
+
+        <TextView
+            android:id="@+id/daytipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="how"
+            android:layout_marginRight="26dp"
+            android:textSize="12sp"
+            android:textColor="#ffffff"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
         android:id="@+id/detls"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_below="@+id/cityName"
+        android:layout_below="@+id/tempdetail"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="#80000000"
         android:orientation="horizontal">
 
@@ -32,7 +62,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:text="Forecast"
             android:textColor="#ffffff"
             android:textSize="20sp" />
@@ -63,7 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/forcastdetail"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="2dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="1dp"
