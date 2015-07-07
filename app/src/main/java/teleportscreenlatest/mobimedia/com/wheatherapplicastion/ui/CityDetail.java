@@ -111,6 +111,7 @@ public class CityDetail extends Activity {
             }
         }
     }
+
     public class AsyncTaskForDaywiseDetail extends AsyncTask<String, Void, List<Hour>> {
         @Override
         protected List<Hour> doInBackground(String... params) {
