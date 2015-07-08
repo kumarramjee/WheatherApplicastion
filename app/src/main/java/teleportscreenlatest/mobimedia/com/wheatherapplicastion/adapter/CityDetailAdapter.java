@@ -31,10 +31,12 @@ public class CityDetailAdapter extends BaseAdapter {
     public int getCount() {
         return datalist.size();
     }
+
     @Override
     public Day getItem(int position) {
         return datalist.get(position);
     }
+
     @Override
     public long getItemId(int position) {
         return 0;
@@ -44,14 +46,12 @@ public class CityDetailAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
 
-
         ViewHolder holder;
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = inflater.inflate(R.layout.detail_list, null);
-            holder = new ViewHolder();
             holder.day1 = (TextView) convertView.findViewById(R.id.dayname);
             holder.description = (TextView) convertView.findViewById(R.id.daytype);
             holder.daytempmin = (TextView) convertView.findViewById(R.id.daytempmin);
@@ -65,9 +65,9 @@ public class CityDetailAdapter extends BaseAdapter {
 
         holder.description.setText((mday.weather));
 
-        holder.daytempmax.setText(mday.max+"℃");
+        holder.daytempmax.setText(mday.max + "℃");
 
-        holder.daytempmin.setText(mday.min+"℃");
+        holder.daytempmin.setText(mday.min + "℃");
 
         Log.i("City Detail Adapter", "all Rows values==" + mday.min + "," + mday.max + "," + mday.weather + "," + mday.day);
 

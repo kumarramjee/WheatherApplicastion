@@ -209,6 +209,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             drawable = res.getDrawable(R.drawable.mist);
             rLayout.setBackground(drawable);
 
+        }else if(description.equals("LIGHT INTENSITY DRIZZLE"))
+        {
+            drawable = res.getDrawable(R.drawable.nonelse);
+            rLayout.setBackground(drawable);
+
+
         } else {
             drawable = res.getDrawable(R.drawable.nonelse);
             rLayout.setBackground(drawable);

@@ -29,7 +29,7 @@ public class HourForecastAdapter extends BaseAdapter {
     TextView time;
     TextView daytypehour;
     TextView temperture;
-
+    ViewHolder holder;
     public HourForecastAdapter(Context context, List<Hour> mtimelist) {
         this.context = context;
         this.mhourlist = mtimelist;
@@ -53,12 +53,13 @@ public class HourForecastAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         {
-            ViewHolder holder;
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            if (convertView == null) {
-                holder = new ViewHolder();
-                convertView = inflater.inflate(R.layout.hourhorizontallist, null);
-                holder = new ViewHolder();
+
+             if (convertView == null) {
+
+                holder=new ViewHolder();
+
+                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                 convertView = inflater.inflate(R.layout.hourhorizontallist, null);
                 holder.time = (TextView) convertView.findViewById(R.id.time);
                 holder.icon = (ImageView) convertView.findViewById(R.id.imageset);
                 holder.weather = (TextView) convertView.findViewById(R.id.weatherdetailinfo);
@@ -70,7 +71,7 @@ public class HourForecastAdapter extends BaseAdapter {
             Hour mhour = (Hour) getItem(position);
             holder.time.setText((mhour.time).subSequence(11, (mhour.time.length() - 3)));
             holder.icon.setImageResource(R.drawable.skky);
-            new DownloadImageTask(holder.icon).execute(mhourlist.get(position).icon);
+            new DownloadImageTask(holder.icon).execute(mhour.icon);
             holder.weather.setText((mhour.weather));
             holder.temperature.setText(mhour.temperature + "℃");
             Log.i("City Detail Adapter", "all Rows values==" + mhour.time + "," + mhour.weather + "," + mhour.temperature);
@@ -86,17 +87,22 @@ public class HourForecastAdapter extends BaseAdapter {
     }
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
+        public ImageView bmImage;
 
         public DownloadImageTask(ImageView bmImage) {
             this.bmImage = bmImage;
         }
 
         protected Bitmap doInBackground(String... urls) {
+
+
             String urldisplay = urls[0];
+            String imageurl="http://openweathermap.org/img/w/"+urldisplay+".png";
+
+
             Bitmap mIcon11 = null;
             try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
+                InputStream in = new java.net.URL(imageurl).openStream();
                 mIcon11 = BitmapFactory.decodeStream(in);
             } catch (Exception e) {
                 Log.e("Error", e.getMessage());
