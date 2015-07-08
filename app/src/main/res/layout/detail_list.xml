@@ -31,8 +31,7 @@
             android:layout_toRightOf="@+id/dayname"
             android:gravity="center_vertical"
             android:text="Daytype"
-            android:textColor="#80ffffff"
-            android:textSize="15sp" />
+            android:layout_marginLeft="36dp"/>
 
         <TextView
             android:id="@+id/daytype"
@@ -51,7 +50,7 @@
             android:id="@+id/daytempmin"
             android:layout_width="wrap_content"
             android:layout_height="56dp"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="16dp"
             android:layout_toLeftOf="@+id/daytempmax"
             android:gravity="center_vertical"
             android:text="Min"
@@ -63,9 +62,9 @@
             android:layout_width="wrap_content"
             android:layout_height="56dp"
             android:layout_alignParentRight="true"
-            android:layout_margin="5dp"
             android:gravity="center_vertical"
             android:text="Max "
+            android:layout_marginLeft="16dp"
             android:textColor="#80ffffff"
             android:textSize="15sp" />
 

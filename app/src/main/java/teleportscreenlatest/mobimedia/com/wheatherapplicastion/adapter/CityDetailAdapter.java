@@ -67,17 +67,10 @@ public class CityDetailAdapter extends BaseAdapter {
         }
         Day mday = (Day) getItem(position);
         holder.day1.setText(mday.day);
-
-
-        holder.imageicon.setImageResource(R.drawable.skky);
         new DownloadImageTask(holder.imageicon).execute(mday.imageicon);
-
         holder.daytempmin.setText(mday.min + "℃");
         holder.daytempmax.setText(mday.max + "℃");
-
-
         return convertView;
-
     }
 
     /*private view holder class*/

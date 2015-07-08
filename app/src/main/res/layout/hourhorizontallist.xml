@@ -16,7 +16,6 @@
             android:layout_height="30dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/sun"
             android:visibility="visible"
 
             />

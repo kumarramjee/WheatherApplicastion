@@ -57,7 +57,6 @@ public class CityDetail extends Activity {
         cityName.setText(city);
         temperature.setVisibility(View.INVISIBLE);
         daytipe.setVisibility(View.INVISIBLE);
-        // new CityDetail.AsyncTaskForCurrentweather().execute(city);
         new AsyncTaskForForecastDayDetail().execute(city);
         new AsyncTaskForDaywiseDetail().execute(city);
 

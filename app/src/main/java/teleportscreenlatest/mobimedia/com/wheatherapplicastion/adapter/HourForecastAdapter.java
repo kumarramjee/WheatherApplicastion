@@ -30,6 +30,7 @@ public class HourForecastAdapter extends BaseAdapter {
     TextView daytypehour;
     TextView temperture;
     ViewHolder holder;
+
     public HourForecastAdapter(Context context, List<Hour> mtimelist) {
         this.context = context;
         this.mhourlist = mtimelist;
@@ -54,12 +55,12 @@ public class HourForecastAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         {
 
-             if (convertView == null) {
+            if (convertView == null) {
 
-                holder=new ViewHolder();
+                holder = new ViewHolder();
 
-                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                 convertView = inflater.inflate(R.layout.hourhorizontallist, null);
+                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.hourhorizontallist, null);
                 holder.time = (TextView) convertView.findViewById(R.id.time);
                 holder.icon = (ImageView) convertView.findViewById(R.id.imageset);
                 holder.weather = (TextView) convertView.findViewById(R.id.weatherdetailinfo);
@@ -70,7 +71,7 @@ public class HourForecastAdapter extends BaseAdapter {
             }
             Hour mhour = (Hour) getItem(position);
             holder.time.setText((mhour.time).subSequence(11, (mhour.time.length() - 3)));
-            holder.icon.setImageResource(R.drawable.skky);
+            //  holder.icon.setImageResource(R.drawable.skky);
             new DownloadImageTask(holder.icon).execute(mhour.icon);
             holder.weather.setText((mhour.weather));
             holder.temperature.setText(mhour.temperature + "℃");
@@ -97,7 +98,7 @@ public class HourForecastAdapter extends BaseAdapter {
 
 
             String urldisplay = urls[0];
-            String imageurl="http://openweathermap.org/img/w/"+urldisplay+".png";
+            String imageurl = "http://openweathermap.org/img/w/" + urldisplay + ".png";
 
 
             Bitmap mIcon11 = null;
