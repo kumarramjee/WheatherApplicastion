@@ -1,13 +1,18 @@
 package teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +58,7 @@ public class CityDetailAdapter extends BaseAdapter {
             holder = new ViewHolder();
             convertView = inflater.inflate(R.layout.detail_list, null);
             holder.day1 = (TextView) convertView.findViewById(R.id.dayname);
-            holder.description = (TextView) convertView.findViewById(R.id.daytype);
+            holder.imageicon = (ImageView) convertView.findViewById(R.id.dayimagetype);
             holder.daytempmin = (TextView) convertView.findViewById(R.id.daytempmin);
             holder.daytempmax = (TextView) convertView.findViewById(R.id.daytempmax);
             convertView.setTag(holder);
@@ -63,13 +68,13 @@ public class CityDetailAdapter extends BaseAdapter {
         Day mday = (Day) getItem(position);
         holder.day1.setText(mday.day);
 
-        holder.description.setText((mday.weather));
 
-        holder.daytempmax.setText(mday.max + "℃");
+        holder.imageicon.setImageResource(R.drawable.skky);
+        new DownloadImageTask(holder.imageicon).execute(mday.imageicon);
 
         holder.daytempmin.setText(mday.min + "℃");
+        holder.daytempmax.setText(mday.max + "℃");
 
-        Log.i("City Detail Adapter", "all Rows values==" + mday.min + "," + mday.max + "," + mday.weather + "," + mday.day);
 
         return convertView;
 
@@ -78,9 +83,39 @@ public class CityDetailAdapter extends BaseAdapter {
     /*private view holder class*/
     private class ViewHolder {
         TextView day1;
-        TextView description;
         TextView daytempmin;
         TextView daytempmax;
+        ImageView imageicon;
     }
 
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        public ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+
+
+            String urldisplay = urls[0];
+            String imageurl = "http://openweathermap.org/img/w/" + urldisplay + ".png";
+
+
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(imageurl).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
+
+    }
 }

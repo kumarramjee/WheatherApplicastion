@@ -44,11 +44,10 @@ public class ParseForcastDay {
                     JSONArray weather = jobject.getJSONArray("weather");
                     for (int j = 0; j < weather.length(); j++) {
                         JSONObject jweather = weather.getJSONObject(j);
-                        dayobject.weather = jweather.getString("description");
+                        dayobject.imageicon = jweather.getString("icon");
                     }
                     daylist.add((Day) datalist);
-                    Log.i("Parse Forcast Day ", "different value ==" + dayobject.day + "," + dayobject.min + "," + dayobject.max + "," + dayobject.weather);
-                }
+                      }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

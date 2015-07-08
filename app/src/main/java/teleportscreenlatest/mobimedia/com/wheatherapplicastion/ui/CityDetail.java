@@ -224,7 +224,7 @@ public class CityDetail extends Activity {
                     JSONArray weather = jobject.getJSONArray("weather");
                     for (int j = 0; j < weather.length(); j++) {
                         JSONObject jweather = weather.getJSONObject(j);
-                        dayobject.weather = jweather.getString("description").toString();
+                        dayobject.imageicon = jweather.getString("icon");
 
                         mdayList.add(dayobject);
                     }

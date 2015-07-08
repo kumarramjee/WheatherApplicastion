@@ -8,7 +8,7 @@ public class Day {
     public String day;
     public String min;
     public String max;
-    public String  weather;
+    public String imageicon;
 
 
 
