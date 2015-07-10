@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -19,13 +21,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Scanner;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.GooglePlacesAutocompleteAdapter;
@@ -59,6 +61,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     String senddaytype;
     DrawerLayout mDrawerlayout;
     NavigationDrawerFragement mnavigationdrawerfragment;
+    Scanner mScanner;
+    TranslateAnimation mAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,12 +77,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         GpsLocation getgpslocation = new GpsLocation();
         getgpslocation.turnGPSOn();
         GetDetailWeatherDetail(CityName);
+
+
         mnavigationdrawerfragment = (NavigationDrawerFragement) getSupportFragmentManager()
                 .findFragmentById(R.id.navigatiodrawerfragement);
         DrawerLayout mDrawerlayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         mnavigationdrawerfragment.SetUP(R.id.navigatiodrawerfragement, (DrawerLayout) findViewById(R.id.drawerlayout), mtoolbar);
         if (mnavigationdrawerfragment != null && mnavigationdrawerfragment.isDrawerOpen())
             mnavigationdrawerfragment.closeDrawer();
+
+
         txt_Next.setOnClickListener(this);
         rLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -212,7 +220,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         } else if (description.equals("LIGHT INTENSITY DRIZZLE")) {
             drawable = res.getDrawable(R.drawable.nonelse);
             rLayout.setBackground(drawable);
-
+        } else if (description.equals("FOG")) {
+            drawable = res.getDrawable(R.drawable.fog);
+            rLayout.setBackground(drawable);
+        } else if (description.equals("DIRIZZLE")) {
+            drawable = res.getDrawable(R.drawable.drizzle);
+            rLayout.setBackground(drawable);
 
         } else {
             drawable = res.getDrawable(R.drawable.nonelse);
@@ -245,6 +258,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         mtoolbar = (Toolbar) findViewById(R.id.customActionbar);
         ImageView back_navigation = (ImageView) findViewById(R.id.back_navigation);
     }
+
 
     @Override
     public void onClick(View v) {

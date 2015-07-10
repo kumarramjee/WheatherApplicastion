@@ -38,7 +38,6 @@
 
     <style name="LocationText" parent="AppTheme">
         <item name="android:textSize">@dimen/location_text</item>
-        <item name="android:ellipsize">none</item>
     </style>
 
     <style name="WeatherForecastListItemText" parent="AppTheme">

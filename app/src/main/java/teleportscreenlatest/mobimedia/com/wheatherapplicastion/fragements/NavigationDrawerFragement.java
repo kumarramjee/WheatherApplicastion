@@ -6,24 +6,20 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.NavigationDrawerAdapter;
 
 /**
  * A simple {@link Fragment} subclass.

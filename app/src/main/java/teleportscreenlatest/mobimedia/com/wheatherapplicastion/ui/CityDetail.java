@@ -5,11 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,8 +32,6 @@ import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchHourFor
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchJson;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.HorizontalListView;
 
-import static android.widget.Toast.makeText;
-
 public class CityDetail extends Activity {
 
     private String city = "";
@@ -47,7 +45,7 @@ public class CityDetail extends Activity {
     HourForecastAdapter houradapter;
     TextView temperature;
     TextView daytipe;
-
+    RelativeLayout container;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +59,17 @@ public class CityDetail extends Activity {
         new AsyncTaskForDaywiseDetail().execute(city);
 
 
+
+
+       /* TranslateAnimation animation = new TranslateAnimation(0.0f, 400.0f,
+                0.0f, 0.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
+        animation.setDuration(15000);  // animation duration
+        animation.setRepeatCount(15);  // animation repeat count
+        animation.setRepeatMode(1);   // repeat animation (left to right, right to left )
+        animation.setFillAfter(true);
+
+        container.startAnimation(animation);  // start animation*/
+
     }
 
     private void SetUpUI() {
@@ -69,7 +78,9 @@ public class CityDetail extends Activity {
         mhorizontal = (HorizontalListView) findViewById(R.id.forcasthour);
         temperature = (TextView) findViewById(R.id.temperature);
         daytipe = (TextView) findViewById(R.id.daytipe);
+        container=(RelativeLayout)findViewById(R.id.container);
     }
+
 
 
     public class AsyncTaskForCurrentweather extends AsyncTask<String, Void, Void> {
