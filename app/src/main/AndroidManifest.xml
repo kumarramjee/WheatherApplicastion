@@ -26,14 +26,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.DetailActivty"
-            android:label="@string/title_activity_detail_activty"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.ForcastActivity"
-            android:label="@string/title_activity_forcast"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.CityDetail"
             android:label="@string/title_activity_city_detail"
             android:screenOrientation="portrait" />

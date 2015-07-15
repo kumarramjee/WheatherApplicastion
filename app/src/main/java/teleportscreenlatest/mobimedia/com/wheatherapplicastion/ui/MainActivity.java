@@ -31,7 +31,6 @@ import java.util.Scanner;
 
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.R;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.adapter.GooglePlacesAutocompleteAdapter;
-import teleportscreenlatest.mobimedia.com.wheatherapplicastion.fragements.NavigationDrawerFragement;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.GpsLocation;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.helper.Locationfinder;
 import teleportscreenlatest.mobimedia.com.wheatherapplicastion.util.FetchJson;
@@ -60,7 +59,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     TextView txt_header;
     String senddaytype;
     DrawerLayout mDrawerlayout;
-    NavigationDrawerFragement mnavigationdrawerfragment;
     Scanner mScanner;
     TranslateAnimation mAnimation;
 
@@ -77,14 +75,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         GpsLocation getgpslocation = new GpsLocation();
         getgpslocation.turnGPSOn();
         GetDetailWeatherDetail(CityName);
-
-
-        mnavigationdrawerfragment = (NavigationDrawerFragement) getSupportFragmentManager()
-                .findFragmentById(R.id.navigatiodrawerfragement);
-        DrawerLayout mDrawerlayout = (DrawerLayout) findViewById(R.id.drawerlayout);
-        mnavigationdrawerfragment.SetUP(R.id.navigatiodrawerfragement, (DrawerLayout) findViewById(R.id.drawerlayout), mtoolbar);
-        if (mnavigationdrawerfragment != null && mnavigationdrawerfragment.isDrawerOpen())
-            mnavigationdrawerfragment.closeDrawer();
 
 
         txt_Next.setOnClickListener(this);

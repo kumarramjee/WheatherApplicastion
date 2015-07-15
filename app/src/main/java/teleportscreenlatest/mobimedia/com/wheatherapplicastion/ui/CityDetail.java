@@ -6,7 +6,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.TranslateAnimation;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -59,13 +58,14 @@ public class CityDetail extends Activity {
         new AsyncTaskForDaywiseDetail().execute(city);
 
 
+/*
 
 
-       /* TranslateAnimation animation = new TranslateAnimation(0.0f, 400.0f,
+        TranslateAnimation animation = new TranslateAnimation(0.0f, 400.0f,
                 0.0f, 0.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
         animation.setDuration(15000);  // animation duration
-        animation.setRepeatCount(15);  // animation repeat count
-        animation.setRepeatMode(1);   // repeat animation (left to right, right to left )
+        animation.setRepeatCount(25);  // animation repeat count
+        animation.setRepeatMode(2);   // repeat animation (left to right, right to left )
         animation.setFillAfter(true);
 
         container.startAnimation(animation);  // start animation*/
@@ -79,6 +79,7 @@ public class CityDetail extends Activity {
         temperature = (TextView) findViewById(R.id.temperature);
         daytipe = (TextView) findViewById(R.id.daytipe);
         container=(RelativeLayout)findViewById(R.id.container);
+
     }
 
 
@@ -194,7 +195,7 @@ public class CityDetail extends Activity {
         @Override
         protected void onPostExecute(List<Day> mDayList) {
             super.onPostExecute(mDayList);
-            dialog.cancel();
+            this.dialog.cancel();
             cityDetailAdapter = new CityDetailAdapter(mContext, mDayList);
             lview.setAdapter(cityDetailAdapter);
             cityDetailAdapter.notifyDataSetChanged();
